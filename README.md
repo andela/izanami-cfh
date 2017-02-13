@@ -1,3 +1,7 @@
+[![Build Status](https://travis-ci.org/andela/izanami-cfh.svg?branch=master)](https://travis-ci.org/andela/izanami-cfh) 	[![Hound Status](https://img.shields.io/badge/Protected%20by-Hound-%23551A8B.svg)](https://github.com/andela/izanami-cfh/pulls)
+
+
+
 Cards for Humanity - [http://cfh.io](http://cfh.io)
 ===========
 Cards for Humanity is a fast-paced online version of the popular card game, Cards Against Humanity, that gives you the opportunity to donate to children in need - all while remaining as despicable and awkward as you naturally are.
