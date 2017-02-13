@@ -6,6 +6,8 @@ var express = require('express'),
     passport = require('passport'),
     logger = require('mean-logger'),
     io = require('socket.io');
+    session = require('express-session');
+    MongoStore = require('connect-mongo')(session);
 
 /**
  * Main application entry file.
@@ -43,6 +45,13 @@ walk(models_path);
 require('./config/passport')(passport);
 
 var app = express();
+
+app.use(session({
+    store: new MongoStore({url : config.db }),
+    secret: 'izanami123#',
+    resave: true,
+    saveUninitialized: false
+}));
 
 app.use(function(req, res, next){
     next();
