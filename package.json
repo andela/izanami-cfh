@@ -55,7 +55,6 @@
     "grunt-nodemon": "~0.1.1",
     "jasmine": "^2.5.3",
     "karma": "^1.4.1",
-    "karma-browserify": "^5.1.1",
     "karma-chrome-launcher": "^2.0.0",
     "karma-cli": "^1.0.1",
     "karma-coverage": "^1.1.1",
