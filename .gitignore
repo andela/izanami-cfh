@@ -1,6 +1,5 @@
 node_modules
 public/lib
-lib
 .sass-cache/
 .DS_store
 c4h_keys.txt
