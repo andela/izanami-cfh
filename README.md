@@ -1,6 +1,4 @@
-[![Build Status](https://travis-ci.org/andela/izanami-cfh.svg?branch=master)](https://travis-ci.org/andela/izanami-cfh) 	[![Hound Status](https://img.shields.io/badge/Protected%20by-Hound-%23551A8B.svg)](https://github.com/andela/izanami-cfh/pulls)
-
-
+[![Build Status](https://travis-ci.org/andela/izanami-cfh.svg?branch=master)](https://travis-ci.org/andela/izanami-cfh) 	
 
 Cards for Humanity - [http://cfh.io](http://cfh.io)
 ===========
