@@ -25,7 +25,7 @@ module.exports = function(config) {
     ],
 
 
-    // preprocess matching files before serving them to the browser
+    // preprocess matching files before serving them to thwser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
         'test/**/*.js':['coverage']
@@ -62,7 +62,7 @@ module.exports = function(config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['Chrome', 'Firefox', 'PhantomJS'],
+    browsers: ['Chrome'],
 
 
     // Continuous Integration mode
