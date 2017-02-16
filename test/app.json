@@ -1,0 +1,16 @@
+{
+    "name": "izanami-cfh",
+    "scripts": {},
+    "env": {
+        "MONGOHQ_URL": {
+            "required": true
+        }
+    },
+    "formation": {},
+    "addons": [
+
+    ],
+    "buildpacks": [{
+        "url": "heroku/nodejs"
+    }]
+}

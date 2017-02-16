@@ -4,7 +4,7 @@ const nodemon = require('gulp-nodemon');
 const sass = require('gulp-sass');
 const bower = require('gulp-bower');
 const mocha = require('gulp-mocha');
-
+const run = require('gulp-run');
 gulp.task('nodemon', () => {
     nodemon({ script: 'server.js' });
 });
@@ -25,12 +25,8 @@ gulp.task('bower', () => {
     bower()
         .pipe(gulp.dest('./public/lib/'));
 });
-gulp.task('Test', () => {
-    gulp.src('test/**/*.js')
-        .pipe(mocha({ reporter: 'spec' }))
-        .once('end', () => {
-            process.exit();
-        });
+gulp.task('test', () => {
+    run('karma start karma2.conf.js').exec();
 });
 
 gulp.task('watch', () => {

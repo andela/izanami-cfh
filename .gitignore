@@ -1,6 +1,9 @@
 node_modules
+bower_components
 public/lib
 .sass-cache/
 .DS_store
 c4h_keys.txt
+coverage
 .env
+lib
