@@ -16,8 +16,14 @@ exports.play = function(req, res) {
   }
 };
 
+exports.home = function(req, res) {
+  res.redirect('/');
+}
+
+
 exports.render = function(req, res) {
-    res.render('index', {
+    
+    return res.render('index', {
         user: req.user ? JSON.stringify(req.user) : "null"
     });
 };

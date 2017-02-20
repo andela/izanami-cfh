@@ -20,6 +20,17 @@ exports.user = {
     }
 };
 
+
+exports.hasAuth =(req, res, next) => {
+  if (req.user.token) {
+    console.log(req.user.token, 'Token in authentication');
+    next();
+  } else {
+    console.log('No token');
+    next();
+  }
+}
+
 /**
  * Article authorizations routing middleware
  */

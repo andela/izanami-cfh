@@ -168,7 +168,8 @@ exports.show = function(req, res) {
  * Send User
  */
 exports.me = function(req, res) {
-  res.jsonp(req.user || null);
+  //res.jsonp(req.user || null);
+  res.json(req.headers);
 };
 
 /**
@@ -186,3 +187,53 @@ exports.user = function(req, res, next, id) {
       next();
     });
 };
+
+/*
+Serialize
+*/
+
+exports.test = (req, res) => {
+  res.send('This sucks tots!');
+}
+
+const jwt = require('jsonwebtoken');
+
+//
+//exports.serialize = function(req, res, next) {
+//  DB.updateOrCreate(req.user, function(err, user){
+//    if(err) {return next(err); }
+//    req.user = {
+//      id: user.id
+//    };
+//    next();
+//  });
+//}
+//
+//const DB = {
+//  updateOrCreate : (user, callback) => {
+//    console.log("ID : " + user.id);
+//    callback(null, user);
+//  }
+//}
+
+exports.generateToken = (req, res, next) => {
+  req.token = jwt.sign({
+    id : req.user.id,
+  }, 'S0U!2P1E3R4S5E6R7V3.E8.R5S876EXX8C6.R8.E64T846', {
+    expiresIn: 60 * 60 * 5
+  });
+  next();
+}
+
+exports.returnToken = (req, res, next) => {
+  //res.redirect('/users/me');)
+  //res.status(200).json(req.token);
+  res.json({token : req.token});
+  
+}
+
+exports.authenticate = (req, res) => {
+  console.log(req.user);
+  //res.status(200).json(req.user);
+  res.json(req.user);
+}

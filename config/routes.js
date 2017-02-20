@@ -3,11 +3,13 @@ var async = require('async');
 module.exports = function(app, passport, auth) {
     //User Routes
     var users = require('../app/controllers/users');
+    var hasAuth = require('./middlewares/authorization.js');
     app.get('/signin', users.signin);
     app.get('/signup', users.signup);
     app.get('/chooseavatars', users.checkAvatar);
     app.get('/signout', users.signout);
 
+  
     //Setting up the users api
     app.post('/users', users.create);
     app.post('/users/avatars', users.avatars);
@@ -19,8 +21,27 @@ module.exports = function(app, passport, auth) {
         failureRedirect: '/signin',
         failureFlash: 'Invalid email or password.'
     }), users.session);
-
-    app.get('/users/me', users.me);
+    
+  
+  
+    //JWT
+    const expressJwt = require('express-jwt');
+    const authenticate = expressJwt({secret : 'S0U!2P1E3R4S5E6R7V3.E8.R5S876EXX8C6.R8.E64T846'});
+    var index = require('../app/controllers/index');
+  
+  
+    app.post('/api/users/sess', users.test);
+  
+    app.post('/api/users/session', passport.authenticate('local', {
+      session: false
+    }), users.generateToken, users.returnToken);
+  
+    app.get('/secure_api', authenticate, users.authenticate);
+  
+    //
+  
+  
+    app.get('/users/me', authenticate, users.me);
     app.get('/users/:userId', users.show);
 
     //Setting the facebook oauth routes
