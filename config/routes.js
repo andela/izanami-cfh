@@ -6,7 +6,7 @@ module.exports = function(app, passport, auth) {
     var hasAuth = require('./middlewares/authorization.js');
     app.get('/signin', users.signin);
     app.get('/signup', users.signup);
-    app.get('/chooseavatars', users.checkAvatar);
+    app.get('/chooseavatars', hasAuth.hasAuth(), users.checkAvatar);
     app.get('/signout', users.signout);
 
   
@@ -15,7 +15,7 @@ module.exports = function(app, passport, auth) {
     app.post('/users/avatars', users.avatars);
 
     // Donation Routes
-    app.post('/donations', users.addDonation);
+    app.post('/donations', hasAuth.hasAuth(), users.addDonation);
 
     app.post('/users/session', passport.authenticate('local', {
         failureRedirect: '/signin',
@@ -32,9 +32,9 @@ module.exports = function(app, passport, auth) {
       session: false
     }), users.generateToken, users.returnToken);
     
-  
-  
-    app.get('/users/me', users.me);
+    app.get('/api/users/me', users.me);
+    
+    app.get('/users/me', hasAuth.hasAuth(), users.me);
     app.get('/users/:userId', users.show);
 
     //Setting the facebook oauth routes

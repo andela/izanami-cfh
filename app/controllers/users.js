@@ -16,7 +16,8 @@ exports.authCallback = function(req, res, next) {
  * Show login form
  */
 exports.signin = function(req, res) {
-  if (!req.user) {
+  console.log('Signin route is being annoyningly or not called');
+  if (!req.user ) {
     res.redirect('/#!/signin?error=invalid');
   } else {
     res.redirect('/#!/app');
@@ -168,8 +169,8 @@ exports.show = function(req, res) {
  * Send User
  */
 exports.me = function(req, res) {
-  //res.jsonp(req.user || null);
-  res.json(req.headers);
+  res.jsonp(req.user || null);
+  //res.json(req.headers);
 };
 
 /**
@@ -206,6 +207,6 @@ exports.generateToken = (req, res, next) => {
 }
 
 exports.returnToken = (req, res, next) => {
-  res.cookie('token', req.token, {maxAge: 9999});
+  res.cookie('token', req.token, {maxAge: 1800000});
   res.redirect('/');
 }
