@@ -5,6 +5,8 @@ const sass = require('gulp-sass');
 const bower = require('gulp-bower');
 const mocha = require('gulp-mocha');
 const run = require('gulp-run');
+const livereload = require('gulp-livereload');
+
 gulp.task('nodemon', () => {
     nodemon({ script: 'server.js' });
 });
@@ -14,7 +16,7 @@ gulp.task('server', ['nodemon'], () => {
         proxy: "http://localhost:3000",
         port: 7000,
         files: ["public/**/*.*"],
-        // reloadOnRestart: true
+        reloadOnRestart: true
     });
 });
 gulp.task('sass', () => {
@@ -22,6 +24,7 @@ gulp.task('sass', () => {
         .pipe(sass())
         .pipe(gulp.dest('public/css/'));
 });
+
 gulp.task('bower', () => {
     bower()
         .pipe(gulp.dest('./public/lib/'));
@@ -29,14 +32,14 @@ gulp.task('bower', () => {
 gulp.task('test', () => {
     run('karma start karma2.conf.js').exec();
 });
-// gulp.task('sass-watch', ['sass'] (done) => {
-//     browserSync.reload();
-//     done();
-// })
 gulp.task('watch', () => {
-    gulp.watch('public/css/*.scss', ['sass']);
-    gulp.watch(['app/views/**/*.jade', 'public/**/**', 'app/**/*.js'])
-        .on('change', browserSync.reload);
+    gulp.watch('public/css/common.scss', ['sass']);
+    gulp.watch('public/css/*.css');
+    gulp.watch('public/css/**', browserSync.reload);
+    gulp.watch('app/views/**', browserSync.reload);
+    gulp.watch('public/views/**', browserSync.reload);
+    gulp.watch(['public/js/**', 'app/**/*.js'], browserSync.reload)
+    liverload.listen();
 });
 
-gulp.task('default', ['server', 'watch']);
+gulp.task('default', ['nodemon','sass','server', 'watch', 'bower']);
