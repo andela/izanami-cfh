@@ -29,9 +29,6 @@ module.exports = function(app, passport, auth) {
     const authenticate = expressJwt({secret : 'S0U!2P1E3R4S5E6R7V3.E8.R5S876EXX8C6.R8.E64T846'});
     var index = require('../app/controllers/index');
   
-  
-    app.post('/api/users/sess', users.test);
-  
     app.post('/api/users/session', passport.authenticate('local', {
       session: false
     }), users.generateToken, users.returnToken);
@@ -109,6 +106,6 @@ module.exports = function(app, passport, auth) {
     //Home route
     var index = require('../app/controllers/index');
     app.get('/play', index.play);
-    app.get('/', index.render);
+    app.get('/', hasAuth.hasAuth, index.render);
 
 };

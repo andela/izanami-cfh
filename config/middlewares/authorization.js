@@ -21,7 +21,13 @@ exports.user = {
 };
 
 
-exports.hasAuth =(req, res, next) => {
+exports.hasAuth = (req, res, next) => {
+  if (typeof localStorage === "undefined" || localStorage === null) {
+    var LocalStorage = require('node-localstorage').LocalStorage;
+    localStorage = new LocalStorage('./scratch');
+  }
+ 
+  console.log(localStorage.getItem('myToken'));
   if (req.user.token) {
     console.log(req.user.token, 'Token in authentication');
     next();
