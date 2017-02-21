@@ -1,5 +1,7 @@
 node_modules
 public/lib
+.idea/
+.env
 .sass-cache/
 .DS_store
 c4h_keys.txt
