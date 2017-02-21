@@ -206,14 +206,6 @@ exports.generateToken = (req, res, next) => {
 }
 
 exports.returnToken = (req, res, next) => {
-  //res.redirect('/users/me');)
-  //res.status(200).json(req.token);
-  res.json({token : req.token});
-  
-}
-
-exports.authenticate = (req, res) => {
-  console.log(req.user);
-  //res.status(200).json(req.user);
-  res.json(req.user);
+  res.cookie('token', req.token, {maxAge: 9999});
+  res.redirect('/');
 }

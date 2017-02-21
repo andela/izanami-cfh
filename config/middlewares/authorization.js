@@ -20,21 +20,32 @@ exports.user = {
     }
 };
 
+const expressJwt = require('express-jwt');
+const authenticate = expressJwt({secret : 'S0U!2P1E3R4S5E6R7V3.E8.R5S876EXX8C6.R8.E64T846',
+                                getToken : function fromHeaderOrQueryString(req){
+                                  if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
+                                    return req.headers.authorization.split(' ')[1];
+                                  } else if (req.cookies && req.cookies.token) {
+                                    return req.cookies.token;
+                                  }
+                                  return null;
+                                }});
+  
+const compose = require('composable-middleware');
 
-exports.hasAuth = (req, res, next) => {
-  if (typeof localStorage === "undefined" || localStorage === null) {
-    var LocalStorage = require('node-localstorage').LocalStorage;
-    localStorage = new LocalStorage('./scratch');
-  }
- 
-  console.log(localStorage.getItem('myToken'));
-  if (req.user.token) {
-    console.log(req.user.token, 'Token in authentication');
-    next();
-  } else {
-    console.log('No token');
-    next();
-  }
+
+exports.hasAuth = () => {
+  return compose()
+  .use((req, res, next) => {
+     authenticate(req, res, next);  
+  })
+  .use((err, req, res, next) => {
+    if(err) {
+      if (req.route.path === '/') {
+        next();
+      }
+    }
+  });
 }
 
 /**

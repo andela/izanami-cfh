@@ -25,20 +25,16 @@ module.exports = function(app, passport, auth) {
   
   
     //JWT
-    const expressJwt = require('express-jwt');
-    const authenticate = expressJwt({secret : 'S0U!2P1E3R4S5E6R7V3.E8.R5S876EXX8C6.R8.E64T846'});
-    var index = require('../app/controllers/index');
+    
+    
   
     app.post('/api/users/session', passport.authenticate('local', {
       session: false
     }), users.generateToken, users.returnToken);
-  
-    app.get('/secure_api', authenticate, users.authenticate);
-  
-    //
+    
   
   
-    app.get('/users/me', authenticate, users.me);
+    app.get('/users/me', users.me);
     app.get('/users/:userId', users.show);
 
     //Setting the facebook oauth routes
@@ -106,6 +102,6 @@ module.exports = function(app, passport, auth) {
     //Home route
     var index = require('../app/controllers/index');
     app.get('/play', index.play);
-    app.get('/', hasAuth.hasAuth, index.render);
+    app.get('/', hasAuth.hasAuth(), index.render);
 
 };
