@@ -11,9 +11,10 @@ gulp.task('nodemon', () => {
 
 gulp.task('server', ['nodemon'], () => {
     browserSync.init({
-        proxy: 'http://localhost:3000',
-        port: 3568,
-        reloadOnRestart: true
+        proxy: "http://localhost:3000",
+        port: 7000,
+        files: ["public/**/*.*"],
+        // reloadOnRestart: true
     });
 });
 gulp.task('sass', () => {
@@ -28,7 +29,10 @@ gulp.task('bower', () => {
 gulp.task('test', () => {
     run('karma start karma2.conf.js').exec();
 });
-
+// gulp.task('sass-watch', ['sass'] (done) => {
+//     browserSync.reload();
+//     done();
+// })
 gulp.task('watch', () => {
     gulp.watch('public/css/*.scss', ['sass']);
     gulp.watch(['app/views/**/*.jade', 'public/**/**', 'app/**/*.js'])
