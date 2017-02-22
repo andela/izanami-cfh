@@ -38,6 +38,7 @@ exports.signup = function(req, res) {
  * Logout
  */
 exports.signout = function(req, res) {
+  res.clearCookie("token");
   req.logout();
   res.redirect('/');
 };
