@@ -16,7 +16,6 @@ exports.authCallback = function(req, res, next) {
  * Show login form
  */
 exports.signin = function(req, res) {
-  console.log('Signin route is being annoyningly or not called');
   if (!req.user ) {
     res.redirect('/#!/signin?error=invalid');
   } else {
@@ -142,7 +141,6 @@ exports.addDonation = function(req, res) {
           }
         }
         if (!duplicate) {
-          console.log('Validated donation');
           user.donations.push(req.body);
           user.premium = 1;
           user.save();
@@ -200,7 +198,7 @@ exports.generateToken = (req, res, next) => {
   req.token = jwt.sign({
     id : req.user.id,
     name : req.user.name,
-  }, 'S0U!2P1E3R4S5E6R7V3.E8.R5S876EXX8C6.R8.E64T846', {
+  }, process.env.SECRET_KEY, {
     expiresIn: 60 * 60 * 5
   });
   next();

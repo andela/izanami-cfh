@@ -3,30 +3,26 @@ var async = require('async');
 module.exports = function(app, passport, auth) {
     //User Routes
     var users = require('../app/controllers/users');
-    var hasAuth = require('./middlewares/authorization.js');
+    const customAuth = require('./middlewares/authorization.js');
+
     app.get('/signin', users.signin);
     app.get('/signup', users.signup);
-    app.get('/chooseavatars', hasAuth.hasAuth(), users.checkAvatar);
+    app.get('/chooseavatars', customAuth.hasAuth(), users.checkAvatar);
     app.get('/signout', users.signout);
 
-  
     //Setting up the users api
     app.post('/users', users.create);
     app.post('/users/avatars', users.avatars);
 
     // Donation Routes
-    app.post('/donations', hasAuth.hasAuth(), users.addDonation);
+    app.post('/donations', customAuth.hasAuth(), users.addDonation);
 
     app.post('/users/session', passport.authenticate('local', {
         failureRedirect: '/signin',
         failureFlash: 'Invalid email or password.'
     }), users.session);
     
-  
-  
-    //JWT
-    
-    
+    //JWT : Login route
   
     app.post('/api/users/session', passport.authenticate('local', {
       session: false
@@ -34,7 +30,7 @@ module.exports = function(app, passport, auth) {
     
     app.get('/api/users/me', users.me);
     
-    app.get('/users/me', hasAuth.hasAuth(), users.me);
+    app.get('/users/me', customAuth.hasAuth(), users.me);
     app.get('/users/:userId', users.show);
 
     //Setting the facebook oauth routes
@@ -102,6 +98,6 @@ module.exports = function(app, passport, auth) {
     //Home route
     var index = require('../app/controllers/index');
     app.get('/play', index.play);
-    app.get('/', hasAuth.hasAuth(), index.render);
+    app.get('/', customAuth.hasAuth(), index.render);
 
 };

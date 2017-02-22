@@ -21,7 +21,7 @@ exports.user = {
 };
 
 const expressJwt = require('express-jwt');
-const authenticate = expressJwt({secret : 'S0U!2P1E3R4S5E6R7V3.E8.R5S876EXX8C6.R8.E64T846',
+const authenticate = expressJwt({secret : process.env.SECRET_KEY,
                                 getToken : function fromHeaderOrQueryString(req){
                                   
                                   if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
@@ -39,13 +39,9 @@ const compose = require('composable-middleware');
 exports.hasAuth = () => {
   return compose()
   .use((req, res, next) => {
-    console.log('Checking authorization...');
-    console.log('His token is ', req.cookies.token)
     authenticate(req, res, next);
   })
   .use((err, req, res, next) => {
-    console.log('Unauthorized');
-    console.log(req);
     if(err) {
       if (req.route.path === '/') {
         next();
