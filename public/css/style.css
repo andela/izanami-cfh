@@ -1,3 +1,13 @@
+/* invite players css*/
+.modal-header {
+    text-align: center;
+}
+
+.playerLimitAlert {
+    margin-top: 20%;
+}
+
+/* older css*/
  .clear {
    clear:both;
  }
