@@ -1,5 +1,5 @@
 angular.module('mean.system')
-.controller('GameController', ['$scope', 'game', '$timeout', '$location', 'MakeAWishFactsService', '$dialog','playerSearch', function ($scope, game, $timeout, $location, MakeAWishFactsService, $dialog,playerSearch) {
+.controller('GameController', ['$scope', 'game', '$timeout', '$location', 'MakeAWishFactsService', '$dialog','playerSearch','invitePlayer', function ($scope, game, $timeout, $location, MakeAWishFactsService, $dialog,playerSearch,invitePlayer) {
   $scope.hasPickedCards = false;
   $scope.winningCardPicked = false;
   $scope.showTable = false;
@@ -11,6 +11,8 @@ angular.module('mean.system')
 
   $scope.searchUserResults = [];
   $scope.invitedUserEmail = '';
+  $scope.invitedPlayers = [];
+  $scope.firstPlayer = false;
 
     $scope.pickCard = function(card) {
       if (!$scope.hasPickedCards) {
@@ -169,12 +171,12 @@ angular.module('mean.system')
         $location.search({game: game.gameID});
         if(!$scope.modalShown){
           setTimeout(function(){
-            var link = document.URL;
-            var txt = 'Give the following link to your friends so they can join your game: ';
-            $('#lobby-how-to-play').text(txt);
-            $('#oh-el').css({'text-align': 'center', 'font-size':'22px', 'background': 'white', 'color': 'black'}).text(link);
-            // $('#oh-el').hide();
-          }, 200);
+            // var link = document.URL;
+            $('#lobby-how-to-play').hide();
+            // $('#oh-el').css({'text-align': 'center', 'font-size':'22px', 'background': 'white', 'color': 'black'}).text(link);
+            $('#oh-el').hide();
+            $('#searchContainer').show();
+          }, 70);
           $scope.modalShown = true;
         }
       }
@@ -191,10 +193,20 @@ angular.module('mean.system')
   }
 
   $scope.sendInvite = () => {
-    $scope.searchUserResults = [];
-    $scope.invitedUserEmail = '';
-    if (game.players.length >= game.playerMaxLimit) {
+    if ($scope.invitedPlayers.length === game.playerMaxLimit - 1) {
       $('#playerMaximumAlert').modal('show');
+    }else if (!$scope.invitedPlayers.includes($scope.invitedUserEmail)) {
+      invitePlayer.sendMail($scope.invitedUserEmail, document.URL).then((data) => {
+        if (data === 'Accepted') {
+          $scope.invitedPlayers.push($scope.invitedUserEmail);
+        }
+        $scope.searchResults = [];
+        $scope.invitedUserEmail = '';
+      });
+    } else {
+      $scope.searchUserResults = [];
+      $scope.invitedUserEmail = '';
+      $('#playerAlreadyInvited').modal('show');
     }
   };
 
