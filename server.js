@@ -22,8 +22,8 @@ var env = process.env.NODE_ENV = process.env.NODE_ENV || 'development',
     mongoose = require('mongoose');
 
 //Bootstrap db connection
+//var db = mongoose.connect(config.db);
 var db = mongoose.connect(config.db);
-
 //Bootstrap models
 var models_path = __dirname + '/app/models';
 var walk = function(path) {
@@ -46,7 +46,7 @@ require('./config/passport')(passport);
 
 var app = express();
 
-app.use(function(req, res, next){
+app.use(function(req, res, next) {
     next();
 });
 
