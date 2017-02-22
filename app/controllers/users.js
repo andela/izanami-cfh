@@ -76,7 +76,7 @@ exports.checkAvatar = function(req, res) {
 /**
  * Create user
  */
-exports.create = function(req, res) {
+exports.create = function(req, res, next) {
   if (req.body.name && req.body.password && req.body.email) {
     User.findOne({
       email: req.body.email
@@ -93,10 +93,8 @@ exports.create = function(req, res) {
               user: user
             });
           }
-          req.logIn(user, function(err) {
-            if (err) return next(err);
-            return res.redirect('/#!/');
-          });
+          req.body = user;
+          next();
         });
       } else {
         return res.redirect('/#!/signup?error=existinguser');
