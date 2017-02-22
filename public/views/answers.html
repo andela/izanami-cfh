@@ -52,13 +52,18 @@
   <div id="inner-info">
 
     <!-- Invite search friends-->
-    <div class="col-lg-6" style="margin: 15% 25%">
+    <div class="col-lg-6" style="margin: 5% 25%">
       <div class="input-group">
-        <input type="text" class="form-control" placeholder="Search for friends to invite">
+        <input type="text" class="form-control" ng-keyup="playerSearch()" ng-model="invitedUserEmail" placeholder="Search for friends to invite">
         <span class="input-group-btn">
-        <button class="btn btn-default" type="button" ng-click="sendInvite()">Invite</button>
-      </span>
+          <button class="btn btn-default" type="button" ng-click="sendInvite()">Invite</button>
+        </span>
       </div>
+      <!-- user search results-->
+      <div ng-if="searchUserResults.length !== 0" style="height: 135px; background-color: lightgray; text-align: left; overflow: scroll; border-radius: 2px 2px 4px 4px">
+        <div class="search-result" ng-repeat="result in searchUserResults" ng-click="selectEmail(result.email)">{{result.email}}</div>
+      </div>
+
     </div>
 
     <div id="lobby-how-to-play">How To Play</div>

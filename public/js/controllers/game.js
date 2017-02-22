@@ -1,5 +1,5 @@
 angular.module('mean.system')
-.controller('GameController', ['$scope', 'game', '$timeout', '$location', 'MakeAWishFactsService', '$dialog', function ($scope, game, $timeout, $location, MakeAWishFactsService, $dialog) {
+.controller('GameController', ['$scope', 'game', '$timeout', '$location', 'MakeAWishFactsService', '$dialog','playerSearch', function ($scope, game, $timeout, $location, MakeAWishFactsService, $dialog,playerSearch) {
   $scope.hasPickedCards = false;
   $scope.winningCardPicked = false;
   $scope.showTable = false;
@@ -9,7 +9,8 @@ angular.module('mean.system')
   var makeAWishFacts = MakeAWishFactsService.getMakeAWishFacts();
   $scope.makeAWishFact = makeAWishFacts.pop();
 
-  $scope.invitedPlayers = []; //players invited array
+  $scope.searchUserResults = [];
+  $scope.invitedUserEmail = '';
 
     $scope.pickCard = function(card) {
       if (!$scope.hasPickedCards) {
@@ -190,9 +191,26 @@ angular.module('mean.system')
   }
 
   $scope.sendInvite = () => {
+    $scope.searchUserResults = [];
+    $scope.invitedUserEmail = '';
     if (game.players.length >= game.playerMaxLimit) {
       $('#playerMaximumAlert').modal('show');
     }
+  };
+
+  $scope.playerSearch = () => {
+    if ($scope.invitedUserEmail !== '') {
+      playerSearch.getPlayers($scope.invitedUserEmail).then((data) => {
+        $scope.searchUserResults = data;
+      });
+    } else {
+      $scope.searchUserResults = [];
+    }
+  };
+
+  $scope.selectEmail = (selectedEmail) => {
+    $scope.invitedUserEmail = selectedEmail;
+    $scope.searchUserResults = [];
   };
 
 }]);

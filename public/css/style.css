@@ -6,6 +6,15 @@
 .playerLimitAlert {
     margin-top: 20%;
 }
+.search-result:hover {
+    background-color: lightblue;
+}
+
+.search-result {
+    color: black;
+    padding: 2px 10px;
+    cursor: pointer;
+}
 
 /* older css*/
  .clear {
