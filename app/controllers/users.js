@@ -16,7 +16,7 @@ exports.authCallback = function(req, res, next) {
  * Show login form
  */
 exports.signin = function(req, res) {
-  if (!req.user ) {
+  if (!req.user) {
     res.redirect('/#!/signin?error=invalid');
   } else {
     res.redirect('/#!/app');

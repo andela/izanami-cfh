@@ -24,8 +24,10 @@ module.exports = function(app, passport, auth) {
     
     //JWT : Login route
   
-    app.post('/api/users/session', passport.authenticate('local', {
-      session: false
+    app.post('/api/auth/login', passport.authenticate('local', {
+      session: false,
+      failureRedirect : '/signin',
+      failureFlash: 'Invalid email or password'
     }), users.generateToken, users.returnToken);
     
     app.get('/api/users/me', users.me);

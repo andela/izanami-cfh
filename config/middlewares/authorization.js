@@ -46,7 +46,7 @@ exports.hasAuth = () => {
       if (req.route.path === '/') {
         next();
       } else {
-        res.json(err);
+        res.redirect('/#!/signin?error=invalid');
       }
     }
   });
