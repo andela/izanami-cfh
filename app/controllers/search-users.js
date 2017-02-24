@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const User = mongoose.model('User');
 
 /**
- * Gets all users from the database
+ * search for users from the database base on email
  */
 exports.users = (req, res) => {
   const query = req.params.invitedUserEmail || '';
