@@ -39,7 +39,7 @@ gulp.task('watch', () => {
     gulp.watch('app/views/**', browserSync.reload);
     gulp.watch('public/views/**', browserSync.reload);
     gulp.watch(['public/js/**', 'app/**/*.js'], browserSync.reload)
-    liverload.listen();
+    livereload.listen();
 });
 
 gulp.task('default', ['nodemon','sass','server', 'watch', 'bower']);
