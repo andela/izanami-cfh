@@ -1,20 +1,20 @@
 angular.module('mean.system')
-.controller('GameController', ['$scope', 'game', '$timeout', '$location', 'MakeAWishFactsService', '$dialog','playerSearch','invitePlayer', function ($scope, game, $timeout, $location, MakeAWishFactsService, $dialog,playerSearch,invitePlayer) {
-  $scope.hasPickedCards = false;
-  $scope.winningCardPicked = false;
-  $scope.showTable = false;
-  $scope.modalShown = false;
-  $scope.game = game;
-  $scope.pickedCards = [];
-  var makeAWishFacts = MakeAWishFactsService.getMakeAWishFacts();
-  $scope.makeAWishFact = makeAWishFacts.pop();
+  .controller('GameController', ['$scope', 'game', '$timeout', '$location', 'MakeAWishFactsService', '$dialog', 'playerSearch', 'invitePlayer', function ($scope, game, $timeout, $location, MakeAWishFactsService, $dialog, playerSearch, invitePlayer) {
+    $scope.hasPickedCards = false;
+    $scope.winningCardPicked = false;
+    $scope.showTable = false;
+    $scope.modalShown = false;
+    $scope.game = game;
+    $scope.pickedCards = [];
+    let makeAWishFacts = MakeAWishFactsService.getMakeAWishFacts();
+    $scope.makeAWishFact = makeAWishFacts.pop();
 
-  $scope.searchUserResults = [];
-  $scope.invitedUserEmail = '';
-  $scope.invitedPlayers = [];
-  $scope.firstPlayer = false;
+    $scope.searchUserResults = [];
+    $scope.invitedUserEmail = '';
+    $scope.invitedPlayers = [];
+    $scope.firstPlayer = false;
 
-    $scope.pickCard = function(card) {
+    $scope.pickCard = function (card) {
       if (!$scope.hasPickedCards) {
         if ($scope.pickedCards.indexOf(card.id) < 0) {
           $scope.pickedCards.push(card.id);
@@ -33,20 +33,20 @@ angular.module('mean.system')
       }
     };
 
-    $scope.pointerCursorStyle = function() {
+    $scope.pointerCursorStyle = function () {
       if ($scope.isCzar() && $scope.game.state === 'waiting for czar to decide') {
-        return {'cursor': 'pointer'};
+        return { 'cursor': 'pointer' };
       } else {
         return {};
       }
     };
 
-    $scope.sendPickedCards = function() {
+    $scope.sendPickedCards = function () {
       game.pickCards($scope.pickedCards);
       $scope.showTable = true;
     };
 
-    $scope.cardIsFirstSelected = function(card) {
+    $scope.cardIsFirstSelected = function (card) {
       if (game.curQuestion.numAnswers > 1) {
         return card === $scope.pickedCards[0];
       } else {
@@ -54,7 +54,7 @@ angular.module('mean.system')
       }
     };
 
-    $scope.cardIsSecondSelected = function(card) {
+    $scope.cardIsSecondSelected = function (card) {
       if (game.curQuestion.numAnswers > 1) {
         return card === $scope.pickedCards[1];
       } else {
@@ -62,51 +62,51 @@ angular.module('mean.system')
       }
     };
 
-    $scope.firstAnswer = function($index){
-      if($index % 2 === 0 && game.curQuestion.numAnswers > 1){
+    $scope.firstAnswer = function ($index) {
+      if ($index % 2 === 0 && game.curQuestion.numAnswers > 1) {
         return true;
-      } else{
+      } else {
         return false;
       }
     };
 
-    $scope.secondAnswer = function($index){
-      if($index % 2 === 1 && game.curQuestion.numAnswers > 1){
+    $scope.secondAnswer = function ($index) {
+      if ($index % 2 === 1 && game.curQuestion.numAnswers > 1) {
         return true;
-      } else{
+      } else {
         return false;
       }
     };
 
-    $scope.showFirst = function(card) {
+    $scope.showFirst = function (card) {
       return game.curQuestion.numAnswers > 1 && $scope.pickedCards[0] === card.id;
     };
 
-    $scope.showSecond = function(card) {
+    $scope.showSecond = function (card) {
       return game.curQuestion.numAnswers > 1 && $scope.pickedCards[1] === card.id;
     };
 
-    $scope.isCzar = function() {
+    $scope.isCzar = function () {
       return game.czar === game.playerIndex;
     };
 
-    $scope.isPlayer = function($index) {
+    $scope.isPlayer = function ($index) {
       return $index === game.playerIndex;
     };
 
-    $scope.isCustomGame = function() {
+    $scope.isCustomGame = function () {
       return !(/^\d+$/).test(game.gameID) && game.state === 'awaiting players';
     };
 
-    $scope.isPremium = function($index) {
+    $scope.isPremium = function ($index) {
       return game.players[$index].premium;
     };
 
-    $scope.currentCzar = function($index) {
+    $scope.currentCzar = function ($index) {
       return $index === game.czar;
     };
 
-    $scope.winningColor = function($index) {
+    $scope.winningColor = function ($index) {
       if (game.winningCardPlayer !== -1 && $index === game.winningCard) {
         return $scope.colors[game.players[game.winningCardPlayer].color];
       } else {
@@ -114,111 +114,111 @@ angular.module('mean.system')
       }
     };
 
-    $scope.pickWinning = function(winningSet) {
+    $scope.pickWinning = function (winningSet) {
       if ($scope.isCzar()) {
         game.pickWinning(winningSet.card[0]);
         $scope.winningCardPicked = true;
       }
     };
 
-  $scope.winnerPicked = function() {
-    return game.winningCard !== -1;
-  };
+    $scope.winnerPicked = function () {
+      return game.winningCard !== -1;
+    };
 
-  //start game only if players not less than players limit
-  $scope.startGame = function() {
-    if (game.players.length >= game.playerMinLimit) {
-      game.startGame();
-    } else {
-      $('#playerMinimumAlert').modal('show');
-    }
-  };
+    //start game only if players not less than players limit
+    $scope.startGame = function () {
+      if (game.players.length >= game.playerMinLimit) {
+        game.startGame();
+      } else {
+        $('#playerMinimumAlert').modal('show');
+      }
+    };
 
-  $scope.abandonGame = function() {
-    game.leaveGame();
-    $location.path('/');
-  };
+    $scope.abandonGame = function () {
+      game.leaveGame();
+      $location.path('/');
+    };
 
-  // Catches changes to round to update when no players pick card
-  // (because game.state remains the same)
-  $scope.$watch('game.round', function() {
-    $scope.hasPickedCards = false;
-    $scope.showTable = false;
-    $scope.winningCardPicked = false;
-    $scope.makeAWishFact = makeAWishFacts.pop();
-    if (!makeAWishFacts.length) {
-      makeAWishFacts = MakeAWishFactsService.getMakeAWishFacts();
-    }
-    $scope.pickedCards = [];
-  });
+    // Catches changes to round to update when no players pick card
+    // (because game.state remains the same)
+    $scope.$watch('game.round', function () {
+      $scope.hasPickedCards = false;
+      $scope.showTable = false;
+      $scope.winningCardPicked = false;
+      $scope.makeAWishFact = makeAWishFacts.pop();
+      if (!makeAWishFacts.length) {
+        makeAWishFacts = MakeAWishFactsService.getMakeAWishFacts();
+      }
+      $scope.pickedCards = [];
+    });
 
-  // In case player doesn't pick a card in time, show the table
-  $scope.$watch('game.state', function() {
-    if (game.state === 'waiting for czar to decide' && $scope.showTable === false) {
-      $scope.showTable = true;
-    }
-  });
+    // In case player doesn't pick a card in time, show the table
+    $scope.$watch('game.state', function () {
+      if (game.state === 'waiting for czar to decide' && $scope.showTable === false) {
+        $scope.showTable = true;
+      }
+    });
 
-  $scope.$watch('game.gameID', function() {
-    if (game.gameID && game.state === 'awaiting players') {
-      if (!$scope.isCustomGame() && $location.search().game) {
-        // If the player didn't successfully enter the request room,
-        // reset the URL so they don't think they're in the requested room.
-        $location.search({});
-      } else if ($scope.isCustomGame() && !$location.search().game) {
-        // Once the game ID is set, update the URL if this is a game with friends,
-        // where the link is meant to be shared.
-        $location.search({game: game.gameID});
-        if(!$scope.modalShown){
-          setTimeout(function(){
-            $('#searchContainer').show();
-          }, 70);
-          $scope.modalShown = true;
+    $scope.$watch('game.gameID', function () {
+      if (game.gameID && game.state === 'awaiting players') {
+        if (!$scope.isCustomGame() && $location.search().game) {
+          // If the player didn't successfully enter the request room,
+          // reset the URL so they don't think they're in the requested room.
+          $location.search({});
+        } else if ($scope.isCustomGame() && !$location.search().game) {
+          // Once the game ID is set, update the URL if this is a game with friends,
+          // where the link is meant to be shared.
+          $location.search({game: game.gameID});
+          if (!$scope.modalShown) {
+            setTimeout(() => {
+              $('#searchContainer').show();
+            }, 70);
+            $scope.modalShown = true;
+          }
         }
       }
+    });
+
+    if ($location.search().game && !(/^\d+$/).test($location.search().game)) {
+      console.log('joining custom game');
+      game.joinGame('joinGame', $location.search().game);
+    } else if ($location.search().custom) {
+      game.joinGame('joinGame', null, true);
+    } else {
+      game.joinGame();
     }
-  });
 
-  if ($location.search().game && !(/^\d+$/).test($location.search().game)) {
-    console.log('joining custom game');
-    game.joinGame('joinGame',$location.search().game);
-  } else if ($location.search().custom) {
-    game.joinGame('joinGame',null,true);
-  } else {
-    game.joinGame();
-  }
-
-  $scope.sendInvite = () => {
-    if ($scope.invitedPlayers.length === game.playerMaxLimit - 1) {
-      $('#playerMaximumAlert').modal('show');
-    }else if (!$scope.invitedPlayers.includes($scope.invitedUserEmail)) {
-      invitePlayer.sendMail($scope.invitedUserEmail, document.URL).then((data) => {
-        if (data === 'Accepted') {
-          $scope.invitedPlayers.push($scope.invitedUserEmail);
-        }
-        $scope.searchResults = [];
+    $scope.sendInvite = () => {
+      if ($scope.invitedPlayers.length === game.playerMaxLimit - 1) {
+        $('#playerMaximumAlert').modal('show');
+      } else if (!$scope.invitedPlayers.includes($scope.invitedUserEmail)) {
+        invitePlayer.sendMail($scope.invitedUserEmail, document.URL).then((data) => {
+          if (data === 'Accepted') {
+            $scope.invitedPlayers.push($scope.invitedUserEmail);
+          }
+          $scope.searchResults = [];
+          $scope.invitedUserEmail = '';
+        });
+      } else {
+        $scope.searchUserResults = [];
         $scope.invitedUserEmail = '';
-      });
-    } else {
+        $('#playerAlreadyInvited').modal('show');
+      }
+    };
+
+    $scope.playerSearch = () => {
+      if ($scope.invitedUserEmail !== '') {
+        playerSearch.getPlayers($scope.invitedUserEmail).then((data) => {
+          $scope.searchUserResults = data;
+        });
+      } else {
+        $scope.searchUserResults = [];
+      }
+    };
+
+    $scope.selectEmail = (selectedEmail) => {
+      $scope.invitedUserEmail = selectedEmail;
       $scope.searchUserResults = [];
-      $scope.invitedUserEmail = '';
-      $('#playerAlreadyInvited').modal('show');
-    }
-  };
+    };
 
-  $scope.playerSearch = () => {
-    if ($scope.invitedUserEmail !== '') {
-      playerSearch.getPlayers($scope.invitedUserEmail).then((data) => {
-        $scope.searchUserResults = data;
-      });
-    } else {
-      $scope.searchUserResults = [];
-    }
-  };
-
-  $scope.selectEmail = (selectedEmail) => {
-    $scope.invitedUserEmail = selectedEmail;
-    $scope.searchUserResults = [];
-  };
-
-}]);
+  }]);
