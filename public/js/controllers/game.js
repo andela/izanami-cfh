@@ -171,10 +171,6 @@ angular.module('mean.system')
         $location.search({game: game.gameID});
         if(!$scope.modalShown){
           setTimeout(function(){
-            // var link = document.URL;
-            $('#lobby-how-to-play').hide();
-            // $('#oh-el').css({'text-align': 'center', 'font-size':'22px', 'background': 'white', 'color': 'black'}).text(link);
-            $('#oh-el').hide();
             $('#searchContainer').show();
           }, 70);
           $scope.modalShown = true;
