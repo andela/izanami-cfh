@@ -22,8 +22,10 @@ module.exports = function(app, passport, auth) {
         failureFlash: 'Invalid email or password.'
     }), users.session);
     
-    //JWT : Login route
-  
+    /*
+        Endpoint for login. Passportsquthenticates user, 
+        JWT gets generated if valid user and then saves token in cookies
+    */
     app.post('/api/auth/login', passport.authenticate('local', {
       session: false,
       failureRedirect : '/signin',
@@ -100,6 +102,7 @@ module.exports = function(app, passport, auth) {
     //Home route
     var index = require('../app/controllers/index');
     app.get('/play', index.play);
+
     app.get('/', customAuth.hasAuth(), index.render);
 
 };

@@ -169,7 +169,6 @@ exports.show = function(req, res) {
  */
 exports.me = function(req, res) {
   res.jsonp(req.user || null);
-  //res.json(req.headers);
 };
 
 /**
@@ -188,13 +187,13 @@ exports.user = function(req, res, next, id) {
     });
 };
 
-/*
-Serialize
-*/
+
 
 
 const jwt = require('jsonwebtoken');
 
+
+//Generate JWT and sign with users id and name
 exports.generateToken = (req, res, next) => {
   req.token = jwt.sign({
     id : req.user.id,
@@ -205,6 +204,8 @@ exports.generateToken = (req, res, next) => {
   next();
 }
 
+
+//Save JWT in cookies with key 'token' and redirect back to home
 exports.returnToken = (req, res, next) => {
   res.cookie('token', req.token, {maxAge: 1800000});
   res.redirect('/');
