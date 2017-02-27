@@ -1,14 +1,14 @@
-/**
+/*
  * Module dependencies.
  */
-var mongoose = require('mongoose'),
-    async = require('async'),
-    _ = require('underscore');
+const mongoose = require('mongoose'),
+  async = require('async'),
+  _ = require('underscore');
 
-/**
+/*
  * Redirect users to /#!/app (forcing Angular to reload the page)
  */
-exports.play = function(req, res) {
+exports.play = (req, res) => {
   if (Object.keys(req.query)[0] === 'custom') {
     res.redirect('/#!/app?custom');
   } else {
@@ -16,8 +16,11 @@ exports.play = function(req, res) {
   }
 };
 
-exports.render = function(req, res) {
-    res.render('index', {
-        user: req.user ? JSON.stringify(req.user) : "null"
-    });
+exports.home = (req, res) => {
+  res.redirect('/');
 };
+
+
+exports.render = (req, res) => res.render('index', {
+  user: req.user ? JSON.stringify(req.user) : 'null'
+});
