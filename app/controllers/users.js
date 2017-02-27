@@ -68,7 +68,7 @@ exports.checkAvatar = (req, res) => {
       }
     });
   } else {
-    // If user doesn"t even exist, redirect to /
+    // If user doesn't even exist, redirect to /
     res.redirect('/');
   }
 };
@@ -83,7 +83,7 @@ exports.create = (req, res, next) => {
     }).exec((err, existingUser) => {
       if (!existingUser) {
         const user = new User(req.body);
-        // Switch the user"s avatar index to an actual avatar url
+        // Switch the user's avatar index to an actual avatar url
         user.avatar = avatars[user.avatar];
         user.provider = 'local';
         user.save((err) => {
@@ -111,7 +111,7 @@ exports.create = (req, res, next) => {
  * Assign avatar to user
  */
 exports.avatars = (req, res) => {
-  // Update the current user"s profile to include the avatar choice they"ve made
+  // Update the current user's profile to include the avatar choice they've made
   if (req.user && req.user._id && req.body.avatar !== undefined &&
     /\d/.test(req.body.avatar) && avatars[req.body.avatar]) {
     User.findOne({
@@ -133,7 +133,7 @@ exports.addDonation = (req, res) => {
         _id: req.user._id
       })
       .exec((err, user) => {
-        // Confirm that this object hasn"t already been entered
+        // Confirm that this object hasn't already been entered
         let duplicate = false;
         for (let i = 0; i < user.donations.length; i++) {
           if (user.donations[i].crowdrise_donation_id === req.body.crowdrise_donation_id) {
