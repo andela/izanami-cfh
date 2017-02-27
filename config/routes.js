@@ -1,7 +1,7 @@
 module.exports = (app, passport) => {
     // User Routes
-  const users = require('../app/controllers/users');
-  const customAuth = require('./middlewares/authorization.js');
+  const users = require('../app/controllers/users'),
+  customAuth = require('./middlewares/authorization.js');
 
   app.get('/signin', users.signin);
   app.get('/signup', users.signup);
@@ -81,6 +81,7 @@ module.exports = (app, passport) => {
 
     // Answer Routes
   const answers = require('../app/controllers/answers');
+  
   app.get('/answers', answers.all);
   app.get('/answers/:answerId', answers.show);
     // Finish with setting up the answerId param
@@ -88,6 +89,7 @@ module.exports = (app, passport) => {
 
     // Question Routes
   const questions = require('../app/controllers/questions');
+
   app.get('/questions', questions.all);
   app.get('/questions/:questionId', questions.show);
     // Finish with setting up the questionId param
@@ -95,6 +97,7 @@ module.exports = (app, passport) => {
 
     // Avatar Routes
   const avatars = require('../app/controllers/avatars');
+
   app.get('/avatars', avatars.allJSON);
 
     // Home route

@@ -1,15 +1,15 @@
 /*
  * Module dependencies.
  */
-const mongoose = require('mongoose'),
-  User = mongoose.model('User');
-const avatars = require('./avatars').all();
+const mongoose = require("mongoose"),
+  User = mongoose.model("User");
+const avatars = require("./avatars").all();
 
 /*
  * Auth callback
  */
 exports.authCallback = (req, res, next) => {
-  res.redirect('/chooseavatars');
+  res.redirect("/chooseavatars");
 };
 
 /*
@@ -17,9 +17,9 @@ exports.authCallback = (req, res, next) => {
  */
 exports.signin = (req, res) => {
   if (!req.user) {
-    res.redirect('/#!/signin?error=invalid');
+    res.redirect("/#!/signin?error=invalid");
   } else {
-    res.redirect('/#!/app');
+    res.redirect("/#!/app");
   }
 };
 
@@ -28,9 +28,9 @@ exports.signin = (req, res) => {
  */
 exports.signup = (req, res) => {
   if (!req.user) {
-    res.redirect('/#!/signup');
+    res.redirect("/#!/signup");
   } else {
-    res.redirect('/#!/app');
+    res.redirect("/#!/app");
   }
 };
 
@@ -38,21 +38,21 @@ exports.signup = (req, res) => {
  * Logout
  */
 exports.signout = (req, res) => {
-  res.clearCookie('token');
+  res.clearCookie("token");
   req.logout();
-  res.redirect('/');
+  res.redirect("/");
 };
 
 /*
  * Session
  */
 exports.session = (req, res) => {
-  res.redirect('/');
+  res.redirect("/");
 };
 
 /*
  * Check avatar - Confirm if the user who logged in via passport
- * already has an avatar. If they don't have one, redirect them
+ * already has an avatar. If they don"t have one, redirect them
  * to our Choose an Avatar page.
  */
 exports.checkAvatar = (req, res) => {
@@ -62,14 +62,14 @@ exports.checkAvatar = (req, res) => {
     })
     .exec((err, user) => {
       if (user.avatar !== undefined) {
-        res.redirect('/#!/');
+        res.redirect("/#!/");
       } else {
-        res.redirect('/#!/choose-avatar');
+        res.redirect("/#!/choose-avatar");
       }
     });
   } else {
-    // If user doesn't even exist, redirect to /
-    res.redirect('/');
+    // If user doesn"t even exist, redirect to /
+    res.redirect("/");
   }
 };
 
@@ -83,27 +83,27 @@ exports.create = (req, res, next) => {
     }).exec((err, existingUser) => {
       if (!existingUser) {
         const user = new User(req.body);
-        // Switch the user's avatar index to an actual avatar url
+        // Switch the user"s avatar index to an actual avatar url
         user.avatar = avatars[user.avatar];
-        user.provider = 'local';
+        user.provider = "local";
         user.save((err) => {
           if (err) {
-            return res.render('/#!/signup?error=unknown', {
+            return res.render("/#!/signup?error=unknown", {
               errors: err.errors,
               user
             });
           }
           req.logIn(user, (err) => {
             if (err) return next(err);
-            return res.redirect('/#!/');
+            return res.redirect("/#!/");
           });
         });
       } else {
-        return res.redirect('/#!/signup?error=existinguser');
+        return res.redirect("/#!/signup?error=existinguser");
       }
     });
   } else {
-    return res.redirect('/#!/signup?error=incomplete');
+    return res.redirect("/#!/signup?error=incomplete");
   }
 };
 
@@ -111,7 +111,7 @@ exports.create = (req, res, next) => {
  * Assign avatar to user
  */
 exports.avatars = (req, res) => {
-  // Update the current user's profile to include the avatar choice they've made
+  // Update the current user"s profile to include the avatar choice they"ve made
   if (req.user && req.user._id && req.body.avatar !== undefined &&
     /\d/.test(req.body.avatar) && avatars[req.body.avatar]) {
     User.findOne({
@@ -122,7 +122,7 @@ exports.avatars = (req, res) => {
       user.save();
     });
   }
-  return res.redirect('/#!/app');
+  return res.redirect("/#!/app");
 };
 
 exports.addDonation = (req, res) => {
@@ -133,7 +133,7 @@ exports.addDonation = (req, res) => {
         _id: req.user._id
       })
       .exec((err, user) => {
-        // Confirm that this object hasn't already been entered
+        // Confirm that this object hasn"t already been entered
         let duplicate = false;
         for (let i = 0; i < user.donations.length; i++) {
           if (user.donations[i].crowdrise_donation_id === req.body.crowdrise_donation_id) {
@@ -157,7 +157,7 @@ exports.addDonation = (req, res) => {
 exports.show = (req, res) => {
   const user = req.profile;
 
-  res.render('users/show', {
+  res.render("users/show", {
     title: user.name,
     user
   });
@@ -187,7 +187,7 @@ exports.user = (req, res, next, id) => {
 };
 
 
-const jwt = require('jsonwebtoken');
+const jwt = require("jsonwebtoken");
 
 
 // Generate JWT and sign with users id and name
@@ -202,8 +202,8 @@ exports.generateToken = (req, res, next) => {
 };
 
 
-// Save JWT in cookies with key 'token' and redirect back to home
+// Save JWT in cookies with key "token" and redirect back to home
 exports.returnToken = (req, res, next) => {
-  res.cookie('token', req.token, { maxAge: 1800000 });
-  res.redirect('/');
+  res.cookie("token", req.token, { maxAge: 1800000 });
+  res.redirect("/");
 };

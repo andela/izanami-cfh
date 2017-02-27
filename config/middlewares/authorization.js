@@ -8,7 +8,7 @@ exports.requiresLogin = (req, res, next) => {
   next();
 };
 
-/**
+/*
  * User authorizations routing middleware
  */
 exports.user = {
@@ -36,7 +36,6 @@ const authenticate = expressJwt({ secret: process.env.SECRET_KEY,
 
 const compose = require('composable-middleware');
 
-
 // Custom middleware to check if user has authorization and decode token.
 exports.hasAuth = () => compose()
   .use((req, res, next) => {
@@ -51,15 +50,3 @@ exports.hasAuth = () => compose()
       }
     }
   });
-
-/**
- * Article authorizations routing middleware
- */
-// exports.article = {
-//     hasAuthorization: function(req, res, next) {
-//         if (req.article.user.id != req.user.id) {
-//             return res.send(401, 'User is not authorized');
-//         }
-//         next();
-//     }
-// };
