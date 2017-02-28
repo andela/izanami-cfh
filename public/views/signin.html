@@ -44,8 +44,7 @@
           <div class="sign-error" ng-show="showError() === 'invalid'">
             Please check your username/password and try again.
           </div>
-          <form class="signup form-horizontal" method="post" action="/api/users/session">
-<!--          <form class="signup form-horizontal" action="/users/session" method="post">-->
+          <form class="signup form-horizontal" method="post" action="/api/auth/login">
             <div class="control-group">
               <label for="email" class="control-label"></label>
               <div class="controls">
@@ -59,7 +58,7 @@
               </div>
             </div>
             <div class="form-actions top-margin">
-              <button id="sign-up-btn-other" type='submit' >Sign In</button>
+              <button id="sign-up-btn-other" type='submit'>Sign In</button>
             </div>
           </form>
         </div>
