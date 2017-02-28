@@ -9,3 +9,4 @@ c4h_keys.txt
 coverage
 .env
 lib
+debug.log
