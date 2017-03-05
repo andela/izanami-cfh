@@ -37,7 +37,9 @@ function Game(gameID, io) {
   this.timeLimits = {
     stateChoosing: 21,
     stateJudging: 16,
-    stateResults: 6
+//czar draw cards
+    stateDrawCards: 11,
+   // stateResults: 6
   };
   // setTimeout ID that triggers the czar judging state
   // Used to automatically run czar judging if players don't pick before time limit
@@ -48,6 +50,8 @@ function Game(gameID, io) {
   // Gets cleared if czar finishes judging before time limit.
   this.judgingTimeout = 0;
   this.resultsTimeout = 0;
+  //czar draw cards
+  this.drawCardsTimeout = 0;
   this.guestNames = guestNames.slice();
 }
 
@@ -143,9 +147,17 @@ Game.prototype.sendUpdate = function() {
   this.io.sockets.in(this.gameID).emit('gameUpdate', this.payload());
 };
 
+//czar draw cards
+Game.prototype.stateDrawCards = function (self) {	
+   self.state = 'waiting for czar to draw cards';
+   self.sendUpdate();
+   self.drawCardsTimeout = setTimeout(() => {
+    self.stateChoosing(self);
+  }, self.timeLimits.stateDrawCards * 1000);
+ };
+
 Game.prototype.stateChoosing = function(self) {
   self.state = "waiting for players to pick";
-  // console.log(self.gameID,self.state);
   self.table = [];
   self.winningCard = -1;
   self.winningCardPlayer = -1;
@@ -179,9 +191,13 @@ Game.prototype.selectFirst = function() {
     this.players[winnerIndex].points++;
     this.winnerAutopicked = true;
     this.stateResults(this);
+    // czar to select card
+    this.sendNotification(this.players[winnerIndex].username+' has won the round!');
+    this.sendUpdate();
   } else {
-    // console.log(this.gameID,'no cards were picked!');
-    this.stateChoosing(this);
+//    // console.log(this.gameID,'no cards were picked!');
+//    this.stateChoosing(this);
+     this.stateDrawCards(this);
   }
 };
 
@@ -216,7 +232,9 @@ Game.prototype.stateResults = function(self) {
     if (winner !== -1) {
       self.stateEndGame(winner);
     } else {
-      self.stateChoosing(self);
+      //self.stateChoosing(self);
+      //czar draws card
+       self.stateDrawCards(self);
     }
   }, self.timeLimits.stateResults*1000);
 };
@@ -422,6 +440,12 @@ Game.prototype.killGame = function() {
   clearTimeout(this.resultsTimeout);
   clearTimeout(this.choosingTimeout);
   clearTimeout(this.judgingTimeout);
+  clearTimeout(this.drawCardsTimeout);
 };
+
+Game.prototype.drawCard = function() {
+  clearTimeout(this.drawCardsTimeout);
+  this.stateChoosing(this);
+  };		  
 
 module.exports = Game;

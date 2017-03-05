@@ -171,7 +171,12 @@ angular.module('mean.system')
         }
       }
     });
-
+  
+//    czar should draw cards
+    $scope.drawCard = () => {
+       game.drawCard();
+     };
+  
     if ($location.search().game && !(/^\d+$/).test($location.search().game)) {
       console.log('joining custom game');
       game.joinGame('joinGame',$location.search().game);
