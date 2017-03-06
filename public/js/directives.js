@@ -74,6 +74,21 @@ angular.module('mean.directives', [])
         if (scope.$$childHead.global.authenticated === true) {
           scope.showOptions = false;
         }
+          
+        //retrieve user's details from cookie
+        if(document.cookie) {
+            const cookies = document.cookie;
+            if (cookies.indexOf('token') !== -1) {
+                cookies.split(';').forEach((cookie) => {
+                    if(cookie.indexOf('token') !== -1) {
+                        scope.token = cookie.split('=')[1];
+                        scope.user_details = JSON.parse(atob(scope.token.split('.')[1]));
+                        scope.id = scope.user_details["id"];
+                    }
+                });
+            }
+        }
+    
       }
     };
   });

@@ -104,5 +104,7 @@ module.exports = (app, passport) => {
   const index = require('../app/controllers/index');
   app.get('/play', index.play);
 
+  app.get('/api/games/:id/start', index.play);
+    
   app.get('/', customAuth.hasAuth(), index.render);
 };

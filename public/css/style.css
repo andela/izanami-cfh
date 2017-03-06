@@ -1,4 +1,4 @@
- .clear {
+.clear {
    clear:both;
  }
 
@@ -1255,3 +1255,12 @@
       margin: 0 0 0 4px;
    }
  }
+#play-game-modal {
+    text-align: center;
+}
+
+/* start a game modal styling */
+#play-game-modal-content {
+    margin-top: 100px;
+    background-color: #222222;
+}

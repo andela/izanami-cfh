@@ -14,6 +14,21 @@ $(document).ready(function() {
 </script>
 
 <script></script>
+<!-- Start a game modal -->
+ <div id="play-game-modal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div id="play-game-modal-content" class="modal-content">
+      <div class="modal-body">
+        <a ng-href="/api/games/{{id}}/start"><div id="sign-up-btn-landing">Play Game with Strangers</div></a>
+        <a href="/api/games/{{id}}/start?custom"><div id="sign-up-btn-landing">Play Game with Friends</div></a>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End start a game modal -->
 <div landing id="main-bod">
   <!-- Fixed Logo & Menu Bar Start -->
   <div id="top-part">
@@ -78,7 +93,7 @@ $(document).ready(function() {
       <div id="sign-up">
         <span ng-show="showOptions">
         <a href="#!/signup"><div id="sign-up-btn-landing">Sign Up</div></a>
-          <div id="sign-up-text"><a href="/play">
+          <div id="sign-up-text"><a href="/api/games/guest/start">
             <span id="first-word">or Play</span>
             <span id="second-word">as</span>
             <span id="third-word">Guest</span></a>
@@ -100,8 +115,12 @@ $(document).ready(function() {
           </span>
         </span>
         <span ng-hide="showOptions">
-          <a href="/play"><div id="sign-up-btn-landing">Play Game with Strangers</div></a>
-          <a href="/play?custom"><div id="sign-up-btn-landing">Play Game with Friends</div></a>
+            <span onclick="openModal()"><div id="sign-up-btn-landing">Play</div></span>
+            <script>
+                function openModal() {
+                    $('#play-game-modal').modal('show');
+                }
+            </script>
               <span id='twitter-facebook'>
                 <span id="tweet-container-index">
                   <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://cfh.io" data-text="Cards for Humanity: A Game for Horrible People Desperately Trying to do Good" data-related="CFH_App">Tweet</a>
@@ -158,7 +177,7 @@ $(document).ready(function() {
       <div id="sign-up">
         <span ng-show="showOptions">
           <a href="#!/signup"><div id="sign-up-btn-landing">Sign Up</div></a>
-          <div id="sign-up-text"><a href="/play">
+          <div id="sign-up-text"><a href="/api/games/guest/start">
             <span id="first-word">or Play</span>
             <span id="second-word">as</span>
             <span id="third-word">Guest</span></a>
