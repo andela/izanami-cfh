@@ -1,85 +1,89 @@
-<div id="main-bod">
-  <!-- Fixed Logo & Menu Bar Start -->
-  <div id="top-part">
-    <div class="wpb-top-bar">
-      <div class="mod-contain" id="navver">
-        <div class="row">
-          <!-- Logo -->
-          <div class="wpb-logo-container">
-            <div id="landing-logo"> 
-              <span id="first-word">Cards</span>
-              <span id="second-word"> for</span> 
-              <span id="third-word">Humanity</span> 
-            </div> 
-            <div class="col-md-9 wpb-menu-container">
-              <ul class="wpb-main-menu">
-                <li><a href="/">Home</a></li>
-              </ul>
-            </div>
-          </div>      
-        </div>
-      </div>
-    </div>
-  </div>
-<!-- Fixed Logo & Menu Bar End -->
+<div class="container-fluid">
+    <div ng-controller="IndexController">
+        <header>
+            <nav class="navbar navbar-default navbar-fixed-top" id="nav-id">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+			                  </button>
+                    </div>
 
-<!-- Landing Start -->
-<div class="wpb-teaser parallax-background" id="homer">
-  <div class="background-opacity"></div> 
-  <div class="modified-container">
-    <div class="row" id="main-text"> 
-    <!-- Teaser Text Start -->
-    <div id="landing-logo">
-      <h2 id="slogan">Sign Up with:</h2>
-      <div id="login-buttons">
-        <a href="/auth/facebook"><img class="login-item" src="/img/icons/facebook.png"></a>
-        <a href="/auth/github"><img class="login-item" src="/img/icons/github.png"></a>
-        <a href="/auth/twitter"><img class="login-item" src="/img/icons/twitter.png"></a>
-        <a href="/auth/google"><img class="login-item" src="/img/icons/google.png"></a>
-      </div>
-      <p id="create">Or create a username/password and select an avatar:</p>
-
-      <div class="sign-body">
-        <div class="more-sign">
-          <form class="signup form-horizontal" action="/users" method="post">
-            <div class="control-group">
-              <label for="name" class="control-label"></label>
-              <div class="controls">
-                <input class="input-info" id="name" type="text" name="name" placeholder="Full name" required novalidate />
-              </div>
-            </div>
-            <div class="control-group">
-              <label for="email" class="control-label"></label>
-              <div class="controls">
-                <input class="input-info" id="email" type="email" name="email" placeholder="Email" required novalidate />
-              </div>
-            </div>
-            <div class="control-group">
-              <label for="password" class="control-label"></label>
-              <div class="controls">
-                <input class="input-info" id="password" type="password" name="password" placeholder="Password" required novalidate />
-              </div>
-            </div>
-            <div id="contain-avatars">
-              <ul ng-controller="IndexController" class="avatar-list">
-                <li ng-repeat="avatar in avatars" class="avatars ng-scope">
-                  <input name="avatar" type='radio' value="{{$index}}">
-                    <img ng-src="{{avatar}}">
-                  </input>
-                </li>
-              </ul>
-            </div>
-            <div class="form-actions">
-              <button id="sign-up-btn-other" type='submit'>Sign Up</button>
-            </div>
-          </form>
-        </div>
-      </div>
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <div id="brand-name">
+                            <span id="word-one">Cards </span>
+                            <span id="word-two">for </span>
+                            <span id="word-three">Humanity</span>
+                        </div>
+                        <div id="home-nav">
+                            <ul class="nav navbar-nav">
+                                <li><a href="/">Home</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </header>
     </div>
-    </div>
-    </div>
-  </div>
 </div>
+<div id="signup-main">
 
+    <div id="signup-form">
+        <div id="auth-form">
+            <form class="signup form-horizontal" method="post" action="/api/auth/login">
+                <div>
+                    <label for="name" class="control-label"></label>
+                    <div class="controls">
+                        <input class="input-info" id="name" type="text" name="name" placeholder="Full name" required novalidate />
+                    </div>
+                    <div>
+                        <label for="email" class="control-label"></label>
+                        <div class="controls">
+                            <input class="input-info" id="email" ng-model="login_data.email" type="text" name="email" placeholder="Email" required novalidate/>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="password" class="control-label"></label>
+                        <div class="controls">
+                            <input class="input-info" id="password" ng-model="login_data.password" type="password" name="password" placeholder="Password" required novalidate />
+                        </div>
+                    </div>
+                    <p id="create">Select an</p>
+                    <div id="avis">
+                        <ul ng-controller="IndexController" class="avatar-list">
+                            <li ng-repeat="avatar in avatars" class="avatars ng-scope">
+                                <input name="avatar" type='radio' value="{{$index}}">
+                                <img ng-src="{{avatar}}">
+                                </input>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="auth-button">
+                        <button id="sign-up-btn-other" type='submit'>Sign Up</button>
+                    </div>
+            </form>
 
+            <div class="hr">
+                <div></div>
+                <div>Or</div>
+                <div></div>
+            </div>
 
+            <div class="sign-body">
+                <div class="more-sign">
+                    <div class="sign-error" ng-show="showError() === 'invalid'">
+                        <p>Please check your username/password and try again.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="login-icons">
+                <a href="/auth/facebook"><i class="fa fa-4x fa-facebook-official facebook" aria-hidden="true"></i></a>
+                <a href="/auth/github"><i class="fa fa-4x fa-github github " aria-hidden="true"></i></a>
+                <a href="/auth/twitter"><i class="fa fa-4x fa-twitter twitter" aria-hidden="true"></i></a>
+                <a href="/auth/google"><i class="fa fa-4x fa-google google" aria-hidden="true"></i></a>
+            </div>
+            </div>
+        </div>
