@@ -181,4 +181,95 @@ angular.module('mean.system')
       game.joinGame();
     }
 
+  $scope.startTour = () => {
+    const tour = new Shepherd.Tour({
+      defaults: {
+        classes: 'shepherd-theme-default',
+        scrollTo: true
+      }
+    });
+    tour.addStep('Step 1', {
+      title: 'Start the game',
+      text: `This button starts the game but a minimum of 3 players
+       is required to start the game`,
+      attachTo: '#start-game-container bottom',
+      classes: 'shepherd-theme-default',
+      showCancelLink: true,
+      buttons: [
+        {
+          text: 'Skip',
+          action: tour.cancel,
+        },
+        {
+          text: 'Next',
+          action: tour.next
+        }
+      ]
+    });
+    tour.addStep('Step 2', {
+      title: 'Number of players',
+      text: `Here is an indicator of how many players have
+       joined the game out of 12 maximum players allowed.`,
+      attachTo: '#player-count-container bottom',
+      showCancelLink: true,
+      buttons: [
+        {
+          text: 'Skip',
+          action: tour.cancel,
+        },
+        {
+          text: 'Back',
+          action: tour.back,
+        },
+        {
+          text: 'Next',
+          action: tour.next,
+        }
+      ]
+    });
+    tour.addStep('Step 3', {
+      title: 'Game Timer',
+      text: `This is a countdown timer that shows how much
+         time is remaining for you to choose a card.`,
+      attachTo: '#timer-container left',
+      showCancelLink: true,
+      buttons: [
+        {
+          text: 'Skip',
+          action: tour.cancel,
+        },
+        {
+          text: 'Back',
+          action: tour.back,
+        },
+        {
+          text: 'Next',
+          action: tour.next,
+        }
+      ]
+    });
+    tour.addStep('Step 7', {
+      title: 'Abandon Game',
+      text: `Click this button to Leave the game.`,
+      attachTo: '#abandon-game-button bottom',
+      showCancelLink: true,
+      buttons: [
+        {
+          text: 'Skip',
+          action: tour.cancel,
+        },
+        {
+          text: 'Back',
+          action: tour.back,
+        },
+        {
+          text: 'Done',
+          action: tour.complete,
+        }
+      ]
+    });
+    tour.start();
+  };
+  
 }]);
+
