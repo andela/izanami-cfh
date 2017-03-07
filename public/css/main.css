@@ -24,7 +24,6 @@ h2 {
 
 .signout a {
     color: #777777;
-    /*text-align: center;*/
 }
 
 .cfh img {
@@ -102,7 +101,6 @@ h2 {
     height: 200px;
     width: 100%;
     border: solid 2px black;
-    /*margin: 50px;*/
     background-color: #181818;
     margin-top: 20px;
 }
@@ -218,16 +216,12 @@ footer {
 footer a {
     float: left;
     display: block;
-    /*clear: right;*/
     position: relative;
-    /*transform: translate(-30%, 0%);*/
 }
 
 footer p {
     float: right;
     display: block;
-    /*clear: right;*/
-    /*position: relative;*/
     transform: translate(-30%, 350%);
 }
 
@@ -237,9 +231,7 @@ footer img {
     width: 20%;
     padding: 0px;
     margin: 0px;
-    /*border: 2px solid black;*/
     transform: translate(0%, 5%);
-    /*clear: right;*/
 }
 
 footer a {
