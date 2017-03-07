@@ -194,7 +194,7 @@ module.exports = function (io) {
     // Generate a random 6-character game ID
     while (!isUniqueRoom) {
       uniqueRoom = '';
-      for (const i = 0; i < 6; i++) {
+      for (let i = 0; i < 6; i++) {
         uniqueRoom += chars[Math.floor(Math.random() * chars.length)];
       }
       if (!allGames[uniqueRoom] && !(/^\d+$/).test(uniqueRoom)) {
@@ -224,7 +224,7 @@ module.exports = function (io) {
         game.removePlayer(socket.id);
       } else {
         game.stateDissolveGame();
-        for (const j = 0; j < game.players.length; j++) {
+        for (let j = 0; j < game.players.length; j++) {
           game.players[j].socket.leave(socket.gameID);
         }
         game.killGame();

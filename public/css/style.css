@@ -607,10 +607,6 @@
    color:#515e65 !important;
  }
 
- /**** Portfolio ****/
- .wpb-portfolio-body {
-
- }
 
  .wpb-portfolio-body .wpb-teaser {
    min-height: 350px;
@@ -764,9 +760,6 @@
  }
 
 
- /**** Single Portfolio Item ****/
- .wpb-single-portfolio {
- }
 
  .wpb-single-portfolio .wpb-content-inner {
    padding: 0px;
@@ -1256,16 +1249,24 @@
    }
  }
 
-
+.flip {
+  position: relative;
+}
 /* Css changes*/
 .draw-card-icon{
    background-image:url('../img/draw-card');
    background-repeat:no-repeat;
    background-size:contain;
    background-position:center;
+   /*position: absolute;*/
    height: 200px;
    cursor: pointer;
-   /*background-color:deeppink;*/
+   -webkit-transition: -webkit-transform 1s;
+    transition: transform 1s;
+ }
+ .flip.flipped .draw-card-icon{
+   -webkit-transform: rotateY(-180deg);
+   transform: rotateY(-180deg);
  }
  
 /*Css changes*/
