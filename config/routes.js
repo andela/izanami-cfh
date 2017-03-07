@@ -105,6 +105,6 @@ module.exports = (app, passport) => {
   app.get('/play', index.play);
 
   app.get('/api/games/:id/start', index.play);
-    
+
   app.get('/', customAuth.hasAuth(), index.render);
 };
