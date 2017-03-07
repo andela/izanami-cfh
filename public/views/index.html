@@ -17,33 +17,33 @@
                         <li class="active"><a href="#home">Home </a></li>
                         <li><a href="#how-to">How to Play</a></li>
                         <li><a href="#charity">Charity</a></li>
-                        <li ng-show="showOptions"><a  href="#!/signup">Sign Up</a></li>
-                        <li ng-show="showOptions"><a  href="#!/signin">Sign In</a></li>
-                        <li ng-hide="showOptions" class= 'signout'><a href="/signout">Sign Out</a></li>
+                        <li ng-hide="showOptions"><a href="/signup">Sign Up</a></li>
+                        <li ng-hide="showOptions"><a href="/signin">Sign In</a></li>
+                        <li ng-show="showOptions" class='signout'><a href="/signout">Sign Out</a></li>
                     </ul>
-                    </div>
                 </div>
             </div>
-        </nav>
+</div>
+</nav>
 
-    </header>
+</header>
 
-    <section id="home">
-        <div class="image">
-        </div>
-        <h2 class="animated slideInUp">A game for horrible people <span class="desperately">desperately</span> trying to do good.</h3>
-        
-            <div id="sign-up">
-        <span ng-show="showOptions">
+<section id="home">
+    <div class="image">
+    </div>
+    <h2 class="animated slideInUp" id="tagLine">A game for horrible people <span class="desperately">desperately</span> trying to do good.</h3>
+
+        <div id="sign-up">
+            <span ng-show="showOptions">
         <a href="#!/signup"><div class="centered"><button type="button" class="btn btn-info btn-lg">Sign Up</button></div></a>
           <div id="signup-text"><a href="/play">
             <span> or Play as Guest</span>
-          </div>
-          <span id="tweet-container-index">
+        </div>
+        <span id="tweet-container-index">
             <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://cfh.io" data-text="Cards for Humanity: A Game for Horrible People Desperately Trying to do Good" data-related="CFH_App">Tweet</a>
             <a href="https://twitter.com/cfh_app" class="twitter-follow-button" data-show-count="false" data-dnt="true">Follow @cfh_app</a>
           </span>
-          <span id='facebook-share' ng-show="showOptions">
+        <span id='share-on-facebook' ng-show="showOptions">
               <a href="#"
                 onclick="
                   window.open(
@@ -63,7 +63,7 @@
                   <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://cfh.io" data-text="Cards for Humanity: A Game for Horrible People Desperately Trying to do Good" data-related="CFH_App">Tweet</a>
                 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
                 </span>
-                <span id='facebook-share'>
+        <span id='share-on-facebook'>
                     <a href="#"
                       onclick="
                         window.open(
@@ -74,151 +74,151 @@
                       Share on Facebook
                     </a>
                 </span>
-              </span>
         </span>
-       </div>
-    </section>
+        </span>
+        </div>
+</section>
 
-    <section id="how-to">
-        <div class="container how-to">
-            <div class="how-to-play">
-                <p>How to play</p>
+<section id="how-to">
+    <div class="container how-to">
+        <div class="how-to-play">
+            <p>How to play</p>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row how-to-card">
+            <div class=" col-md-3 col-sm-6 col-xs-12">
+                <div class="cards">
+                    <p>Each player begins with, and will always have 10 white answer cards.</p>
+                    <div class="small"><small>cfh</small></div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="cards">
+                    <p>For each round, one player is randomly chosen as the Card Czar.</p>
+                    <div class="small"><small>cfh</small></div>
+                </div>
+
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="cards">
+                    <p>Everyone else answers the black question card by clicking on the answer card they want to use.</p>
+                    <div class="small"><small>cfh</small></div>
+                </div>
+
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="cards">
+                    <p>The Card Czar then picks a favorite answer, and whoever played that answer wins the round.</p>
+                    <div class="small"><small>cfh</small></div>
+                </div>
             </div>
         </div>
+    </div>
+
+</section>
+
+<section id="charity">
+    <div class="charity">
+        <h1>Charity</h1>
+        <h4> "If you don't give back, no one will like you&#8482"- <a href="http://www.crowdrise.com/cfhio/fundraiser/cards4humanity" class="crowdrise">crowdrise.com</a></h4>
         <div class="container">
-            <div class="row how-to-card">
-                <div class=" col-md-3 col-sm-6 col-xs-12">
-                    <div class="cards">
-                        <p>Each player begins with, and will always have 10 white answer cards.</p>
-                        <div class="small"><small>cfh</small></div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="cards">
-                        <p>For each round, one player is randomly chosen as the Card Czar.</p>
-                         <div class="small"><small>cfh</small></div>
-                    </div>
-
-                </div>
-                <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="cards">
-                        <p>Everyone else answers the black question card by clicking on the answer card they want to use.</p>
-                        <div class="small"><small>cfh</small></div>
-                    </div>
-
-                </div>
-                <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="cards">
-                        <p>The Card Czar then picks a favorite answer, and whoever played that answer wins the round.</p>
-                         <div class="small"><small>cfh</small></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </section>
-
-    <section id="charity">
-        <div class="charity">
-            <h1>Charity</h1>
-            <h4> "If you don't give back, no one will like you&#8482"- <a href="http://www.crowdrise.com/cfhio/fundraiser/cards4humanity" class="crowdrise">crowdrise.com</a></h4>
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-3 donate">
-                        <div id="info-box">
-                            <div id="landing-image">
-                                <div id="landing-charity">
-                                    <a href="http://www.crowdrise.com/cfhio/fundraiser/cards4humanity" id="crowdriseStaticLink-fundraiser-121142" title="Fundraising Websites on Crowdrise">Fundraising Websites - Crowdrise</a>
-                                    <script type="text/javascript" src="https://www.crowdrise.com/widgets/donate/fundraiser/121142/?callback=userDonationCb"></script>
-                                </div>
+            <div class="row">
+                <div class="col-md-3 donate">
+                    <div id="info-box">
+                        <div id="landing-image">
+                            <div id="landing-charity">
+                                <a href="http://www.crowdrise.com/cfhio/fundraiser/cards4humanity" id="crowdriseStaticLink-fundraiser-121142" title="Fundraising Websites on Crowdrise">Fundraising Websites - Crowdrise</a>
+                                <script type="text/javascript" src="https://www.crowdrise.com/widgets/donate/fundraiser/121142/?callback=userDonationCb"></script>
                             </div>
                         </div>
                     </div>
-
-                    <div class="col-md-6 charity-text">
-                        <p>We're quite sure you feel the same way, so we've integrated donation widgets <span class="crowdrise">(via crowdrise.com)</span>, along with some not-so-subtle reminders throughout the game to give you the opportunity to donate.
-                            If you're signed in when you donate, we'll even upgrade your account and place a crown on your avatar's head (to remind other players how much better you are than them). All donations go to the Make-a-Wish Foundation and benefit
-                            children in need.</p>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="make-a-wish">
-                            <a href="http://www.wish.org"><img src="images/make-a-wish-logo-white-large.png" class="image-responsive mkw" alt="make-a-wish"></a>
-                        </div>
-                    </div>
                 </div>
 
-    </section>
-
-    <div id="signIn" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Sign In</h4>
+                <div class="col-md-6 charity-text">
+                    <p>We're quite sure you feel the same way, so we've integrated donation widgets <span class="crowdrise">(via crowdrise.com)</span>, along with some not-so-subtle reminders throughout the game to give you the opportunity to donate. If
+                        you're signed in when you donate, we'll even upgrade your account and place a crown on your avatar's head (to remind other players how much better you are than them). All donations go to the Make-a-Wish Foundation and benefit children
+                        in need.</p>
                 </div>
-
-
-                <div class="modal-body">
-
-                    <div class="form-group">
-                        <input type="email" class="form-control" id="usr" placeholder="email...">
+                <div class="col-md-3">
+                    <div class="make-a-wish">
+                        <a href="http://www.wish.org"><img src="images/make-a-wish-logo-white-large.png" class="image-responsive mkw" alt="make-a-wish"></a>
                     </div>
-
-                    <div class="form-group">
-                        <input type="password" class="form-control" id="pwd" placeholder="password...">
-                    </div>
-
-
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Sign In
-									        </button>
-                    </div>
-
                 </div>
-
             </div>
-        </div>
-    </div>
 
-    <!--- end of signin modal -->
+</section>
 
-    <!-- signup modal -->
-    <div id="signup" class="modal fade" role="dialog">
-        <div class="modal-dialog">
+<div id="signIn" class="modal fade" role="dialog">
+    <div class="modal-dialog">
 
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Sign Up</h4>
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Sign In</h4>
+            </div>
+
+
+            <div class="modal-body">
+
+                <div class="form-group">
+                    <input type="email" class="form-control" id="usr" placeholder="email...">
                 </div>
-                <div class="modal-body">
-                    <form method="post" action="/users">
-                        <div class="form-group">
-                            <input type="text" class="form-control" id="usr" name="name" placeholder="fullname...">
-                        </div>
-                        <div class="form-group">
-                            <input type="email" class="form-control" name="email" id="usr" placeholder="email...">
-                        </div>
-                        <div class="form-group">
-                            <input type="password" class="form-control" name="password" id="pwd" placeholder="password...">
-                        </div>
-                    </form>
+
+                <div class="form-group">
+                    <input type="password" class="form-control" id="pwd" placeholder="password...">
                 </div>
+
+
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Sign Up
-				        </button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Sign In
+									        </button>
                 </div>
+
             </div>
 
         </div>
     </div>
-    <!-- end of signup modal -->
+</div>
 
+<!--- end of signin modal -->
 
+<!-- signup modal -->
+<div id="signup" class="modal fade" role="dialog">
+    <div class="modal-dialog">
 
-
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Sign Up</h4>
+            </div>
+            <div class="modal-body">
+                <form method="post" action="/users">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="usr" name="name" placeholder="fullname...">
+                    </div>
+                    <div class="form-group">
+                        <input type="email" class="form-control" name="email" id="usr" placeholder="email...">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" name="password" id="pwd" placeholder="password...">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Sign Up
+				        </button>
+            </div>
+        </div>
 
     </div>
+</div>
+<!-- end of signup modal -->
+
+
+
+
+
+</div>

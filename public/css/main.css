@@ -1,22 +1,27 @@
 body {
     background-size: cover;
     margin: 0px;
-    font-family: 'Courgette', 'cursive' !important;
+    font-family: sans-serif !important;
 }
 
 h1,
-h2,
 h3,
 h4,
 h5,
 h6 {
-    font-family: 'Courgette', 'cursive' !important;
+    font-family: sans-serif !important;
+}
+
+h2 {
+    font-family: 'Courgette', 'Cursive' !important;
 }
 
 #home {
     background-color: #fff;
     padding: 0;
+    padding-bottom: 80px;
 }
+
 .signout a {
     color: #777777;
     /*text-align: center;*/
@@ -29,7 +34,6 @@ h6 {
     position: relative;
 }
 
-
 .image {
     margin-top: 50px !important;
     background-image: url('../images/cards.png');
@@ -38,8 +42,9 @@ h6 {
     background-size: 80%;
     height: 480px;
 }
+
 #signup-text {
-    margin : 0 auto;
+    margin: 0 auto;
 }
 
 h2 {
@@ -61,7 +66,8 @@ h2 {
     text-align: center;
     margin: 0px auto;
 }
-#facebook-share{
+
+#facebook-share {
     padding: 0px;
 }
 
@@ -77,7 +83,8 @@ h2 {
 .centered button {
     background-color: #0c7abf;
 }
-#play-with-friends button{
+
+#play-with-friends button {
     display: inline !important;
 }
 
@@ -117,7 +124,8 @@ h2 {
     margin-bottom: 15px;
     position: relative;
 }
-.play-with-friends{
+
+.play-with-friends {
     background-color: #0c7abf !important;
 }
 
@@ -138,15 +146,14 @@ h2 {
     font-size: 20px;
     padding: 30px;
 }
-small{
+
+small {
     position: absolute;
     bottom: 0;
     left: 5px;
     color: #C61C1C;
     font-size: 15px;
 }
-
-
 
 .how-to {
     padding: 30px;
@@ -200,4 +207,63 @@ small{
 
 .active a {
     color: #F9AA57 !important;
+}
+
+#share-on-facebook a {
+    color: #fff;
+}
+
+#share-on-facebook {
+    background-color: #1b95e0;
+}
+
+
+/*For mobile viewport*/
+
+
+/* ----------- iPhone 5 and 5S ----------- */
+
+
+/* Portrait and Landscape */
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 568px) and (-webkit-min-device-pixel-ratio: 2) {
+    .image {
+        height: 280px;
+    }
+}
+
+
+/* ----------- iPhone 6 ----------- */
+
+
+/* Portrait and Landscape */
+
+@media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) {
+    .image {
+        height: 350px;
+    }
+}
+
+
+/* ----------- iPhone 6+ ----------- */
+
+
+/* Portrait and Landscape */
+
+@media only screen and (min-device-width: 414px) and (max-device-width: 736px) and (-webkit-min-device-pixel-ratio: 3) {
+    .image {
+        height: 450px;
+    }
+}
+
+
+/* ----------- Galaxy S5 ----------- */
+
+
+/* Portrait and Landscape */
+
+@media screen and (device-width: 360px) and (device-height: 640px) and (-webkit-device-pixel-ratio: 3) {
+    .image {
+        height: 350px;
+    }
 }
