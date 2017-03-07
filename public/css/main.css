@@ -147,12 +147,13 @@ h2 {
     padding: 30px;
 }
 
-small {
+.cards .small {
     position: absolute;
-    bottom: 0;
-    left: 5px;
+    bottom: 10px;
+    right: 15px;
     color: #C61C1C;
-    font-size: 15px;
+    font-size: 18px;
+    font-family: 'Courgette', 'Cursive';
 }
 
 .how-to {
@@ -209,16 +210,45 @@ small {
     color: #F9AA57 !important;
 }
 
-#share-on-facebook a {
-    color: #fff;
+footer {
+    height: 150px;
+    background-color: #ddd;
 }
 
-#share-on-facebook {
-    background-color: #1b95e0;
+footer a {
+    float: left;
+    display: block;
+    /*clear: right;*/
+    position: relative;
+    /*transform: translate(-30%, 0%);*/
 }
 
+footer p {
+    float: right;
+    display: block;
+    /*clear: right;*/
+    /*position: relative;*/
+    transform: translate(-30%, 350%);
+}
 
-/*For mobile viewport*/
+footer img {
+    float: right;
+    height: 80%;
+    width: 20%;
+    padding: 0px;
+    margin: 0px;
+    /*border: 2px solid black;*/
+    transform: translate(0%, 5%);
+    /*clear: right;*/
+}
+
+footer a {
+    color: #000;
+}
+
+footer a:hover {
+    color: #F9AA57;
+}
 
 
 /* ----------- iPhone 5 and 5S ----------- */
