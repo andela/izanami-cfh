@@ -157,7 +157,7 @@ angular.module('mean.system')
     $timeout(() => {
       game.drawCard();
       card.removeClass('slide');
-    }, 2500);
+    }, 1500);
   };
 
   if ($location.search().game && !(/^\d+$/).test($location.search().game)) {
