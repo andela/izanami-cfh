@@ -152,8 +152,12 @@ angular.module('mean.system')
 
 //    czar should draw cards
   $scope.drawCard = () => {
-    angular.element(document.getElementsByClassName('flip')).addClass('flipped');
-    $timeout(() => game.drawCard(), 1000);
+    const card = angular.element(document.getElementsByClassName('card-mem'));
+    card.addClass('slide');
+    $timeout(() => {
+      game.drawCard();
+      card.removeClass('slide');
+    }, 2500);
   };
 
   if ($location.search().game && !(/^\d+$/).test($location.search().game)) {
