@@ -203,6 +203,9 @@ angular.module('mean.system')
     socket.emit('pickWinning',{card: card.id});
   };
 
+  socket.on('tooLate', () => {
+    angular.element('#gameStartedAlert').modal('show');
+  });
   decrementTime();
 
   return game;

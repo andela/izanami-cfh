@@ -424,4 +424,9 @@ Game.prototype.killGame = function() {
   clearTimeout(this.judgingTimeout);
 };
 
+// Game.prototype.tooLate = function() {
+//   console.log('Player can\'t join',this.gameID);
+//   this.io.sockets.in(this.gameID).emit('tooLate');
+// };
+
 module.exports = Game;
