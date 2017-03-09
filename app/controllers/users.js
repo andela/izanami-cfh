@@ -15,12 +15,11 @@ exports.authCallback = (req, res, next) => {
 /*
  * Show login form
  */
-exports.signin = (req, res, next) => {
+exports.signin = (req, res) => {
   if (!req.user) {
     res.redirect('/#!/signin?error=invalid');
   } else {
-    // res.redirect('/#!/app');
-    next();
+    res.redirect('/#!/app');
   }
 };
 
@@ -192,7 +191,6 @@ const jwt = require('jsonwebtoken');
 
 // Generate JWT and sign with users id and name
 exports.generateToken = (req, res, next) => {
-    console.log('generate token');
   req.token = jwt.sign({
     id: req.user.id,
     name: req.user.name,

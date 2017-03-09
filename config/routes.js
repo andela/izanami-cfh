@@ -42,7 +42,7 @@ module.exports = (app, passport) => {
   app.get('/auth/facebook', passport.authenticate('facebook', {
     scope: ['email'],
     failureRedirect: '/signin'
-  }), users.signin, users.generateToken, users.returnToken);
+  }), users.signin);
 
   app.get('/auth/facebook/callback', passport.authenticate('facebook', {
     failureRedirect: '/signin'
@@ -51,7 +51,7 @@ module.exports = (app, passport) => {
     // Setting the github oauth routes
   app.get('/auth/github', passport.authenticate('github', {
     failureRedirect: '/signin'
-  }), users.signin, users.generateToken, users.returnToken);
+  }), users.signin);
 
   app.get('/auth/github/callback', passport.authenticate('github', {
     failureRedirect: '/signin'
@@ -60,11 +60,11 @@ module.exports = (app, passport) => {
     // Setting the twitter oauth routes
   app.get('/auth/twitter', passport.authenticate('twitter', {
     failureRedirect: '/signin'
-  }), users.signin, users.generateToken, users.returnToken);
+  }), users.signin);
 
   app.get('/auth/twitter/callback', passport.authenticate('twitter', {
     failureRedirect: '/signin'
-  }), users.generateToken, users.returnToken);
+  }), users.authCallback);
 
     // Setting the google oauth routes
   app.get('/auth/google', passport.authenticate('google', {
@@ -73,7 +73,7 @@ module.exports = (app, passport) => {
       'https://www.googleapis.com/auth/userinfo.profile',
       'https://www.googleapis.com/auth/userinfo.email'
     ]
-  }), users.signin, users.generateToken, users.returnToken);
+  }), users.signin);
 
   app.get('/auth/google/callback', passport.authenticate('google', {
     failureRedirect: '/signin'
