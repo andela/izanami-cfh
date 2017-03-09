@@ -15,11 +15,11 @@ exports.authCallback = (req, res, next) => {
 /*
  * Show login form
  */
-exports.signin = (req, res) => {
+exports.signin = (req, res, next) => {
   if (!req.user) {
     res.redirect('/#!/signin?error=invalid');
   } else {
-    res.redirect('/#!/app');
+    next();
   }
 };
 
@@ -204,5 +204,5 @@ exports.generateToken = (req, res, next) => {
 // Save JWT in cookies with key "token" and redirect back to home
 exports.returnToken = (req, res, next) => {
   res.cookie('token', req.token, { maxAge: 1800000 });
-  res.redirect('/');
+  res.redirect('/#!');
 };
