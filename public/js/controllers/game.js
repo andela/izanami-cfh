@@ -266,6 +266,5 @@ angular.module('mean.system')
     });
     tour.start();
   };
-  
 }]);
 
