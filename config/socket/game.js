@@ -197,7 +197,6 @@ Game.prototype.selectFirst = function () {
     this.sendNotification(`${this.players[winnerIndex].username} has won the round!`);
     this.sendUpdate();
   } else {
-//    this.stateChoosing(this);
     this.stateDrawCards(this);
   }
 };
