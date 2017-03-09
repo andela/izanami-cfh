@@ -133,7 +133,7 @@ exports.addDonation = (req, res) => {
         _id: req.user._id
       })
       .exec((err, user) => {
-          // Confirm that this object hasn't already been entered
+        // Confirm that this object hasn't already been entered
         let duplicate = false;
         for (let i = 0; i < user.donations.length; i++) {
           if (user.donations[i].crowdrise_donation_id === req.body.crowdrise_donation_id) {
