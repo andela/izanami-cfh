@@ -1,91 +1,49 @@
-<script type="text/javascript">
-$(document).ready(function() {
+<script></script>
+<div class="container-fluid">
+    <header>
+        <nav class="navbar navbar-default navbar-fixed-top" id="nav-id">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+			        <span class="sr-only">Toggle navigation</span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			      </button>
+                </div>
 
-  var ChroMo = '(Chrome)/(\d+)\.(\d+)\.(\d+)\.(\d+) Mobile';
-
-  if (/Android|webOS|CriOs|ChroMo|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) === false && location.href !== "http://localhost:3000/#!/app") {
-    $('body').append('<a href="http://hackreactor.com"><img style="z-index: 10000; position: absolute; top: 0; right: 0; width: 125px; height: 125px; border: 0;" src="https://i.imgur.com/x86kKmF.png" alt="Built at Hack Reactor"></a>');
-  }
-
-  //Twitter buttons
-  !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
-
-  });
-</script>
-<div landing id="main-bod">
-  <!-- Fixed Logo & Menu Bar Start -->
-  <div id="top-part">
-    <div class="wpb-top-bar">
-      <div class="mod-contain" id="navver">
-        <div class="row">
-          <!-- Logo -->
-          <div class="wpb-logo-container">
-            <div id="landing-logo">
-              <span id="first-word">Cards</span>
-              <span id="second-word"> for</span>
-              <span id="third-word">Humanity</span>
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li><a href="#home">Home </a></li>
+                        <li><a href="#how-to">How to Play</a></li>
+                        <li><a href="#charity">Charity</a></li>
+                        <li ng-hide="showOptions"><a href="#!/signup">Sign Up</a></li>
+                        <li ng-hide="showOptions"><a href="#!/signin">Sign In</a></li>
+                        <li ng-show="showOptions" class='signout'><a href="#!/signout">Sign Out</a></li>
+                    </ul>
+                </div>
             </div>
-            <div class="col-md-9 wpb-menu-container">
-              <ul class="wpb-main-menu">
-                <li><a onClick="scroll(0,0)">Home</a></li>
-                <li><a onClick="scroll(0,742);">How to Play</a></li>
-                <li><a onClick="scroll(0,1411);">Charity</a></li>
-                <li><a onClick="scroll(0,2021);">About Us</a></li>
-                <span ng-show="showOptions">
-                  <li><a href="#!/signup">Sign Up</a></li>
-                  <li><a href="#!/signin">Sign In</a></li>
-                </span>
-                <span ng-hide="showOptions">
-                  <li><a href="/signout">Sign Out</a></li>
-                </span>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
+        </nav>
+    </header>
+    
+</div>
+
+<section id="home">
+    <div class="image">
     </div>
-  </div>
-<!-- Fixed Logo & Menu Bar End -->
+    <h2 class="animated slideInUp" id="tagLine">A game for horrible people <span class="desperately">desperately</span> trying to do good.</h3>
 
-<!-- Landing Start -->
-  <div class="wpb-teaser parallax-background" id="homer">
-    <div class="background-opacity"></div>
-    <div class="container">
-      <div class="row" id="main-text">
-        <div class="col-md-12" id="avatars" ng-controller="IndexController">
-          <img ng-repeat="avatar in avatars" ng-src="{{avatar}}" id="avatar-face">
+        <div id="sign-up">
+            <span ng-show="showOptions">
+        <a href="#!/signup"><div class="centered"><button type="button" class="btn btn-info btn-lg">Sign Up</button></div></a>
+          <div id="signup-text"><a href="/play">
+            <span> or Play as Guest</span>
         </div>
-        <!-- Teaser Slogan Start -->
-        <div class="wpb-slogan">
-          <h2>A Game for Horrible People <span id="third-word">Desperately</span> Trying to do Good</h2>
-        </div>
-        <!-- Teaser Slogan End -->
-
-      <!-- Teaser Text Start -->
-      <div class="wpb-text">
-        <h3 id="slogan">What is Cards for Humanity?</h3>
-        <p>
-          Cards for Humanity is a fast-paced online version of the popular card game, <a href="http://cardsagainsthumanity.com/" target="_blank">Cards Against Humanity</a>, that gives you the opportunity to donate to children in need - all while remaining as despicable and awkward as you naturally are.
-        </p>
-        <p>
-          <span id="warning-word">Warning!</span>  This game contains offensive, profane, explicit content created by <a href="http://cardsagainsthumanity.com/" target="_blank">Cards Against Humanity</a> and provided here, uncensored and complete, in digital form. Human Resources made us say that.
-        </p>
-      </div>
-      <!-- Teaser Text End -->
-      <span id='send-link' ng-show="showOptions"> *To send a private link to your friends, sign up! </span>
-      <div id="sign-up">
-        <span ng-show="showOptions">
-        <a href="#!/signup"><div id="sign-up-btn-landing">Sign Up</div></a>
-          <div id="sign-up-text"><a href="/play">
-            <span id="first-word">or Play</span>
-            <span id="second-word">as</span>
-            <span id="third-word">Guest</span></a>
-          </div>
-          <span id="tweet-container-index">
+        <span id="tweet-container-index">
             <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://cfh.io" data-text="Cards for Humanity: A Game for Horrible People Desperately Trying to do Good" data-related="CFH_App">Tweet</a>
             <a href="https://twitter.com/cfh_app" class="twitter-follow-button" data-show-count="false" data-dnt="true">Follow @cfh_app</a>
           </span>
-          <span id='facebook-share'>
+        <span id='facebook-share' ng-show="showOptions">
               <a href="#"
                 onclick="
                   window.open(
@@ -98,14 +56,14 @@ $(document).ready(function() {
           </span>
         </span>
         <span ng-hide="showOptions">
-          <a href="/play"><div id="sign-up-btn-landing">Play Game with Strangers</div></a>
-          <a href="/play?custom"><div id="sign-up-btn-landing">Play Game with Friends</div></a>
-              <span id='twitter-facebook'>
+          <a href="/play"><button type="button" class="btn btn-info btn-lg play-with-friends">Play Game with Strangers</button></a>
+        <a href="/play?custom"><button type="button" class="btn btn-info btn-lg play-with-friends">Play Game with Friends</button></a>
+        <span id='twitter-facebook'>
                 <span id="tweet-container-index">
                   <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://cfh.io" data-text="Cards for Humanity: A Game for Horrible People Desperately Trying to do Good" data-related="CFH_App">Tweet</a>
                 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
                 </span>
-                <span id='facebook-share'>
+        <span id='facebook-share'>
                     <a href="#"
                       onclick="
                         window.open(
@@ -116,140 +74,150 @@ $(document).ready(function() {
                       Share on Facebook
                     </a>
                 </span>
-              </span>
         </span>
-       </div>
-      </div>
-    </div>
-  </div>
-<!-- Landing End -->
-
-
-<!-- How to Play Start -->
+        </span>
+        </div>
+</section>
 <section id="how-to">
-  <div class="wpb-teaser parallax-background" id="how-to-play">
-    <div class="background-opacity"></div>
-
-    <div class="container" id="how-to-container">
-      <div class="row" id="main-text">
-
-        <!-- Teaser Slogan Start -->
-        <div id="slogan-head">
-          <div class="span6 wpb-slogan">
-            <h2>How to Play</h2>
-          </div>
+    <div class="container how-to">
+        <div class="how-to-play">
+            <p>How to play</p>
         </div>
-        <!-- Teaser Slogan End -->
-
-        <!-- Teaser Text Start -->
-        <div id="card-list">
-          <div id="how-to-cards">
-            <div class="landing-card how-to">Each player begins with, and will always have, 10 white answer cards.</div>
-            <div class="landing-card how-to">For each round, one player is randomly chosen as the Card Czar.</div>
-            <div class="landing-card how-to">Everyone else answers the black question card by clicking on the answer card they want to use.</div>
-            <div class="landing-card how-to">The Card Czar then picks a favorite answer, and whoever played that answer wins the round.</div>
-          </div>
-        </div>
-       <!-- Teaser Text End -->
-      </div>
-
-      <div id="sign-up">
-        <span ng-show="showOptions">
-          <a href="#!/signup"><div id="sign-up-btn-landing">Sign Up</div></a>
-          <div id="sign-up-text"><a href="/play">
-            <span id="first-word">or Play</span>
-            <span id="second-word">as</span>
-            <span id="third-word">Guest</span></a>
-          </div>
-        </span>
-
-        <span ng-hide="showOptions">
-          <a href="#!/app"><div id="sign-up-btn-landing">Join Game</div></a>
-        </span>
-       </div>
     </div>
-</section>
-<!-- How to Play End -->
+    <div class="container">
+        <div class="row how-to-card">
+            <div class=" col-md-3 col-sm-6 col-xs-12">
+                <div class="cards">
+                    <p>Each player begins with, and will always have 10 white answer cards.</p>
+                    <div class="small"><small>CFH</small></div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="cards">
+                    <p>For each round, one player is randomly chosen as the Card Czar.</p>
+                    <div class="small"><small>CFH</small></div>
+                </div>
 
-<!-- Donation Info Start -->
-<section class="wpb-contact-us parallax-background-contact" id="donations">
-   <div class="wpb-teaser parallax-background" id="about-team">
-    <div class="background-opacity"></div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="cards">
+                    <p>Everyone else answers the black question card by clicking on the answer card they want to use.</p>
+                    <div class="small"><small>CFH</small></div>
+                </div>
 
-    <div class="container" id="how-to-container">
-      <div class="row" id="main-text">
-
-        <!-- Teaser Slogan Start -->
-        <div id="slogan-head">
-          <div class="span6 wpb-slogan">
-            <h2>Charity</h2>
-            <h4 id="give">"If you don't give back, no one will like you&trade;" - <a href="http://www.crowdrise.com/cfhio/fundraiser/cards4humanity">crowdrise.com</a></h4>
-          </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="cards">
+                    <p>The Card Czar then picks a favorite answer, and whoever played that answer wins the round.</p>
+                    <div class="small"><small>CFH</small></div>
+                </div>
+            </div>
         </div>
-      </div>
-      <div id="info-box">
-        <div id="landing-image">
-          <div id="landing-charity">
-            <a href="http://www.crowdrise.com/cfhio/fundraiser/cards4humanity" id="crowdriseStaticLink-fundraiser-121142" title="Fundraising Websites on Crowdrise">Fundraising Websites - Crowdrise</a>
-            <script type="text/javascript" src="https://www.crowdrise.com/widgets/donate/fundraiser/121142/?callback=userDonationCb"></script>
-          </div>
-        </div>
-        <div class="some-text">
-            We're quite sure you feel the same way, so we've integrated donation widgets (via <a href="http://www.crowdrise.com/cfhio/fundraiser/cards4humanity">crowdrise.com</a>), along with some not-so-subtle reminders throughout the game to give you the opportunity to donate. If you're signed in when you donate, we'll even upgrade your account and place a crown on your avatar's head (to remind other players how much better you are than them).</p>
-            <p>
-            All donations go to the Make-a-Wish Foundation and benefit children in need.
-            </p>
-            <a href="http://www.wish.org"><img src="img/make-a-wish-logo-white-large.png" id="wish"/></a>
-          </div>
-      </div>
     </div>
-  </div>
+
 </section>
-<!-- Donation Info End -->
 
-<!-- About Us Start -->
-<section class="wpb-contact-us parallax-background-contact" id="team">
-   <div class="wpb-teaser parallax-background" id="about-team">
-    <div class="background-opacity"></div>
+<section id="charity">
+    <div class="charity">
+        <h1>Charity</h1>
+        <h4> "If you don't give back, no one will like you&#8482"- <a href="http://www.crowdrise.com/cfhio/fundraiser/cards4humanity" class="crowdrise">crowdrise.com</a></h4>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 donate">
+                    <div id="info-box">
+                        <div id="landing-image">
+                            <div id="landing-charity">
+                                <a href="http://www.crowdrise.com/cfhio/fundraiser/cards4humanity" id="crowdriseStaticLink-fundraiser-121142" title="Fundraising Websites on Crowdrise">Fundraising Websites - Crowdrise</a>
+                                <script type="text/javascript" src="https://www.crowdrise.com/widgets/donate/fundraiser/121142/?callback=userDonationCb"></script>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-    <div class="container" id="how-to-container">
-      <div class="row" id="main-text">
-
-        <!-- Teaser Slogan Start -->
-        <div id="slogan-head">
-          <div class="span6 wpb-slogan">
-            <h2>The Team</h2>
-          </div>
+                <div class="col-md-6 charity-text">
+                    <p>We're quite sure you feel the same way, so we've integrated donation widgets <span class="crowdrise">(via crowdrise.com)</span>, along with some not-so-subtle reminders throughout the game to give you the opportunity to donate. If
+                        you're signed in when you donate, we'll even upgrade your account and place a crown on your avatar's head (to remind other players how much better you are than them). All donations go to the Make-a-Wish Foundation and benefit children
+                        in need.</p>
+                </div>
+                <div class="col-md-3">
+                    <div class="make-a-wish">
+                        <a href="http://www.wish.org"><img src="images/make-a-wish-logo-white-large.png" class="image-responsive mkw" alt="make-a-wish"></a>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="wpb-team-details" id="team-names">
-        <h3>Created with love and tenderness by:<br>
-          <a href="http://github.com/silversteez">Matt Silverstein,</a>
-          <a href="http://github.com/mrngoitall">Will Ngo,</a>
-          <a href="http://github.com/tylermcginnis33">Tyler McGinnis,</a> and
-          <a href="http://github.com/davegonzalez">David Gonzalez</a></h3>
-          <h3>XOXO</h3>
-      </div>
-      <img src="img/group-shot.jpg" alt="Team Member" id="team-photo">
+        <div id="charity-scroll"></div>
+
+</section>
+
+<div id="signIn" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Sign In</h4>
+            </div>
+
+
+            <div class="modal-body">
+
+                <div class="form-group">
+                    <input type="email" class="form-control" id="usr" placeholder="email...">
+                </div>
+
+                <div class="form-group">
+                    <input type="password" class="form-control" id="pwd" placeholder="password...">
+                </div>
+
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Sign In
+									        </button>
+                </div>
+
+            </div>
+
+        </div>
     </div>
-  </div>
-</section>
-<!-- About Us End -->
-
-<!-- Footer Start -->
-<section class="foot">
-  <div><small class="legal">Legal stuff: This game is based on the <a href="http://cardsagainsthumanity.com">Cards Against Humanity</a> card game, which is CC licensed (BY-NC-SA). Cards for Humanity is not affiliated with Cards Against Humanity. In complying with the Creative Commons license of the Cards Against Humanity card game, all proceeds from donations go directly to charity, as managed by <a href="http://crowdrise.com">crowdrise</a>.</small></div>
-  <div class="wpb-bottom-bar">
-    <div class="text-left">
-        <a href="https://github.com/cardsforhumanity/cardsforhumanity"><img src="img/github.png" id="gitcat"></a>
-        <a href="/#!/privacy">Privacy Policy</a>
-        <div class="floater" id="landing-logo">
-          <span id="first-word">Cards</span>
-          <span id="second-word"> for</span>
-          <span id="third-word">Humanity</span>
-        </div>
-      </div>
-  </div>
-</section>
-<!-- Footer End -->
 </div>
+
+<!--- end of signin modal -->
+
+<!-- signup modal -->
+<div id="signup" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Sign Up</h4>
+            </div>
+            <div class="modal-body">
+                <form method="post" action="/users">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="usr" name="name" placeholder="fullname...">
+                    </div>
+                    <div class="form-group">
+                        <input type="email" class="form-control" name="email" id="usr" placeholder="email...">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" name="password" id="pwd" placeholder="password...">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Sign Up
+				        </button>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- end of signup modal -->
+<footer>
+    <a href="#home"> Back to Top <i class="fa fa-arrow-up" aria-hidden="true"></i></a>
+    <img src="../images/cards.png" alt="cards for humanity">
+</footer>
