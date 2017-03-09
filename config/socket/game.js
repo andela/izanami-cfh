@@ -197,7 +197,6 @@ Game.prototype.selectFirst = function () {
     this.sendNotification(`${this.players[winnerIndex].username} has won the round!`);
     this.sendUpdate();
   } else {
-//    // console.log(this.gameID,'no cards were picked!');
 //    this.stateChoosing(this);
     this.stateDrawCards(this);
   }
@@ -205,7 +204,6 @@ Game.prototype.selectFirst = function () {
 
 Game.prototype.stateJudging = function (self) {
   self.state = 'waiting for czar to decide';
-  // console.log(self.gameID,self.state);
 
   if (self.table.length <= 1) {
     // Automatically select a card if only one card was submitted
