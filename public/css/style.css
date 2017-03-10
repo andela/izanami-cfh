@@ -1,19 +1,19 @@
 /* invite players css*/
 .modal-header {
-    text-align: center;
+  text-align: center;
 }
 
 .playerLimitAlert {
-    margin-top: 20%;
+  margin-top: 20%;
 }
 .search-result:hover {
-    background-color: lightblue;
+  background-color: lightblue;
 }
 
 .search-result {
-    color: black;
-    padding: 2px 10px;
-    cursor: pointer;
+  color: black;
+  padding: 2px 10px;
+  cursor: pointer;
 }
 
 /* older css*/

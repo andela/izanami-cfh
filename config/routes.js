@@ -104,13 +104,13 @@ module.exports = (app, passport) => {
   const index = require('../app/controllers/index');
   app.get('/play', index.play);
 
-    // search user route
-    const search = require('../app/controllers/search-users');
-    app.get('/api/search/users/:invitedUserEmail', search.users);
+  // search user route
+  const search = require('../app/controllers/search-users');
+  app.get('/api/search/users/:invitedUserEmail', search.users);
 
-    // Mail Invite Route
-    const mailer = require('../app/controllers/mailer');
-    app.post('/api/invite/user', mailer.invite);
-    
-    app.get('/', customAuth.hasAuth(), index.render);
+  // Mail Invite Route
+  const mailer = require('../app/controllers/mailer');
+  app.post('/api/invite/user', mailer.invite);
+
+  app.get('/', customAuth.hasAuth(), index.render);
 };
