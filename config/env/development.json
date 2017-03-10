@@ -5,12 +5,12 @@
     "facebook": {
         "clientID": "APP_ID",
         "clientSecret": "APP_SECRET",
-        "callbackURL": "http://localhost:7000/auth/facebook"
+        "callbackURL": "https://izanami-cfh-staging-pr-12.herokuapp.com/auth/facebook/callback"
     },
     "twitter": {
         "clientID": "CONSUMER_KEY",
         "clientSecret": "CONSUMER_SECRET",
-        "callbackURL": "https://izanami-cfh-staging-pr-12.herokuapp.com/auth/twitter"
+        "callbackURL": "https://localhost:7000/auth/twitter"
     },
     "github": {
         "clientID": "APP_ID",
