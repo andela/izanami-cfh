@@ -183,6 +183,8 @@ angular.module('mean.system')
   }
 
   $scope.startTour = () => {
+    $scope.tourOpen = true;
+    // angular.element(document.getElementsByClassName('tour-button');
     const tour = new Shepherd.Tour({
       defaults: {
         classes: 'shepherd-theme-default',
@@ -200,6 +202,7 @@ angular.module('mean.system')
         {
           text: 'Skip',
           action: tour.cancel,
+          classes: 'close-tour'
         },
         {
           text: 'Next',
@@ -217,6 +220,7 @@ angular.module('mean.system')
         {
           text: 'Skip',
           action: tour.cancel,
+          classes: 'close-tour'
         },
         {
           text: 'Back',
@@ -238,6 +242,7 @@ angular.module('mean.system')
         {
           text: 'Skip',
           action: tour.cancel,
+          classes: 'close-tour'
         },
         {
           text: 'Back',
@@ -262,10 +267,21 @@ angular.module('mean.system')
         {
           text: 'Done',
           action: tour.complete,
+          classes: 'close-tour'
         }
       ]
     });
     tour.start();
   };
 }]);
+
+// window.onload = () => {
+//   document.getElementsByClassName('close-tour').onclick = () => {
+//     const appElement = document.querySelector('[ng-app=mean]');
+//     const $scope = angular.element(appElement).scope();
+//     $scope.$apply(() => {
+//       $scope.tourOpen = false;
+//     });
+//   };
+// };
 
