@@ -59,6 +59,7 @@ module.exports = function(io) {
               return gamesNeedingPlayers.splice(index,1);
             }
           });
+          thisGame.saveGame(thisGame.players);
           thisGame.prepareGame();
           thisGame.sendNotification('The game has begun!');
         }
@@ -73,6 +74,7 @@ module.exports = function(io) {
       console.log('Rooms on Disconnect ', io.sockets.manager.rooms);
       exitGame(socket);
     });
+  
   });
 
   var joinGame = function(socket,data) {
@@ -222,7 +224,7 @@ module.exports = function(io) {
         for (var j = 0; j < game.players.length; j++) {
           game.players[j].socket.leave(socket.gameID);
         }
-        game.killGame();
+        game.killGame(allGames[socket.gameID].players);
         delete allGames[socket.gameID];
       }
     }

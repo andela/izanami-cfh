@@ -2,6 +2,10 @@ var async = require('async');
 var _ = require('underscore');
 var questions = require(__dirname + '/../../app/controllers/questions.js');
 var answers = require(__dirname + '/../../app/controllers/answers.js');
+
+const mongoose = require('mongoose');
+const GameModel = mongoose.model('Game');
+
 var guestNames = [
   "Disco Potato",
   "Silver Blister",
@@ -106,6 +110,7 @@ Game.prototype.assignGuestNames = function() {
 };
 
 Game.prototype.prepareGame = function() {
+  console.log('[game.js line 109 ] Preparing game');
   this.state = "game in progress";
 
   this.io.sockets.in(this.gameID).emit('prepareGame',
@@ -204,14 +209,16 @@ Game.prototype.stateJudging = function(self) {
 Game.prototype.stateResults = function(self) {
   self.state = "winner has been chosen";
   console.log(self.state);
+  console.log('[line 212 game.js] says trying to update game data');
   // TODO: do stuff
   var winner = -1;
+  this.updateGame(self.players);
   for (var i = 0; i < self.players.length; i++) {
     if (self.players[i].points >= self.pointLimit) {
       winner = i;
     }
   }
-  self.sendUpdate();
+  self.sendUpdate(self.players);
   self.resultsTimeout = setTimeout(function() {
     if (winner !== -1) {
       self.stateEndGame(winner);
@@ -417,11 +424,55 @@ Game.prototype.pickWinning = function(thisCard, thisPlayer, autopicked) {
   }
 };
 
-Game.prototype.killGame = function() {
+Game.prototype.killGame = function(players) {
   console.log('Killing game',this.gameID);
   clearTimeout(this.resultsTimeout);
   clearTimeout(this.choosingTimeout);
   clearTimeout(this.judgingTimeout);
 };
+
+
+Game.prototype.saveGame = (players) => {
+  const raw_game_data = players.slice(0);
+  const game_players = raw_game_data.map((data) => {
+    return data.userID;
+  });
+  const newGame = new GameModel({
+    created_by: game_players[0],
+    number_of_players: game_players.length.toString(),
+    game_id: players[0].socket.gameID,
+    players: game_players
+  });
+  
+  newGame.save( function( err ){
+    if(!err){
+      console.log('[game.js line 451] game has been saved');
+    } else {
+      console.log('[game.js line 453] ', err);
+    }
+  });
+};
+
+Game.prototype.updateGame = (players) => {
+  let winner = "";
+  const game_players = players.map((player) => {
+    let data = {};
+    const uid = player.userID;
+    const points = player.points;
+    data[uid] = points;
+    if (points === 5) {
+      winner = uid;
+    }
+    return data;
+  });
+  const game_id = players[0].socket.gameID;
+  GameModel.findOne({ game_id:  game_id}, function (err, game){
+    game.players = game_players;
+    game.winner = winner;
+    game.save();
+});
+}
+
+
 
 module.exports = Game;

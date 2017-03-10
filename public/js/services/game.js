@@ -181,7 +181,8 @@ angular.module('mean.system')
     mode = mode || 'joinGame';
     room = room || '';
     createPrivate = createPrivate || false;
-    var userID = !!window.user ? user._id : 'unauthenticated';
+    const userID = !!window.user ? user.id : 'unauthenticated';
+    console.log('user id is', userID);
     socket.emit(mode,{userID: userID, room: room, createPrivate: createPrivate});
   };
 
