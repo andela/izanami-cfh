@@ -189,11 +189,10 @@ angular.module('mean.system')
     }
 
     $scope.sendInvite = () => {
-      // if ($scope.invitedPlayers.length === game.playerMaxLimit - 1) {
-      if ($scope.invitedPlayers.length === game.playerMaxLimit - 6) {
-        // Max invites = 15people but only 12 can join game
-        $('#playerMaximumAlert').modal('show');
-      } else if (!$scope.invitedPlayers.includes($scope.invitedUserEmail)) {
+      if (!$scope.invitedPlayers.includes($scope.invitedUserEmail)) {
+        if ($scope.invitedPlayers.length > game.playerMaxLimit - 1) {
+          $('#playerMaximumAlert').modal('show');
+        }
         invitePlayer.sendMail($scope.invitedUserEmail, document.URL).then((data) => {
           if (data === 'Accepted') {
             $scope.invitedPlayers.push($scope.invitedUserEmail);

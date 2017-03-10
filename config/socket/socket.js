@@ -142,7 +142,6 @@ module.exports = function(io) {
         console.log(socket.id,' is too late')
         exitGame(socket);
         socket.emit('tooLate');
-        // game.tooLate();
       }
     } else {
       // Put players into the general queue
