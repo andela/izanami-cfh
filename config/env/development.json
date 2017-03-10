@@ -10,7 +10,7 @@
     "twitter": {
         "clientID": "CONSUMER_KEY",
         "clientSecret": "CONSUMER_SECRET",
-        "callbackURL": "http://localhost:7000/auth/twitter"
+        "callbackURL": "https://izanami-cfh-staging-pr-12.herokuapp.com/#!"
     },
     "github": {
         "clientID": "APP_ID",
