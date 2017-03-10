@@ -1,0 +1,297 @@
+body {
+  background-size: cover;
+  margin: 0px;
+  font-family: sans-serif !important;
+}
+
+h1,
+h3,
+h4,
+h5,
+h6 {
+  font-family: sans-serif !important;
+}
+
+h2 {
+  font-family: 'Courgette', 'Cursive' !important;
+}
+
+#home {
+  background-color: #fff;
+  padding: 0;
+  padding-bottom: 80px;
+}
+
+.signout a {
+  color: #777777;
+}
+
+.cfh img {
+  padding-top: 70px;
+  margin: auto;
+  margin-bottom: 0px;
+  position: relative;
+}
+
+.image {
+  margin-top: 50px !important;
+  background-image: url('../images/cards.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 80%;
+  height: 480px;
+}
+
+#signup-text {
+  margin: 0 auto;
+}
+
+h2 {
+  text-align: center;
+  margin-top: 0px;
+}
+
+.navbar .navbar-nav {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.navbar .navbar-collapse {
+  text-align: center;
+}
+#bs-example-navbar-collapse-1 .navbar-nav a {
+  font-family : 'Courgette', 'cursive';
+}
+#bs-example-navbar-collapse-1 .navbar-nav {
+  float: none;
+}
+
+.centered {
+  text-align: center;
+  margin: 0px auto;
+}
+
+#facebook-share {
+  padding: 0px;
+}
+
+.desperately {
+  color: #C61C1C;
+}
+
+.centered a {
+  text-decoration: none;
+  color: white;
+}
+
+.centered button {
+  background-color: #0c7abf;
+}
+
+#play-with-friends button {
+  display: inline !important;
+}
+
+#how-to {
+  background-color: #EAEDED;
+  padding-bottom: 40px;
+}
+
+#how-to h2 {
+  text-align: center;
+  color: white;
+}
+
+.how-to-play {
+  border-radius: 5px;
+  height: 100px;
+  width: 100%;
+  border: solid 2px black;
+  background-color: #181818;
+  margin-top: 20px;
+}
+
+.how-to-play p {
+  color: white;
+  font-size: 50px;
+  text-align: center;
+  padding-top: 15px;
+}
+
+.cards {
+  border: 1px solid #181818;
+  width: 100%;
+  height: 300px;
+  border-radius: 8px;
+  background-color: #ffffff;
+  box-shadow: 5px 5px 3px #888888;
+  margin-bottom: 15px;
+  position: relative;
+}
+#sign-up-btn-landing {
+  text-align: center;
+  margin: 0px auto;
+  background-color: #0c7abf;
+  color: white;
+}
+.play-with-friends {
+  background-color: #0c7abf !important;
+}
+
+.cards:hover {
+  -ms-transform: scale(1, 1.1);
+  /* IE 9 */
+  -webkit-transform: scale(1, 1.1);
+  /* Safari */
+  transform: scale(1, 1.1);
+}
+
+.how-to-card {
+  margin: 20px 0 30px 0;
+}
+
+.cards p {
+  font-size: 20px;
+  padding: 30px;
+}
+
+.cards .small {
+  position: absolute;
+  bottom: 10px;
+  right: 15px;
+  color: #C61C1C;
+  font-size: 18px;
+  font-family: 'Courgette', 'Cursive';
+}
+
+.how-to {
+  padding: 30px;
+}
+
+.charity h1 {
+  text-align: center;
+  margin-top: 0px !important;
+  padding: 20px;
+  font-size: 50px;
+}
+
+.crowdrise {
+  font-size: 15px;
+  color: #60B197;
+}
+
+.charity h4 {
+  text-align: center;
+  padding: 10px;
+}
+
+.charity p {
+  text-align: justify;
+  font-size: 17px;
+  padding: 10px;
+}
+
+#charity {
+  background-color: #243354;
+  color: #F8F8F8;
+  margin-bottom: 0px;
+}
+
+.charity-text {
+  padding: 30px;
+}
+
+.the-team h1 {
+  text-align: center;
+}
+
+#about-us {
+  background-color: #232323;
+  margin-top: 0px !important;
+}
+
+.the-team {
+  margin-top: 0px !important;
+}
+
+.active a {
+  color: #F9AA57 !important;
+}
+
+footer {
+  height: 150px;
+  background-color: #ddd;
+}
+
+footer a {
+  float: left;
+  display: block;
+  position: relative;
+}
+
+
+footer img {
+  float: right;
+  height: 80%;
+  width: 20%;
+  padding: 0px;
+  margin: 0px;
+  transform: translate(0%, 5%);
+}
+
+footer a {
+  color: #000;
+  padding: 20px;
+}
+
+footer a:hover {
+  color: #F9AA57;
+}
+
+
+/* ----------- iPhone 5 and 5S ----------- */
+
+
+/* Portrait and Landscape */
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 568px) and (-webkit-min-device-pixel-ratio: 2) {
+  .image {
+      height: 280px;
+  }
+}
+
+
+/* ----------- iPhone 6 ----------- */
+
+
+/* Portrait and Landscape */
+
+@media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) {
+  .image {
+      height: 350px;
+  }
+}
+
+
+/* ----------- iPhone 6+ ----------- */
+
+
+/* Portrait and Landscape */
+
+@media only screen and (min-device-width: 414px) and (max-device-width: 736px) and (-webkit-min-device-pixel-ratio: 3) {
+  .image {
+      height: 450px;
+  }
+}
+
+
+/* ----------- Galaxy S5 ----------- */
+
+
+/* Portrait and Landscape */
+
+@media screen and (device-width: 360px) and (device-height: 640px) and (-webkit-device-pixel-ratio: 3) {
+  .image {
+      height: 350px;
+  }
+}
