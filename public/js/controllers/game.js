@@ -8,8 +8,7 @@ angular.module('mean.system')
   $scope.pickedCards = [];
   var makeAWishFacts = MakeAWishFactsService.getMakeAWishFacts();
   $scope.makeAWishFact = makeAWishFacts.pop();
-  $scope.tourOpen = false;
-
+  
   $scope.pickCard = function(card) {
     if (!$scope.hasPickedCards) {
       if ($scope.pickedCards.indexOf(card.id) < 0) {
@@ -183,8 +182,7 @@ angular.module('mean.system')
   }
 
   $scope.startTour = () => {
-    $scope.tourOpen = true;
-    // angular.element(document.getElementsByClassName('tour-button');
+    angular.element(document.getElementsByClassName('tour-button')).hide();
     const tour = new Shepherd.Tour({
       defaults: {
         classes: 'shepherd-theme-default',
@@ -274,14 +272,8 @@ angular.module('mean.system')
     tour.start();
   };
 }]);
-
-// window.onload = () => {
-//   document.getElementsByClassName('close-tour').onclick = () => {
-//     const appElement = document.querySelector('[ng-app=mean]');
-//     const $scope = angular.element(appElement).scope();
-//     $scope.$apply(() => {
-//       $scope.tourOpen = false;
-//     });
-//   };
-// };
-
+$(document).ready(() => {
+  $(document).on('click', '.close-tour', () => {
+    $('.tour-button').show();
+  });
+});

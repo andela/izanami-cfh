@@ -992,7 +992,7 @@ body{
                 @include br;
                 text-align: center;
                 padding: 15px;
-                height: 50%;
+                height: auto;
                 margin-top: 10px;
 
                 @include tablet-portrait-only{
