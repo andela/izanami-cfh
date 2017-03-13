@@ -1372,3 +1372,17 @@
   transition: left 2s ease 1.2s, opacity 2s ease-out 2s;
 } 
 
+#play-game-modal .play-with-friends {
+  margin-top: 30px;
+}
+
+.close {
+  margin-top: 0;
+  color: red;
+  opacity: 1;
+}
+
+.modal-content {
+  margin-top: 120px;
+  padding-bottom: 50px;
+}
