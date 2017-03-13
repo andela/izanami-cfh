@@ -5,21 +5,21 @@
     "facebook": {
         "clientID": "APP_ID",
         "clientSecret": "APP_SECRET",
-        "callbackURL": "https://izanami-cfh-staging-pr-12.herokuapp.com/auth/facebook/callback"
+        "callbackURL": "http://localhost:7001/auth/facebook"
     },
     "twitter": {
         "clientID": "CONSUMER_KEY",
         "clientSecret": "CONSUMER_SECRET",
-        "callbackURL": "https://localhost:7000/auth/twitter"
+        "callbackURL": "http://localhost:7001/auth/twitter"
     },
     "github": {
         "clientID": "APP_ID",
         "clientSecret": "APP_SECRET",
-        "callbackURL": "http://localhost:7000/auth/github"
+        "callbackURL": "http://localhost:7001/auth/github"
     },
     "google": {
         "clientID": "APP_ID",
         "clientSecret": "APP_SECRET",
-        "callbackURL": "http://localhost:7000/auth/google"
+        "callbackURL": "http://localhost:7001/auth/google"
     }
 }
