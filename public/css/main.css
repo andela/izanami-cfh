@@ -502,11 +502,11 @@ input:focus {
   width: unset;
 }
 .avatars{
-    margin: 0;
-    position: relative;
-    float: left;
-    width: 33%;
-    display: inline-block;
+  margin: 0;
+  position: relative;
+  float: left;
+  width: 33%;
+  display: inline-block;
   }
 .avatar-list img {
   max-width: 40%;
@@ -587,11 +587,8 @@ input:focus {
     height: 100%;
     background-size: 50%;
     padding-top: 50px;
-  }
-  
+  } 
 }
-
-
 /* ----------- iPhone 6+ ----------- */
 
 
@@ -610,8 +607,7 @@ input:focus {
     height: 100%;
     background-size: 50%;
     padding-top: 50px;
-  }
-  
+  } 
 }
 
 
@@ -621,13 +617,13 @@ input:focus {
 /* Portrait and Landscape */
 
 @media screen and (device-width: 360px) and (device-height: 640px) and (-webkit-device-pixel-ratio: 3) {
-    .avatars{
-      margin: 0;
-      position: relative;
-      float: left;
-      width: 33%;
-      display: inline-block;
-    }
+  .avatars{
+    margin: 0;
+    position: relative;
+    float: left;
+    width: 33%;
+    display: inline-block;
+  }
   #signin-main {
     background-color: #fff;
     height: 100%;
@@ -637,209 +633,45 @@ input:focus {
   
 }
 @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
-.avatars{
-      margin: 0;
-      position: relative;
-      float: left;
-      width: 33%;
-      display: inline-block;
-    }
+  .avatars{
+    margin: 0;
+    position: relative;
+    float: left;
+    width: 33%;
+    display: inline-block;
+  }
   #signin-main {
     background-color: #fff;
     height: 100%;
     background-size: 50%;
     padding-top: 50px;
-  }
-  
+  }  
 }
-
-/* Smartphones (landscape) ----------- */
-@media only screen and (min-width : 321px) {
-.avatars{
-      margin: 0;
-      position: relative;
-      float: left;
-      width: 33%;
-      display: inline-block;
-    }
-  #signin-main {
-    background-color: #fff;
-    height: 100%;
-    background-size: 50%;
-    padding-top: 50px;
-  }
-  
-}
-
-/* Smartphones (portrait) ----------- */
-@media only screen and (max-width : 320px) {
-.avatars{
-      margin: 0;
-      position: relative;
-      float: left;
-      width: 33%;
-      display: inline-block;
-    }
-  #signin-main {
-    background-color: #fff;
-    height: 100%;
-    background-size: 50%;
-    padding-top: 50px;
-  }
-  
-}
-
 /* iPads (portrait and landscape) ----------- */
 @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
-.avatars{
-      margin: 0;
-      position: relative;
-      float: left;
-      width: 33%;
-      display: inline-block;
-    }
+  .avatars{
+    margin: 0;
+    position: relative;
+    float: left;
+    width: 33%;
+    display: inline-block;
+      }
   #signin-main {
     background-color: #fff;
     height: 100%;
     background-size: 50%;
     padding-top: 50px;
   }
-  
 }
-
-/* iPads (landscape) ----------- */
-@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {
-.avatars{
-      margin: 0;
-      position: relative;
-      float: left;
-      width: 33%;
-      display: inline-block;
-    }
-  #signin-main {
-    background-color: #fff;
-    height: 100%;
-    background-size: 50%;
-    padding-top: 50px;
-  }
-  
-}
-
-/* iPads (portrait) ----------- */
-@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) {
-.avatars{
-      margin: 0;
-      position: relative;
-      float: left;
-      width: 33%;
-      display: inline-block;
-    }
-  #signin-main {
-    background-color: #fff;
-    height: 100%;
-    background-size: 50%;
-    padding-top: 50px;
-  }
- 
-}
-/**********
-iPad 3
-**********/
-@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) and (-webkit-min-device-pixel-ratio : 2) {
-.avatars{
-      margin: 0;
-      position: relative;
-      float: left;
-      width: 33%;
-      display: inline-block;
-    }
-  #signin-main {
-    background-color: #fff;
-    height: 100%;
-    background-size: 50%;
-    padding-top: 50px;
-  }
-  
-}
-
-@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) and (-webkit-min-device-pixel-ratio : 2) {
-.avatars{
-      margin: 0;
-      position: relative;
-      float: left;
-      width: 33%;
-      display: inline-block;
-    }
-  #signin-main {
-    background-color: #fff;
-    height: 100%;
-    background-size: 50%;
-    padding-top: 50px;
-  }
- 
-}
-
 /* iPhone 4 ----------- */
 @media only screen and (min-device-width : 320px) and (max-device-width : 480px) and (orientation : landscape) and (-webkit-min-device-pixel-ratio : 2) {
-.avatars{
-      margin: 0;
-      position: relative;
-      float: left;
-      width: 33%;
-      display: inline-block;
-    }
-  #signin-main {
-    background-color: #fff;
-    height: 100%;
-    background-size: 50%;
-    padding-top: 50px;
-  }
-  
-}
-
-@media only screen and (min-device-width : 320px) and (max-device-width : 480px) and (orientation : portrait) and (-webkit-min-device-pixel-ratio : 2) {
-.avatars{
-      margin: 0;
-      position: relative;
-      float: left;
-      width: 33%;
-      display: inline-block;
-    }
-  #signin-main {
-    background-color: #fff;
-    height: 100%;
-    background-size: 50%;
-    padding-top: 50px;
-  }
-  
-}
-
-/* iPhone 5 ----------- */
-@media only screen and (min-device-width: 320px) and (max-device-height: 568px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 2){
-.avatars{
-      margin: 0;
-      position: relative;
-      float: left;
-      width: 33%;
-      display: inline-block;
-    }
-  #signin-main {
-    background-color: #fff;
-    height: 100%;
-    background-size: 50%;
-    padding-top: 50px;
-  }
-
-}
-
-@media only screen and (min-device-width: 320px) and (max-device-height: 568px) and (orientation : portrait) and (-webkit-device-pixel-ratio: 2){
-.avatars{
-      margin: 0;
-      position: relative;
-      float: left;
-      width: 33%;
-      display: inline-block;
-    }
+  .avatars{
+    margin: 0;
+    position: relative;
+    float: left;
+    width: 33%;
+    display: inline-block;
+      }
   #signin-main {
     background-color: #fff;
     height: 100%;
@@ -847,178 +679,19 @@ iPad 3
     padding-top: 50px;
   }
 }
-
-/* iPhone 6 ----------- */
-@media only screen and (min-device-width: 375px) and (max-device-height: 667px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 2){
-.avatars{
-      margin: 0;
-      position: relative;
-      float: left;
-      width: 33%;
-      display: inline-block;
-    }
-  #signin-main {
-    background-color: #fff;
-    height: 100%;
-    background-size: 50%;
-    padding-top: 50px;
-  }
-  
-}
-
-@media only screen and (min-device-width: 375px) and (max-device-height: 667px) and (orientation : portrait) and (-webkit-device-pixel-ratio: 2){
-.avatars{
-      margin: 0;
-      position: relative;
-      float: left;
-      width: 33%;
-      display: inline-block;
-    }
-  #signin-main {
-    background-color: #fff;
-    height: 100%;
-    background-size: 50%;
-    padding-top: 50px;
-  }
-  
-}
-
-/* iPhone 6+ ----------- */
-@media only screen and (min-device-width: 414px) and (max-device-height: 736px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 2){
-.avatars{
-      margin: 0;
-      position: relative;
-      float: left;
-      width: 33%;
-      display: inline-block;
-    }
-  #signin-main {
-    background-color: #fff;
-    height: 100%;
-    background-size: 50%;
-    padding-top: 50px;
-  }
-  
-}
-
-@media only screen and (min-device-width: 414px) and (max-device-height: 736px) and (orientation : portrait) and (-webkit-device-pixel-ratio: 2){
-.avatars{
-      margin: 0;
-      position: relative;
-      float: left;
-      width: 33%;
-      display: inline-block;
-    }
-  #signin-main {
-    background-color: #fff;
-    height: 100%;
-    background-size: 50%;
-    padding-top: 50px;
-  }
-  
-}
-
 /* Samsung Galaxy S3 ----------- */
 @media only screen and (min-device-width: 320px) and (max-device-height: 640px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 2){
-.avatars{
-      margin: 0;
-      position: relative;
-      float: left;
-      width: 33%;
-      display: inline-block;
-    }
+  .avatars{
+    margin: 0;
+    position: relative;
+    float: left;
+    width: 33%;
+    display: inline-block;
+  }
   #signin-main {
     background-color: #fff;
     height: 100%;
     background-size: 50%;
     padding-top: 50px;
   }
-  
 }
-
-@media only screen and (min-device-width: 320px) and (max-device-height: 640px) and (orientation : portrait) and (-webkit-device-pixel-ratio: 2){
-.avatars{
-      margin: 0;
-      position: relative;
-      float: left;
-      width: 33%;
-      display: inline-block;
-    }
-  #signin-main {
-    background-color: #fff;
-    height: 100%;
-    background-size: 50%;
-    padding-top: 50px;
-  }
-  
-}
-
-/* Samsung Galaxy S4 ----------- */
-.avatars{
-      margin: 0;
-      position: relative;
-      float: left;
-      width: 33%;
-      display: inline-block;
-    }
-  #signin-main {
-    background-color: #fff;
-    height: 100%;
-    background-size: 50%;
-    padding-top: 50px;
-  }
-  
-}
-
-@media only screen and (min-device-width: 320px) and (max-device-height: 640px) and (orientation : portrait) and (-webkit-device-pixel-ratio: 3){
-.avatars{
-      margin: 0;
-      position: relative;
-      float: left;
-      width: 33%;
-      display: inline-block;
-    }
-  #signin-main {
-    background-color: #fff;
-    height: 100%;
-    background-size: 50%;
-    padding-top: 50px;
-  }
-  
-}
-
-/* Samsung Galaxy S5 ----------- */
-@media only screen and (min-device-width: 360px) and (max-device-height: 640px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 3){
-.avatars{
-      margin: 0;
-      position: relative;
-      float: left;
-      width: 33%;
-      display: inline-block;
-    }
-  #signin-main {
-    background-color: #fff;
-    height: 100%;
-    background-size: 50%;
-    padding-top: 50px;
-  }
-  
-}
-
-@media only screen and (min-device-width: 360px) and (max-device-height: 640px) and (orientation : portrait) and (-webkit-device-pixel-ratio: 3){
-.avatars{
-      margin: 0;
-      position: relative;
-      float: left;
-      width: 33%;
-      display: inline-block;
-    }
-  #signin-main {
-    background-color: #fff;
-    height: 100%;
-    background-size: 50%;
-    padding-top: 50px;
-  }
-
-}
-
