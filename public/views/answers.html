@@ -86,15 +86,17 @@
     <!-- Invite search friends-->
     <div id="searchContainer" style="display: none">
       <div class="col-lg-6" style="margin: 5% 25%">
-        <div ng-repeat="players in invitedPlayers" style="margin-top: 2px;">{{players}} has been sent an invite.</div>
         <div class="input-group">
           <input type="text" class="form-control" ng-keyup="playerSearch()" ng-model="inviteeUserName" placeholder="Search for friends to invite">
           <span class="input-group-btn">
             <button class="btn btn-default" type="button" ng-click="sendInvite()">Invite</button>
           </span>
         </div>
+
+        <div ng-if="invitedPlayerName != ''" style="margin-top: 2px;">{{invitedPlayerName}} has been sent an invite.</div>
+
         <!-- user search results-->
-        <div ng-if="searchUserResults.length !== 0" style="height: 135px; background-color: lightgray; text-align: left; overflow: scroll; border-radius: 2px 2px 4px 4px">
+        <div ng-if="searchUserResults.length !== 0" class="search-result-container">
           <div ng-class="clickInvitee(result.email)" ng-repeat="result in searchUserResults" ng-click="selectUser(result)">
             {{result.name}}
             <span ng-if="isInvited(result.email)" class="pull-right">Invited</span>

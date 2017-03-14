@@ -18,6 +18,15 @@
 .invitee-invited {
   color: grey;
 }
+.search-result-container{
+  position: absolute;
+  width:93%;
+  height: 135px;
+  background-color: lightgray;
+  text-align: left;
+  overflow: scroll;
+  border-radius: 2px 2px 4px 4px
+}
 /* End Invite player css*/
 
 .clear {

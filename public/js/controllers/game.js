@@ -12,6 +12,7 @@ angular.module('mean.system')
     $scope.searchUserResults = [];
     $scope.inviteeUserName = '';
     $scope.inviteeUserEmail = '';
+    $scope.invitedPlayerName = '';
     $scope.invitedPlayers = [];
     $scope.firstPlayer = false;
 
@@ -160,14 +161,18 @@ angular.module('mean.system')
         invitePlayer.sendMail($scope.inviteeUserEmail, document.URL).then((data) => {
           if (data === 'Accepted') {
             $scope.invitedPlayers.push($scope.inviteeUserEmail);
+            $scope.invitedPlayerName = $scope.inviteeUserName;
+            $scope.searchResults = [];
+            $scope.inviteeUserEmail = '';
+            $scope.inviteeUserName = '';
           }
-          $scope.searchResults = [];
-          $scope.inviteeUserEmail = '';
         });
       } else {
-        $scope.searchUserResults = [];
-        $scope.inviteeUserName = '';
         $('#playerAlreadyInvited').modal('show');
+
+        $scope.searchResults = [];
+        $scope.inviteeUserEmail = '';
+        $scope.inviteeUserName = '';
       }
     };
 
