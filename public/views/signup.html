@@ -1,40 +1,14 @@
-<div id="main-bod">
-  <!-- Fixed Logo & Menu Bar Start -->
-  <div class="container-fluid">
-    <nav class="navbar navbar-default navbar-fixed-top navbar-auth auth-home" id="nav-id">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-        </button>
-      </div>
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav navbar-right ">
-         <li class='auth-home'><a href="/">Home </a></li>
-        </ul>
-      </div>
-    </nav>
-  </div>
-<!-- Fixed Logo & Menu Bar End -->
-
+<div id="main-bod" ng-controller="IndexController">
 <!-- Landing Start -->
 <div id="signin-main">
-    <div class="brand-name">
+    <div class="brand-name"> <a href="/">
         <span class="first-word">Cards</span>
         <span class="second-word">for</span>
         <span class="third-word">Humanity</span>
-    </div>
+   </a> </div>
 
     <div id="signup-form">
-      <div class="sign-body">
-        <div class="more-sign">
-          <div class="sign-error" ng-show="showError() === 'invalid'">
-            <p>Please check your username/password and try again.</p>
-          </div>
-        </div>
-      </div>
+      
       <div id="auth-form">
         <form class="signup form-horizontal" action="/users" method="post">
           <div class="row">
@@ -43,7 +17,7 @@
                 <span>Select an Avatar</span>
               </div>
               <div id="contain-avatars">
-                <ul ng-controller="IndexController" class="avatar-list">
+                <ul class="avatar-list">
                   <li ng-repeat="avatar in avatars" class="avatars ng-scope">
                     <input name="avatar" type='radio' value="{{$index}}">
                       <img ng-src="{{avatar}}">
@@ -53,6 +27,13 @@
               </div>
             </div>
             <div class="col-md-6">
+              <div class="sign-body">
+                <div class="more-sign">
+                  <div class="sign-error" ng-show="showError() === 'existinguser'">
+                    <p>User already exists.</p>
+                  </div>
+                </div>
+              </div>
               <div class="control-group">
                 <label for="name" class="control-label"></label>
                 <div class="controls">
@@ -88,7 +69,7 @@
                 <a href="/auth/google"><i class="fa fa-3x fa-google google" aria-hidden="true"></i></a>
               </div>
               <div class="auth-switch">
-                Already have an account? <a href="/signin"> Sign In</a>
+                Already have an account? <a href="#!/signin"> Sign In</a>
               </div>
           </div>
         </div> 
