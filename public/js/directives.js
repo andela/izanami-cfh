@@ -85,7 +85,6 @@ angular.module('mean.directives', [])
               scope.user_details = JSON.parse(atob(scope.token.split('.')[1]));
               scope.id = scope.user_details.id;
               scope.user_details._id = scope.id;
-              //console.log($scope.user_details);
               window.user = scope.user_details;
             }
           });
