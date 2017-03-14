@@ -10,7 +10,8 @@ angular.module('mean.system')
     $scope.makeAWishFact = makeAWishFacts.pop();
 
     $scope.searchUserResults = [];
-    $scope.invitedUserEmail = '';
+    $scope.inviteeUserName = '';
+    $scope.inviteeUserEmail = '';
     $scope.invitedPlayers = [];
     $scope.firstPlayer = false;
 
@@ -49,21 +50,18 @@ angular.module('mean.system')
       }
       return false;
     };
-  
     $scope.cardIsSecondSelected = (card) => {
       if (game.curQuestion.numAnswers > 1) {
         return card === $scope.pickedCards[1];
       }
       return false;
     };
-  
     $scope.firstAnswer = ($index) => {
       if ($index % 2 === 0 && game.curQuestion.numAnswers > 1) {
         return true;
       }
       return false;
     };
-  
     $scope.secondAnswer = ($index) => {
       if ($index % 2 === 1 && game.curQuestion.numAnswers > 1) {
         return true;
@@ -78,43 +76,42 @@ angular.module('mean.system')
     $scope.isCzar = () => game.czar === game.playerIndex;
 
     $scope.isPlayer = $index => $index === game.playerIndex;
-  
+
     $scope.isCustomGame = () => !(/^\d+$/).test(game.gameID) && game.state === 'awaiting players';
-  
+
     $scope.isPremium = $index => game.players[$index].premium;
-  
+
     $scope.currentCzar = $index => $index === game.czar;
-  
+
     $scope.winningColor = ($index) => {
       if (game.winningCardPlayer !== -1 && $index === game.winningCard) {
         return $scope.colors[game.players[game.winningCardPlayer].color];
       }
       return '#f9f9f9';
     };
-  
+
     $scope.pickWinning = (winningSet) => {
       if ($scope.isCzar()) {
         game.pickWinning(winningSet.card[0]);
         $scope.winningCardPicked = true;
       }
     };
-  
+
     $scope.winnerPicked = () => game.winningCard !== -1;
-  
-      //start game only if players not less than players limit
-      $scope.startGame = () => {
-        if (game.players.length >= game.playerMinLimit) {
-          game.startGame();
-        } else {
-          $('#playerMinimumAlert').modal('show');
-        }
-      };
-  
+
+    $scope.startGame = () => {
+      if (game.players.length >= game.playerMinLimit) {
+        game.startGame();
+      } else {
+        $('#playerMinimumAlert').modal('show');
+      }
+    };
+
     $scope.abandonGame = () => {
       game.leaveGame();
       $location.path('/');
     };
-  
+
     // Catches changes to round to update when no players pick card
     // (because game.state remains the same)
     $scope.$watch('game.round', () => {
@@ -156,27 +153,27 @@ angular.module('mean.system')
     });
 
     $scope.sendInvite = () => {
-      if (!$scope.invitedPlayers.includes($scope.invitedUserEmail)) {
+      if (!$scope.invitedPlayers.includes($scope.inviteeUserEmail)) {
         if ($scope.invitedPlayers.length > game.playerMaxLimit - 1) {
           $('#playerMaximumAlert').modal('show');
         }
-        invitePlayer.sendMail($scope.invitedUserEmail, document.URL).then((data) => {
+        invitePlayer.sendMail($scope.inviteeUserEmail, document.URL).then((data) => {
           if (data === 'Accepted') {
-            $scope.invitedPlayers.push($scope.invitedUserEmail);
+            $scope.invitedPlayers.push($scope.inviteeUserEmail);
           }
           $scope.searchResults = [];
-          $scope.invitedUserEmail = '';
+          $scope.inviteeUserEmail = '';
         });
       } else {
         $scope.searchUserResults = [];
-        $scope.invitedUserEmail = '';
+        $scope.inviteeUserName = '';
         $('#playerAlreadyInvited').modal('show');
       }
     };
 
     $scope.playerSearch = () => {
-      if ($scope.invitedUserEmail !== '') {
-        playerSearch.getPlayers($scope.invitedUserEmail).then((data) => {
+      if ($scope.inviteeUserName !== '') {
+        playerSearch.getPlayers($scope.inviteeUserName).then((data) => {
           $scope.searchUserResults = data;
         });
       } else {
@@ -184,10 +181,27 @@ angular.module('mean.system')
       }
     };
 
-    $scope.selectEmail = (selectedEmail) => {
-      $scope.invitedUserEmail = selectedEmail;
+    $scope.selectUser = (selectedUser) => {
+      $scope.inviteeUserEmail = selectedUser.email;
+      $scope.inviteeUserName = selectedUser.name;
       $scope.searchUserResults = [];
     };
+
+    $scope.isInvited = selectedUserEmail => $scope.invitedPlayers.includes(selectedUserEmail);
+
+    $scope.clickInvitee = (selectedUserEmail) => {
+      if ($scope.invitedPlayers.includes(selectedUserEmail)) {
+        return {
+          'search-result': true,
+          'invitee-invited': true
+        };
+      }
+      return {
+        'search-result': true,
+        'invitee-invited': false
+      };
+    };
+
     //    czar should draw cards
     $scope.drawCard = () => {
       const card = angular.element(document.getElementsByClassName('card-mem'));

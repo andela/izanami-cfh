@@ -76,14 +76,14 @@ angular.module('mean.system')
   }])
   .factory('playerSearch', ['$http', '$q', ($http, $q) => {
     return {
-      getPlayers: (invitedUserEmail) => {
+      getPlayers: (inviteeUserName) => {
         const deferred = $q.defer();
-        $http.get(`/api/search/users/${invitedUserEmail}`)
+        $http.get(`/api/search/users/${inviteeUserName}`)
           .success((data, status, headers, config) => {
             deferred.resolve(data, status, headers, config);
           }).error((err) => {
-          deferred.reject(err);
-        });
+            deferred.reject(err);
+          });
         return deferred.promise;
       }
     };
@@ -97,8 +97,8 @@ angular.module('mean.system')
           .success((res) => {
             deferred.resolve(res);
           }).error((err) => {
-          deferred.reject(err);
-        });
+            deferred.reject(err);
+          });
         return deferred.promise;
       }
     };

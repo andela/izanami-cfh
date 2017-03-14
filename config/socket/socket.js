@@ -142,7 +142,6 @@ module.exports = function (io) {
         }
       } else {
         // TODO: Send an error message back to this user saying the game has already started
-        console.log(socket.id,' is too late')
         exitGame(socket);
         socket.emit('tooLate');
       }
