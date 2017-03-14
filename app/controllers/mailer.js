@@ -1,5 +1,5 @@
-//using sendgrid to send invite mail
-// https://github.com/sendgrid/sendgrid-nodejs
+//  using sendgrid to send invite mail
+//   https://github.com/sendgrid/sendgrid-nodejs
 
 const helper = require('sendgrid').mail;
 const sg = require('sendgrid')(process.env.SENDGRID_API_KEY);
@@ -11,7 +11,7 @@ exports.invite = (req, res) => {
   const toEmail = new helper.Email(invitedUserEmail);
   const subject = 'Izanami Cards For Humanity Game Invitation ';
   const content = new helper.Content('text/plain', gameUrl);
-  mail = new helper.Mail(fromEmail, subject, toEmail, content);
+  const mail = new helper.Mail(fromEmail, subject, toEmail, content);
 
   const request = sg.emptyRequest({
     method: 'POST',
