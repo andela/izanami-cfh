@@ -1,0 +1,697 @@
+body {
+  background-size: cover;
+  margin: 0px;
+  font-family: sans-serif !important;
+}
+#main-container {
+  background-color: #fff;
+}
+h1,
+h3,
+h4,
+h5,
+h6 {
+  font-family: sans-serif !important;
+}
+
+h2 {
+  font-family: 'Courgette', 'Cursive' !important;
+}
+
+#home {
+  background-color: #fff;
+  padding: 0;
+  padding-bottom: 80px;
+}
+
+.signout a {
+  color: #777777;
+}
+
+.cfh img {
+  padding-top: 70px;
+  margin: auto;
+  margin-bottom: 0px;
+  position: relative;
+}
+
+.image {
+  margin-top: 50px !important;
+  background-image: url('../images/cards.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 80%;
+  height: 480px;
+}
+
+#signup-text {
+  margin: 0 auto;
+}
+
+h2 {
+  text-align: center;
+  margin-top: 0px;
+}
+
+.navbar .navbar-nav {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.navbar .navbar-collapse {
+  text-align: center;
+}
+#bs-example-navbar-collapse-1 .navbar-nav a {
+  font-family : 'Courgette', 'cursive';
+}
+#bs-example-navbar-collapse-1 .navbar-nav {
+  float: none;
+}
+
+.centered {
+  text-align: center;
+  margin: 0px auto;
+}
+
+#facebook-share {
+  padding: 0px;
+}
+
+.desperately {
+  color: #C61C1C;
+}
+
+.centered a {
+  text-decoration: none;
+  color: white;
+}
+
+.centered button {
+  background-color: #0c7abf;
+}
+
+#play-with-friends button {
+  display: inline !important;
+}
+
+#how-to {
+  background-color: #EAEDED;
+  padding-bottom: 40px;
+}
+
+#how-to h2 {
+  text-align: center;
+  color: white;
+}
+
+.how-to-play {
+  border-radius: 5px;
+  height: 100px;
+  width: 100%;
+  border: solid 2px black;
+  background-color: #181818;
+  margin-top: 20px;
+}
+
+.how-to-play p {
+  color: white;
+  font-size: 50px;
+  text-align: center;
+  padding-top: 15px;
+}
+
+.cards {
+  border: 1px solid #181818;
+  width: 100%;
+  height: 300px;
+  border-radius: 8px;
+  background-color: #ffffff;
+  box-shadow: 5px 5px 3px #888888;
+  margin-bottom: 15px;
+  position: relative;
+}
+#sign-up-btn-landing {
+  text-align: center;
+  margin: 0px auto;
+  background-color: #0c7abf;
+  color: white;
+}
+.play-with-friends {
+  background-color: #0c7abf !important;
+}
+
+.cards:hover {
+  -ms-transform: scale(1, 1.1);
+  /* IE 9 */
+  -webkit-transform: scale(1, 1.1);
+  /* Safari */
+  transform: scale(1, 1.1);
+}
+
+.how-to-card {
+  margin: 20px 0 30px 0;
+}
+
+.cards p {
+  font-size: 20px;
+  padding: 30px;
+}
+
+.cards .small {
+  position: absolute;
+  bottom: 10px;
+  right: 15px;
+  color: #C61C1C;
+  font-size: 18px;
+  font-family: 'Courgette', 'Cursive';
+}
+
+.how-to {
+  padding: 30px;
+}
+
+.charity h1 {
+  text-align: center;
+  margin-top: 0px !important;
+  padding: 20px;
+  font-size: 50px;
+}
+
+.crowdrise {
+  font-size: 15px;
+  color: #60B197;
+}
+
+.charity h4 {
+  text-align: center;
+  padding: 10px;
+}
+
+.charity p {
+  text-align: justify;
+  font-size: 17px;
+  padding: 10px;
+}
+
+#charity {
+  background-color: #243354;
+  color: #F8F8F8;
+  margin-bottom: 0px;
+}
+
+.charity-text {
+  padding: 30px;
+}
+
+.the-team h1 {
+  text-align: center;
+}
+
+#about-us {
+  background-color: #232323;
+  margin-top: 0px !important;
+}
+
+.the-team {
+  margin-top: 0px !important;
+}
+
+.active a {
+  color: #F9AA57 !important;
+}
+
+footer {
+  height: 150px;
+  background-color: #ddd;
+}
+
+footer a {
+  float: left;
+  display: block;
+  position: relative;
+}
+
+
+footer img {
+  float: right;
+  height: 80%;
+  width: 20%;
+  padding: 0px;
+  margin: 0px;
+  transform: translate(0%, 5%);
+}
+
+footer a {
+  color: #000;
+  padding: 20px;
+}
+
+footer a:hover {
+  color: #F9AA57;
+}
+
+
+/* ----------- iPhone 5 and 5S ----------- */
+
+
+/* Portrait and Landscape */
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 568px) and (-webkit-min-device-pixel-ratio: 2) {
+  .image {
+      height: 280px;
+  }
+}
+
+
+/* ----------- iPhone 6 ----------- */
+
+
+/* Portrait and Landscape */
+
+@media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) {
+  .image {
+      height: 350px;
+  }
+}
+
+
+/* ----------- iPhone 6+ ----------- */
+
+
+/* Portrait and Landscape */
+
+@media only screen and (min-device-width: 414px) and (max-device-width: 736px) and (-webkit-min-device-pixel-ratio: 3) {
+  .image {
+      height: 450px;
+  }
+}
+
+
+/* ----------- Galaxy S5 ----------- */
+
+
+/* Portrait and Landscape */
+
+@media screen and (device-width: 360px) and (device-height: 640px) and (-webkit-device-pixel-ratio: 3) {
+  .image {
+      height: 350px;
+  }
+}
+
+/*sign in page*/
+    
+.brand-name {
+  text-align: center;
+}
+
+.brand-name span {
+  font-size: 28px;
+  font-family: 'Courgette', 'cursive';
+}
+
+.brand-name .first-word {
+  color: #C61C1C;
+}
+
+.brand-name .second-word {
+  color: #000;
+}
+
+.brand-name .third-word {
+  color: #C61C1C;
+}
+
+.navbar-auth {
+  background-color: transparent;
+  border-color: transparent;
+}
+.navbar-auth .navbar-nav {
+  margin-right: 30px !important;
+}
+#home-nav {
+  float: right;
+  padding-right: 25px;
+}
+#bs-example-navbar-collapse-1 .navbar-nav .auth-home {
+  font-family: 'Courgette', 'cursive';
+}
+.auth-switch {
+  text-align: center;
+  margin-top: 10px;
+}
+.auth-switch a {
+  text-decoration: none;
+  color: #3b5998;
+}
+.auth-switch a:hover {
+  color: #922323;
+}
+#create {
+  font-family: 'Courgette', 'cursive' !important;
+  padding: 10px 0 20px 0;
+  color: #000;
+}
+
+#signin-main {
+  background-color: #fff;
+  height: 700px;
+  background-size: 50%;
+  padding-top: 20px;
+}
+
+#signin-form {
+  margin: 30px auto;
+  padding: 40px 0 30px;
+  border: 1px solid #eee;
+  width: 100%;
+  max-width: 400px;
+  border-radius: 10px;
+  box-shadow: 0 0 70px 5px rgba(0, 0, 0, 0.1);
+  font-family: sans-serif;
+}
+
+.sign-error {
+  color: #000;
+  padding-bottom: 10px;
+  font-family: sans-serif;
+}
+
+#signin-with {
+  color: #fff;
+  padding-bottom: 20px;
+}
+
+#auth-form {
+  display: block;
+  text-align: center;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
+div.hr {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  width: 100%;
+  margin: 20px 0;
+  color: #999;
+  text-shadow: 0 1px rgba(255, 255, 255, 0.4);
+}
+
+div.hr div:first-child::before,
+div.hr div:last-child::before {
+  content: ' ';
+  position: absolute;
+  top: 50%;
+  left: 0px;
+  right: 0px;
+  height: 1px;
+  background-color: #ddd;
+  -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2);
+  -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+div.hr div:first-child {
+  margin-right: 20px;
+}
+
+div.hr div:last-child {
+  margin-left: 20px;
+}
+
+div.hr div:first-child,
+div.hr div:last-child {
+  -webkit-flex: 1;
+  -moz-flex: 1;
+  flex: 1;
+  position: relative;
+}
+
+#auth-form form {
+  display: inline-block;
+  width: 100%;
+}
+
+#auth-form input {
+  height: 40px;
+  box-sizing: border-box;
+  border-radius: 3px;
+  width: 100%;
+  padding: 25px 10px;
+}
+
+.auth-home a {
+  background-color: transparent;
+}
+
+
+#sign-up-btn-other {
+  width: 100%;
+  background-color: #555;
+  text-align: center;
+  padding: 18px 10px;
+  -webkit-appearance: none;
+  border: none;
+  font-size: 14px;
+  transition: 0.5s;      
+}
+#sign-up-btn-other:hover {
+  background-color: #922323;
+}
+
+
+.clear {
+  margin-top: 100px;
+}
+
+input {
+  transition: 0.3s;
+  border: 1px solid #ddd;
+  padding: 4px;
+  outline: none;
+}
+
+input:focus {
+  border-color: rgba(7, 47, 112, 0.4);
+}
+
+
+#signup-main {
+  background-color: #EAEDED;
+  height: 900px;
+  background-size: 100%;
+  margin-top: 50px;
+  padding-top: 50px;
+}
+
+#signup-form {
+  margin: 30px auto;
+  padding: 40px 0 30px;
+  border: 1px solid #eee;
+  width: 100%;
+  max-width: 850px;
+  border-radius: 10px;
+  box-shadow: 0 0 70px 5px rgba(0, 0, 0, 0.1);
+  font-family: sans-serif;
+
+}
+#auth-form input[type=radio] {
+  width: unset;
+}
+.avatars{
+  margin: 0;
+  position: relative;
+  float: left;
+  width: 33%;
+  display: inline-block;
+  }
+.avatar-list img {
+  max-width: 40%;
+}
+.select-avatar span {
+  text-align: center;
+  font-size: 18px;
+}
+.form-actions {
+  margin-top: 15px;
+}
+#git span {
+  background-color: #fff;
+}
+
+.login-icons .facebook {
+  color: #3B5998;
+}
+
+.login-icons .github {
+  color: #24292e;
+}
+
+.login-icons .twitter {
+  color: #00aced;
+}
+
+.login-icons .google {
+  color: #db3236;
+}
+
+.login-icons {
+  text-align: center;
+}
+
+.login-icons i {
+  padding: 10px;
+}
+
+/* ----------- iPhone 5 and 5S ----------- */
+
+
+/* Portrait and Landscape */
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 568px) and (-webkit-min-device-pixel-ratio: 2) {
+  .avatars{
+    margin: 0;
+    position: relative;
+    float: left;
+    width: 33%;
+    display: inline-block;
+  }
+  #signin-main {
+    background-color: #fff;
+    height: 100%;
+    background-size: 50%;
+    padding-top: 20px;
+  }
+  
+}
+
+
+/* ----------- iPhone 6 ----------- */
+
+
+/* Portrait and Landscape */
+
+@media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) {
+  .avatars{
+    margin: 0;
+    position: relative;
+    float: left;
+    width: 33%;
+    display: inline-block;
+  }
+  #signin-main {
+    background-color: #fff;
+    height: 100%;
+    background-size: 50%;
+    padding-top: 20px;
+  } 
+}
+/* ----------- iPhone 6+ ----------- */
+
+
+/* Portrait and Landscape */
+
+@media only screen and (min-device-width: 414px) and (max-device-width: 736px) and (-webkit-min-device-pixel-ratio: 3) {
+  .avatars{
+    margin: 0;
+    position: relative;
+    float: left;
+    width: 33%;
+    display: inline-block;
+  }
+  #signin-main {
+    background-color: #fff;
+    height: 100%;
+    background-size: 50%;
+    padding-top: 20px;
+  } 
+}
+
+
+/* ----------- Galaxy S5 ----------- */
+
+
+/* Portrait and Landscape */
+
+@media screen and (device-width: 360px) and (device-height: 640px) and (-webkit-device-pixel-ratio: 3) {
+  .avatars{
+    margin: 0;
+    position: relative;
+    float: left;
+    width: 33%;
+    display: inline-block;
+  }
+  #signin-main {
+    background-color: #fff;
+    height: 100%;
+    background-size: 50%;
+    padding-top: 20px;
+  }
+  
+}
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+  .avatars{
+    margin: 0;
+    position: relative;
+    float: left;
+    width: 33%;
+    display: inline-block;
+  }
+  #signin-main {
+    background-color: #fff;
+    height: 100%;
+    background-size: 50%;
+    padding-top: 20px;
+  }  
+}
+/* iPads (portrait and landscape) ----------- */
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
+  .avatars{
+    margin: 0;
+    position: relative;
+    float: left;
+    width: 33%;
+    display: inline-block;
+      }
+  #signin-main {
+    background-color: #fff;
+    height: 100%;
+    background-size: 50%;
+    padding-top: 20px;
+  }
+}
+/* iPhone 4 ----------- */
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) and (orientation : landscape) and (-webkit-min-device-pixel-ratio : 2) {
+  .avatars{
+    margin: 0;
+    position: relative;
+    float: left;
+    width: 33%;
+    display: inline-block;
+      }
+  #signin-main {
+    background-color: #fff;
+    height: 100%;
+    background-size: 50%;
+    padding-top: 20px;
+  }
+}
+/* Samsung Galaxy S3 ----------- */
+@media only screen and (min-device-width: 320px) and (max-device-height: 640px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 2){
+  .avatars{
+    margin: 0;
+    position: relative;
+    float: left;
+    width: 33%;
+    display: inline-block;
+  }
+  #signin-main {
+    background-color: #fff;
+    height: 100%;
+    background-size: 50%;
+    padding-top: 20px;
+  }
+}

@@ -104,5 +104,15 @@ module.exports = (app, passport) => {
   const index = require('../app/controllers/index');
   app.get('/play', index.play);
 
+  app.get('/api/games/:id/start', index.play);
+
+  // search user route
+  const search = require('../app/controllers/search-users');
+  app.get('/api/search/users/:inviteeUserName', search.users);
+
+  // Mail Invite Route
+  const mailer = require('../app/controllers/mailer');
+  app.post('/api/invite/user', mailer.invite);
+
   app.get('/', customAuth.hasAuth(), index.render);
 };

@@ -2,10 +2,11 @@ node_modules
 bower_components
 public/lib
 .idea/
+.vscode
 .env
 .sass-cache/
 .DS_store
 c4h_keys.txt
 coverage
 lib
-.vscode/
+npm-debug.log
