@@ -356,7 +356,7 @@ footer a:hover {
   background-color: #fff;
   height: 700px;
   background-size: 50%;
-  padding-top: 50px;
+  padding-top: 20px;
 }
 
 #signin-form {
@@ -563,7 +563,7 @@ input:focus {
     background-color: #fff;
     height: 100%;
     background-size: 50%;
-    padding-top: 50px;
+    padding-top: 20px;
   }
   
 }
@@ -586,7 +586,7 @@ input:focus {
     background-color: #fff;
     height: 100%;
     background-size: 50%;
-    padding-top: 50px;
+    padding-top: 20px;
   } 
 }
 /* ----------- iPhone 6+ ----------- */
@@ -606,7 +606,7 @@ input:focus {
     background-color: #fff;
     height: 100%;
     background-size: 50%;
-    padding-top: 50px;
+    padding-top: 20px;
   } 
 }
 
@@ -628,7 +628,7 @@ input:focus {
     background-color: #fff;
     height: 100%;
     background-size: 50%;
-    padding-top: 50px;
+    padding-top: 20px;
   }
   
 }
@@ -644,7 +644,7 @@ input:focus {
     background-color: #fff;
     height: 100%;
     background-size: 50%;
-    padding-top: 50px;
+    padding-top: 20px;
   }  
 }
 /* iPads (portrait and landscape) ----------- */
@@ -660,7 +660,7 @@ input:focus {
     background-color: #fff;
     height: 100%;
     background-size: 50%;
-    padding-top: 50px;
+    padding-top: 20px;
   }
 }
 /* iPhone 4 ----------- */
@@ -676,7 +676,7 @@ input:focus {
     background-color: #fff;
     height: 100%;
     background-size: 50%;
-    padding-top: 50px;
+    padding-top: 20px;
   }
 }
 /* Samsung Galaxy S3 ----------- */
@@ -692,6 +692,6 @@ input:focus {
     background-color: #fff;
     height: 100%;
     background-size: 50%;
-    padding-top: 50px;
+    padding-top: 20px;
   }
 }
