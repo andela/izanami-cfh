@@ -1,0 +1,7 @@
+node_modules/
+coverage/
+bower_components
+public/lib
+karma2.conf.js
+gulpfile.js
+test/**/*.js
