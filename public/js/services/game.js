@@ -11,7 +11,7 @@ angular.module('mean.system')
       table: [],
       czar: null,
       playerMinLimit: 3,
-      playerMaxLimit: 6,
+      playerMaxLimit: 12,
       pointLimit: null,
       state: null,
       round: 0,
@@ -216,7 +216,11 @@ angular.module('mean.system')
     game.drawCard = () => {
       socket.emit('drawCard');
     };
-
+    
+    socket.on('tooLate', () => {
+      angular.element('#gameStartedAlert').modal('show');
+    });
+    
     decrementTime();
 
     return game;

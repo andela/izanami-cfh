@@ -1,18 +1,49 @@
- .clear {
-   clear:both;
- }
+/* invite players css*/
+.modal-header {
+  text-align: center;
+}
 
- .uppercase {
-   text-transform: uppercase;
- }
+.playerLimitAlert {
+  margin-top: 20%;
+}
+.search-result:hover {
+  background-color: lightblue;
+}
 
- #landing-charity {
-   width: 300px !important;
-   margin-left: 15px !important;
-   max-width: 100% !important;
-   position: relative !important;
-   float: left !important;
-   top: -65px;
+.search-result {
+  color: black;
+  padding: 2px 10px;
+  cursor: pointer;
+}
+.invitee-invited {
+  color: grey;
+}
+.search-result-container{
+  position: absolute;
+  width:93%;
+  height: 135px;
+  background-color: lightgray;
+  text-align: left;
+  overflow: scroll;
+  border-radius: 2px 2px 4px 4px
+}
+/* End Invite player css*/
+
+.clear {
+ clear:both;
+}
+
+.uppercase {
+ text-transform: uppercase;
+}
+
+#landing-charity {
+ width: 300px !important;
+ margin-left: 15px !important;
+ max-width: 100% !important;
+ position: relative !important;
+ float: left !important;
+ top: -65px;
 }
 
 #tweet-container-index{
