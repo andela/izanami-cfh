@@ -235,7 +235,7 @@ Game.prototype.stateResults = function (self) {
   }
 
   // self.sendUpdate(self.players);
-  self.resultsTimeout = setTimeout(function() {
+  self.resultsTimeout = setTimeout(() => {
     if (winner !== -1) {
       self.stateEndGame(winner);
     } else {
@@ -456,29 +456,29 @@ Game.prototype.drawCard = function () {
 
 
 Game.prototype.saveGame = (players) => {
-  const raw_game_data = players.slice(0);
-  const game_players = raw_game_data.map((data) => {
+  const rawGameData = players.slice(0);
+  const gamePlayers = rawGameData.map((data) => {
     return data.userID;
   });
   const newGame = new GameModel({
-    created_by: game_players[0],
-    number_of_players: game_players.length.toString(),
+    created_by: gamePlayers[0],
+    number_of_players: gamePlayers.length.toString(),
     game_id: players[0].socket.gameID,
-    players: game_players
+    players: gamePlayers
   });
-  
-  newGame.save( function( err ){
-    if(!err){
-      console.log('[game.js line 451] game has been saved');
+
+  newGame.save(( err ) => {
+    if (!err) {
+      // This happens when game has been saved
     } else {
-      console.log('[game.js line 453] ', err);
+      // This happens when there is an error saving game
     }
   });
 };
 
 Game.prototype.updateGame = (players) => {
-  let winner = "";
-  const game_players = players.map((player) => {
+  let winner = '';
+  const gamePlayers = players.map((player) => {
     let data = {};
     const uid = player.userID;
     const points = player.points;
@@ -488,9 +488,9 @@ Game.prototype.updateGame = (players) => {
     }
     return data;
   });
-  const game_id = players[0].socket.gameID;
-  GameModel.findOne({ game_id:  game_id}, function (err, game){
-    game.players = game_players;
+  const gameId = players[0].socket.gameID;
+  GameModel.findOne({ game_id: gameId }, function (err, game){
+    game.players = gamePlayers;
     game.winner = winner;
     game.save();
 });
