@@ -320,5 +320,8 @@ $(document).ready(() => {
   $(document).on('click', '.close-tour', () => {
     $('.tour-button').show();
   });
+  $(document).on('click', '.shepherd-cancel-link', () => {
+    $('.tour-button').show();
+  });
 });
 
