@@ -1280,10 +1280,20 @@
    }
  }
 
+#play-game-modal {
+    text-align: center;
+}
+
+/* start a game modal styling */
+#play-game-modal-content {
+    margin-top: 100px;
+    background-color: #222222;
+}
+
 .flip {
   position: relative;
 }
- 
+
 /*Css changes*/
  .text-center{
    text-align: center;
@@ -1291,7 +1301,7 @@
  }
 
 /* Css changes*/
- .flip { 
+ .flip {
   width: 200px;
   height: 260px;
   margin-left: 40%;
@@ -1391,4 +1401,19 @@
   top: 10px;
   z-index: 10;
   transition: left 2s ease 1.2s, opacity 2s ease-out 2s;
-} 
+}
+
+#play-game-modal .play-with-friends {
+  margin-top: 30px;
+}
+
+.close {
+  margin-top: 0;
+  color: red;
+  opacity: 1;
+}
+
+.modal-content {
+  margin-top: 150px;
+  padding-bottom: 50px;
+}
