@@ -1,18 +1,49 @@
+/* invite players css*/
+.modal-header {
+  text-align: center;
+}
+
+.playerLimitAlert {
+  margin-top: 20%;
+}
+.search-result:hover {
+  background-color: lightblue;
+}
+
+.search-result {
+  color: black;
+  padding: 2px 10px;
+  cursor: pointer;
+}
+.invitee-invited {
+  color: grey;
+}
+.search-result-container{
+  position: absolute;
+  width:93%;
+  height: 135px;
+  background-color: lightgray;
+  text-align: left;
+  overflow: scroll;
+  border-radius: 2px 2px 4px 4px
+}
+/* End Invite player css*/
+
 .clear {
-   clear:both;
- }
+ clear:both;
+}
 
- .uppercase {
-   text-transform: uppercase;
- }
+.uppercase {
+ text-transform: uppercase;
+}
 
- #landing-charity {
-   width: 300px !important;
-   margin-left: 15px !important;
-   max-width: 100% !important;
-   position: relative !important;
-   float: left !important;
-   top: -65px;
+#landing-charity {
+ width: 300px !important;
+ margin-left: 15px !important;
+ max-width: 100% !important;
+ position: relative !important;
+ float: left !important;
+ top: -65px;
 }
 
 #tweet-container-index{
@@ -1262,7 +1293,7 @@
 .flip {
   position: relative;
 }
- 
+
 /*Css changes*/
  .text-center{
    text-align: center;
@@ -1270,7 +1301,7 @@
  }
 
 /* Css changes*/
- .flip { 
+ .flip {
   width: 200px;
   height: 260px;
   margin-left: 40%;
@@ -1370,7 +1401,7 @@
   top: 10px;
   z-index: 10;
   transition: left 2s ease 1.2s, opacity 2s ease-out 2s;
-} 
+}
 
 #play-game-modal .play-with-friends {
   margin-top: 30px;
