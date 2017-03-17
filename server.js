@@ -26,19 +26,19 @@ let env = process.env.NODE_ENV = process.env.NODE_ENV || 'development',
 // var db = mongoose.connect(config.db);
 let db = mongoose.connect(config.db);
 // Bootstrap models
-let models_path = `${__dirname  }/app/models`;
+let models_path = `${__dirname}/app/models`;
 var walk = function (path) {
   fs.readdirSync(path).forEach((file) => {
-      let newPath = `${path  }/${  file}`;
-      let stat = fs.statSync(newPath);
-      if (stat.isFile()) {
-          if (/(.*)\.(js|coffee)/.test(file)) {
-              require(newPath);
-            }
-        } else if (stat.isDirectory()) {
-          walk(newPath);
-        }
-    });
+    let newPath = `${path}/${file}`;
+    let stat = fs.statSync(newPath);
+    if (stat.isFile()) {
+      if (/(.*)\.(js|coffee)/.test(file)) {
+        require(newPath);
+      }
+    } else if (stat.isDirectory()) {
+      walk(newPath);
+    }
+  });
 };
 walk(models_path);
 
@@ -63,7 +63,7 @@ let server = app.listen(port);
 let ioObj = io.listen(server, { log: false });
 // game logic handled here
 require('./config/socket/socket')(ioObj);
-console.log(`Express app started on port ${  port}`);
+console.log(`Express app started on port ${port}`);
 
 // Initializing logger
 logger.init(app, passport, mongoose);
