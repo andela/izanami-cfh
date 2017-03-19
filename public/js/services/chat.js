@@ -22,7 +22,7 @@ angular.module('mean.system')
         this.database = firebase.database();
         this.messageArray = [];
         this.enableListener = true;
-        this.showChatWindow = false;
+        this.chatWindowVisible = false;
         this.unreadMessageCount = 0;
       }
 
@@ -66,6 +66,14 @@ angular.module('mean.system')
       }
 
       /**
+       * Method to clear our chat history in when a game ends.
+       * @return{undefined}
+       */
+      clearMessageHistory() {
+        this.database.ref(this.chatGroup).remove();
+      }
+
+      /**
        * Method to setup  eventlistener
        * for firebase
        * @return{undefined}
@@ -74,10 +82,9 @@ angular.module('mean.system')
         if (!this.enableListener) {
           return;
         }
-        // this.database.ref(this.chatGroup).off();
+        this.database.ref(this.chatGroup).off();
         this.enableListener = false;
-        // this.database.ref(this.chatGroup).on('child_added', (snapshot) => {
-        this.database.ref(this.chatGroup).limit(1).on('child_added', (snapshot) => {
+        this.database.ref(this.chatGroup).on('child_added', (snapshot) => {
           const message = snapshot.val();
           this.messageArray.push(message);
           this.updateUnreadMessageCount();
@@ -89,7 +96,7 @@ angular.module('mean.system')
        * @return{undefined}
        */
       updateUnreadMessageCount() {
-        if (!this.showChatWindow) {
+        if (!this.chatWindowVisible) {
           this.unreadMessageCount += 1;
         }
       }

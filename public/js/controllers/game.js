@@ -21,6 +21,32 @@ angular.module('mean.system')
 
       $scope.chat = game.gameChat;
 
+      /**
+       * Method to scroll the chat thread to the bottom
+       * @return{undefined}
+       */
+      const scrollChatThread = () => {
+        const chatResults = document.getElementById('results');
+        // chatResults.scrollTop = chatResults.scrollHeight;
+        const isScrolledToBottom = chatResults.scrollHeight - chatResults.clientHeight
+          <= chatResults.scrollTop + 1;
+        if (isScrolledToBottom) {
+          chatResults.scrollTop = chatResults.scrollHeight - chatResults.clientHeight;
+        }
+        // $("#results").scrollTop : $('#results')[0].scrollHeight - $('#results')[0].clientHeight;
+      };
+
+      $scope.$watchCollection('chat.messageArray', (newValue, oldValue) => {
+        $timeout(() => {
+          scrollChatThread();
+        }, 100);
+      });
+
+      /**
+       * Method to send messages
+       * @param{string} userMessage
+       * @return{undefined}
+       */
       $scope.sendMessage = (userMessage) => {
         $scope.chat.postGroupMessage(userMessage);
         $scope.chatMessage = '';
@@ -35,8 +61,8 @@ angular.module('mean.system')
       };
 
       $scope.showChat = () => {
-        $scope.enableChatWindow = !$scope.enableChatWindow;
-        if ($scope.enableChatWindow) {
+        $scope.chat.chatWindowVisible = !$scope.chat.chatWindowVisible;
+        if ($scope.chat.chatWindowVisible) {
           $scope.chat.unreadMessageCount = 0;
         }
       };

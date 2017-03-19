@@ -93,7 +93,7 @@ angular.module('mean.directives', [])
     }
   };
 })
-.directive('chat', function() {
+.directive('chat', function () {
   return {
     restrict: 'EA',
     templateUrl: '/views/chat.html'

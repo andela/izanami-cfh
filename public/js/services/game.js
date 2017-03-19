@@ -92,6 +92,7 @@ angular.module('mean.system')
       game.gameChat.setChatUsername(data.players[game.playerIndex].username);
       game.gameChat.setChatGroup(data.gameID);
       game.gameChat.listenForMessages();
+      game.gameChat.clearMessageHistory();
 
     // Handle updating game.time
       if (data.round !== game.round && data.state !== 'awaiting players' &&
