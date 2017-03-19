@@ -22,6 +22,8 @@ angular.module('mean.system')
         this.database = firebase.database();
         this.messageArray = [];
         this.enableListener = true;
+        this.showChatWindow = false;
+        this.unreadMessageCount = 0;
       }
 
       /**
@@ -59,9 +61,7 @@ angular.module('mean.system')
             time: messageTime
           };
           this.database.ref(this.chatGroup)
-          // this.database.child(this.chatGroup)
             .push(messageObject);
-          console.log('userMessage:' + messageObject.textContent);
         }
       }
 
@@ -74,17 +74,26 @@ angular.module('mean.system')
         if (!this.enableListener) {
           return;
         }
-        // this.database.child(this.chatGroup).off();
+        // this.database.ref(this.chatGroup).off();
         this.enableListener = false;
-        // this.myFirebase.child(this.chatGroup).on('child_added', (snapshot) => {
-        this.database.ref(this.chatGroup).on('child_added', (snapshot) => {
+        // this.database.ref(this.chatGroup).on('child_added', (snapshot) => {
+        this.database.ref(this.chatGroup).limit(1).on('child_added', (snapshot) => {
           const message = snapshot.val();
           this.messageArray.push(message);
+          this.updateUnreadMessageCount();
         });
       }
 
+      /**
+       * Method updates unread message count
+       * @return{undefined}
+       */
+      updateUnreadMessageCount() {
+        if (!this.showChatWindow) {
+          this.unreadMessageCount += 1;
+        }
+      }
+
     }
-    // const chat = new Chat();
-    // return chat;
     return new Chat();
   }]);

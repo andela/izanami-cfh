@@ -20,7 +20,6 @@ angular.module('mean.system')
       $scope.firstPlayer = false;
 
       $scope.chat = game.gameChat;
-      $scope.enableChatWindow = true;
 
       $scope.sendMessage = (userMessage) => {
         $scope.chat.postGroupMessage(userMessage);
@@ -29,14 +28,17 @@ angular.module('mean.system')
 
       $scope.keyPressed = ($event) => {
         const keyCode = $event.which || $event.keyCode;
+        //  if enter clicked
         if (keyCode === 13) {
-          // Do that thing you finally wanted to do
           $scope.sendMessage($scope.chatMessage);
         }
       };
 
       $scope.showChat = () => {
         $scope.enableChatWindow = !$scope.enableChatWindow;
+        if ($scope.enableChatWindow) {
+          $scope.chat.unreadMessageCount = 0;
+        }
       };
 
       $scope.pickCard = (card) => {
