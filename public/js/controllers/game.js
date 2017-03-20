@@ -27,12 +27,12 @@ angular.module('mean.system')
        */
       const scrollChatThread = () => {
         const chatResults = document.getElementById('results');
-        // chatResults.scrollTop = chatResults.scrollHeight;
-        const isScrolledToBottom = chatResults.scrollHeight - chatResults.clientHeight
-          <= chatResults.scrollTop + 1;
-        if (isScrolledToBottom) {
-          chatResults.scrollTop = chatResults.scrollHeight - chatResults.clientHeight;
-        }
+        chatResults.scrollTop = chatResults.scrollHeight;
+        // const isScrolledToBottom = chatResults.scrollHeight - chatResults.clientHeight
+        //   <= chatResults.scrollTop + 1;
+        // if (isScrolledToBottom) {
+        //   chatResults.scrollTop = chatResults.scrollHeight - chatResults.clientHeight;
+        // }
         // $("#results").scrollTop : $('#results')[0].scrollHeight - $('#results')[0].clientHeight;
       };
 

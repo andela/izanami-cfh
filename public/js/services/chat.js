@@ -55,13 +55,15 @@ angular.module('mean.system')
         // We do not want to send empty messages
         if (messageText !== undefined && messageText.trim().length > 0) {
           // Push message to group thread on firebase
-          const messageObject = {
-            senderName: this.userName,
-            textContent: messageText,
-            time: messageTime
-          };
-          this.database.ref(this.chatGroup)
-            .push(messageObject);
+          if (this.userName !== undefined) {
+            const messageObject = {
+              senderName: this.userName,
+              textContent: messageText,
+              time: messageTime
+            };
+            this.database.ref(this.chatGroup)
+              .push(messageObject);
+          }
         }
       }
 
