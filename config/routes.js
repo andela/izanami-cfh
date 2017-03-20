@@ -114,5 +114,11 @@ module.exports = (app, passport) => {
   const mailer = require('../app/controllers/mailer');
   app.post('/api/invite/user', mailer.invite);
 
+  const tour = require('../app/controllers/tour');
+  // search tour taken
+  app.get('/api/tour/:userID', tour.searchTour);
+  // save tour taken
+  app.post('/api/tour', tour.saveTour);
+
   app.get('/', customAuth.hasAuth(), index.render);
 };

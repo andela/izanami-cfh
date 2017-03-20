@@ -140,6 +140,7 @@ module.exports = function (io) {
           gamesNeedingPlayers.shift();
           game.prepareGame();
         }
+        socket.emit('startTour');
       } else {
         // TODO: Send an error message back to this user saying the game has already started
         exitGame(socket);
@@ -153,6 +154,7 @@ module.exports = function (io) {
       } else {
         fireGame(player, socket);
       }
+      socket.emit('startTour');
     }
   };
 

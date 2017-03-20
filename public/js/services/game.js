@@ -1,5 +1,5 @@
 angular.module('mean.system')
-  .factory('game', ['socket', '$timeout', function (socket, $timeout) {
+  .factory('game', ['socket', '$timeout', 'gameTour', (socket, $timeout, gameTour) => {
     const game = {
       id: null, // This player's socket ID, so we know who this player is
       gameID: null,
@@ -216,11 +216,118 @@ angular.module('mean.system')
     game.drawCard = () => {
       socket.emit('drawCard');
     };
-    
+
     socket.on('tooLate', () => {
       angular.element('#gameStartedAlert').modal('show');
     });
-    
+
+    const takeTour = () => {
+      angular.element(document.getElementsByClassName('tour-button')).hide();
+      const tour = new Shepherd.Tour({
+        defaults: {
+          classes: 'shepherd-theme-default',
+          scrollTo: true
+        }
+      });
+      tour.addStep('Step 1', {
+        title: 'Start the game',
+        text: `This button starts the game but a minimum of 3 players
+      is required to start the game`,
+        attachTo: '#start-game-container bottom',
+        classes: 'shepherd-theme-default',
+        showCancelLink: true,
+        buttons: [
+          {
+            text: 'Skip',
+            action: tour.cancel,
+            classes: 'close-tour'
+          },
+          {
+            text: 'Next',
+            action: tour.next
+          }
+        ]
+      });
+      tour.addStep('Step 2', {
+        title: 'Number of players',
+        text: `Here is an indicator of how many players have
+     joined the game out of 12 maximum players allowed.`,
+        attachTo: '#player-count-container bottom',
+        showCancelLink: true,
+        buttons: [
+          {
+            text: 'Skip',
+            action: tour.cancel,
+            classes: 'close-tour'
+          },
+          {
+            text: 'Back',
+            action: tour.back,
+          },
+          {
+            text: 'Next',
+            action: tour.next,
+          }
+        ]
+      });
+      tour.addStep('Step 3', {
+        title: 'Game Timer',
+        text: `This is a countdown timer that shows how much
+       time is remaining for you to choose a card.`,
+        attachTo: '#timer-container left',
+        showCancelLink: true,
+        buttons: [
+          {
+            text: 'Skip',
+            action: tour.cancel,
+            classes: 'close-tour'
+          },
+          {
+            text: 'Back',
+            action: tour.back,
+          },
+          {
+            text: 'Next',
+            action: tour.next,
+          }
+        ]
+      });
+      tour.addStep('Step 4', {
+        title: 'Abandon Game',
+        text: 'Click this button to Leave the game.',
+        attachTo: '#abandon-game-button bottom',
+        showCancelLink: true,
+        buttons: [
+          {
+            text: 'Back',
+            action: tour.back,
+          },
+          {
+            text: 'Done',
+            action: tour.complete,
+            classes: 'close-tour'
+          }
+        ]
+      });
+      tour.start();
+    };
+
+    socket.on('startTour', () => {
+      const userID = window.user ? user.id : 'unauthenticated';
+      console.log(userID);
+      if (userID === 'unauthenticated') {
+        takeTour();
+      } else {
+        gameTour.checkTourTaken(userID).then((data) => {
+          if (data.message === 0) {
+            console.log('not taken tour');
+            takeTour();
+            gameTour.saveTourTaken(userID);
+          }
+        });
+      }
+    });
+
     decrementTime();
 
     return game;

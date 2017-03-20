@@ -102,4 +102,30 @@ angular.module('mean.system')
         return deferred.promise;
       }
     };
+  }])
+  .factory('gameTour', ['$http', '$q', ($http, $q) => {
+    return {
+      checkTourTaken: (userID) => {
+        const deferred = $q.defer();
+        $http.get(`/api/tour/${userID}`)
+          .success((data, status, headers, config) => {
+            deferred.resolve(data, status, headers, config);
+          }).error((err) => {
+            deferred.reject(err);
+          });
+        return deferred.promise;
+      },
+
+      saveTourTaken: (userID) => {
+        const deferred = $q.defer();
+        $http.post('/api/tour', { user_id: userID },
+          { headers: { 'Content-Type': 'application/json' } })
+          .success((res) => {
+            deferred.resolve(res);
+          }).error((err) => {
+            deferred.reject(err);
+          });
+        return deferred.promise;
+      }
+    };
   }]);
