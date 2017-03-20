@@ -103,7 +103,7 @@ angular.module('mean.system')
       }
     };
   }])
-  .factory('gameTour', ['$http', '$q', ($http, $q) => {
+  .factory('gameTourService', ['$http', '$q', ($http, $q) => {
     return {
       checkTourTaken: (userID) => {
         const deferred = $q.defer();
