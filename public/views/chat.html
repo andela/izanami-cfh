@@ -2,8 +2,8 @@
     <div class="panel-heading" style="background: black; color: white">
         <span class="glyphicon glyphicon-{{chat.unreadMessageCount > 0 ?'envelope' : 'comment'}}"></span>
         Chat <span class="message_notification" ng-show="chat.unreadMessageCount > 0">{{chat.unreadMessageCount + ' new message'}} </span>
-        <div class="btn-group pull-right">
-            <a type="button" class="btn btn-default btn-xs" ng-click="showChat()">
+        <div class="btn-group pull-right chat-icon">
+            <a type="button" class="btn btn-default btn-xs chat-arrow" ng-click="showChat()">
                 <span class="glyphicon glyphicon-chevron-{{chat.chatWindowVisible?'down': 'up'}}"></span>
             </a>
         </div>
@@ -25,7 +25,7 @@
         <div class="chatinput">
             <div class="input-group">
                 <input id="text" type="text" class="form-control chat_message" placeholder="Enter Message" ng-model="chatMessage" ng-keypress="keyPressed($event)"/>
-                <a class="send_icon" href="" ng-click="sendMessage(chatMessage)"><i class="glyphicon glyphicon-send">send</i></a>
+                <a class="send_icon" href="" ng-click="sendMessage(chatMessage)"><i class="glyphicon glyphicon-send"></i></a>
             </div>
         </div>
     </div>
