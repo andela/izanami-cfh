@@ -1,5 +1,6 @@
 angular.module('mean.system')
-  .factory('game', ['socket', '$timeout', function (socket, $timeout) {
+  // .factory('game', ['socket', '$timeout', (socket, $timeout) => {
+  .factory('game', ['socket', '$timeout', 'chat', (socket, $timeout, chat) => {
     const game = {
       id: null, // This player's socket ID, so we know who this player is
       gameID: null,
@@ -19,7 +20,8 @@ angular.module('mean.system')
       curQuestion: null,
       notification: null,
       timeLimits: {},
-      joinOverride: false
+      joinOverride: false,
+      gameChat: chat
     };
 
     const notificationQueue = [];
@@ -85,6 +87,12 @@ angular.module('mean.system')
       }
 
       const newState = (data.state !== game.state);
+
+      //  update our chat service properties
+      game.gameChat.setChatUsername(data.players[game.playerIndex].username);
+      game.gameChat.setChatGroup(data.gameID);
+      game.gameChat.listenForMessages();
+      game.gameChat.clearMessageHistory();
 
     // Handle updating game.time
       if (data.round !== game.round && data.state !== 'awaiting players' &&
@@ -216,11 +224,11 @@ angular.module('mean.system')
     game.drawCard = () => {
       socket.emit('drawCard');
     };
-    
+
     socket.on('tooLate', () => {
       angular.element('#gameStartedAlert').modal('show');
     });
-    
+
     decrementTime();
 
     return game;
