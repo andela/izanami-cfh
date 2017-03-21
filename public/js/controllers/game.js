@@ -28,15 +28,9 @@ angular.module('mean.system')
       const scrollChatThread = () => {
         const chatResults = document.getElementById('results');
         chatResults.scrollTop = chatResults.scrollHeight;
-        // const isScrolledToBottom = chatResults.scrollHeight - chatResults.clientHeight
-        //   <= chatResults.scrollTop + 1;
-        // if (isScrolledToBottom) {
-        //   chatResults.scrollTop = chatResults.scrollHeight - chatResults.clientHeight;
-        // }
-        // $("#results").scrollTop : $('#results')[0].scrollHeight - $('#results')[0].clientHeight;
       };
 
-      $scope.$watchCollection('chat.messageArray', (newValue, oldValue) => {
+      $scope.$watchCollection('chat.messageArray', () => {
         $timeout(() => {
           scrollChatThread();
         }, 100);
@@ -125,9 +119,11 @@ angular.module('mean.system')
         return false;
       };
 
-      $scope.showFirst = card => game.curQuestion.numAnswers > 1 && $scope.pickedCards[0] === card.id;
+      $scope.showFirst = card =>
+        game.curQuestion.numAnswers > 1 && $scope.pickedCards[0] === card.id;
 
-      $scope.showSecond = card => game.curQuestion.numAnswers > 1 && $scope.pickedCards[1] === card.id;
+      $scope.showSecond = card =>
+        game.curQuestion.numAnswers > 1 && $scope.pickedCards[1] === card.id;
 
       $scope.isCzar = () => game.czar === game.playerIndex;
 
@@ -197,7 +193,7 @@ angular.module('mean.system')
           } else if ($scope.isCustomGame() && !$location.search().game) {
             // Once the game ID is set, update the URL if this is a game with friends,
             // where the link is meant to be shared.
-            $location.search({game: game.gameID});
+            $location.search({ game: game.gameID });
             if (!$scope.modalShown) {
               setTimeout(() => {
                 $('#searchContainer').show();
