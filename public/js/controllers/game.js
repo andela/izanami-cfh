@@ -158,7 +158,7 @@ angular.module('mean.system')
           $('#playerMinimumAlert').modal('show');
         }
       };
-      
+
       $scope.abandonGame = () => {
         game.leaveGame();
         gameTour.cancelTour();

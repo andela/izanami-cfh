@@ -21,7 +21,7 @@ angular.module('mean.system')
       notification: null,
       timeLimits: {},
       joinOverride: false,
-      gameChat: chat
+      gameChat: chat,
       tour: gameTour
     };
 
@@ -29,13 +29,6 @@ angular.module('mean.system')
     let timeout = false;
     const self = this;
     let joinOverrideTimeout = 0;
-
-    const tour = new Shepherd.Tour({
-      defaults: {
-        classes: 'shepherd-theme-default',
-        scrollTo: true
-      }
-    });
 
     const addToNotificationQueue = function (msg) {
       notificationQueue.push(msg);
