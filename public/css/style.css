@@ -32,6 +32,25 @@
 .clear {
  clear:both;
 }
+.tour-button{
+  border-radius: 8px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  font-size: 20px;
+  font-weight: 400;
+  color: white;
+  background: #1F959C;
+  padding: 10px 10px;
+  margin: 10px;
+  cursor: pointer;
+}
+
+.tour-button:hover{
+  background: #41C2CA;
+}
+ .clear {
+   clear:both;
+ }
 
 .uppercase {
  text-transform: uppercase;
