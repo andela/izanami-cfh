@@ -237,13 +237,11 @@ angular.module('mean.system')
 
     socket.on('startTour', () => {
       const userID = window.user ? user.id : 'unauthenticated';
-      console.log(userID);
       if (userID === 'unauthenticated') {
         takeTour();
       } else {
         gameTourService.checkTourTaken(userID).then((data) => {
           if (data.message === 0) {
-            console.log('not taken tour');
             takeTour();
             gameTourService.saveTourTaken(userID);
           }
