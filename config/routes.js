@@ -1,7 +1,7 @@
 module.exports = (app, passport) => {
-    // User Routes
-  const users = require('../app/controllers/users'),
-    customAuth = require('./middlewares/authorization.js');
+  // User Routes
+  const users = require('../app/controllers/users')
+  const customAuth = require('./middlewares/authorization.js');
 
   app.get('/signin', users.signin);
   app.get('/signup', users.signup);
@@ -20,10 +20,10 @@ module.exports = (app, passport) => {
     failureFlash: 'Invalid email or password.'
   }), users.session);
 
-    /*
-        Endpoint for login. Passportsquthenticates user,
-        JWT gets generated if valid user and then saves token in cookies
-    */
+  /*
+      Endpoint for login. Passportsquthenticates user,
+      JWT gets generated if valid user and then saves token in cookies
+  */
   app.post('/api/auth/login', passport.authenticate('local', {
     session: false,
     failureRedirect: '/signin',
@@ -109,10 +109,23 @@ module.exports = (app, passport) => {
   // search user route
   const search = require('../app/controllers/search-users');
   app.get('/api/search/users/:inviteeUserName', search.users);
+  app.get('/api/search/getuser/:id', search.getUser);
 
   // Mail Invite Route
   const mailer = require('../app/controllers/mailer');
   app.post('/api/invite/user', mailer.invite);
+
+  // Notifications route
+  const notification = require('../app/controllers/notification');
+  app.get('/api/notification/:id', notification.getNotification);
+
+  // Friends Route
+  const friends = require('../app/controllers/friends.js');
+  app.get('/api/friends/:id', friends.getAll);
+  app.get('/api/friends/status/:user/:sender', friends.reqStatus);
+  app.post('/api/friends/request', friends.sendReq);
+  app.post('/api/friends/request/accept', friends.acceptReq);
+  app.post('/api/friends/request/reject', friends.rejectReq);
 
   app.get('/', customAuth.hasAuth(), index.render);
 };

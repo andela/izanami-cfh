@@ -1,5 +1,5 @@
 angular.module('mean.system')
-  .controller('GameController', ['$scope', 'game', '$timeout', '$location', 'MakeAWishFactsService', '$dialog', 'playerSearch', 'invitePlayer', function ($scope, game, $timeout, $location, MakeAWishFactsService, $dialog, playerSearch, invitePlayer) {
+  .controller('GameController', ['$scope', 'game','socket', '$timeout', '$location', 'MakeAWishFactsService', '$dialog', 'playerSearch', 'invitePlayer', function ($scope, game, socket, $timeout, $location, MakeAWishFactsService, $dialog, playerSearch, invitePlayer) {
     $scope.hasPickedCards = false;
     $scope.winningCardPicked = false;
     $scope.showTable = false;
@@ -158,15 +158,30 @@ angular.module('mean.system')
         if ($scope.invitedPlayers.length > game.playerMaxLimit - 1) {
           $('#playerMaximumAlert').modal('show');
         }
-        invitePlayer.sendMail($scope.inviteeUserEmail, document.URL).then((data) => {
-          if (data === 'Accepted') {
-            $scope.invitedPlayers.push($scope.inviteeUserEmail);
-            $scope.invitedPlayerName = $scope.inviteeUserName;
-            $scope.searchResults = [];
-            $scope.inviteeUserEmail = '';
-            $scope.inviteeUserName = '';
-          }
+        socket.emit('sendInvite', {
+          user: $scope.inviteeUserID,
+          sender: window.user.name
+        }, function() {
+          $scope.invitedPlayers.push($scope.inviteeUserEmail);
+          $scope.invitedPlayerName = $scope.inviteeUserName;
+          $scope.searchResults = [];
+          $scope.inviteeUserEmail = '';
+          $scope.inviteeUserName = '';
+          $scope.notifications = {};
+          // socket.emit('refreshNotification',{user: #scope.invi} () => {
+          //   console.log('Notifications are refreshing');
+          // });
         });
+
+        // invitePlayer.sendMail($scope.inviteeUserEmail, document.URL).then((data) => {
+        //   if (data === 'Accepted') {
+        //     $scope.invitedPlayers.push($scope.inviteeUserEmail);
+        //     $scope.invitedPlayerName = $scope.inviteeUserName;
+        //     $scope.searchResults = [];
+        //     $scope.inviteeUserEmail = '';
+        //     $scope.inviteeUserName = '';
+        //   }
+        //});
       } else {
         $('#playerAlreadyInvited').modal('show');
 
@@ -179,7 +194,12 @@ angular.module('mean.system')
     $scope.playerSearch = () => {
       if ($scope.inviteeUserName !== '') {
         playerSearch.getPlayers($scope.inviteeUserName).then((data) => {
-          $scope.searchUserResults = data;
+          $scope.searchUserResults = data.filter((user) => {
+            console.log(window.user);
+            if (user._id !== window.user.id ) {
+              return user;
+            }
+          });
         });
       } else {
         $scope.searchUserResults = [];
@@ -189,6 +209,7 @@ angular.module('mean.system')
     $scope.selectUser = (selectedUser) => {
       $scope.inviteeUserEmail = selectedUser.email;
       $scope.inviteeUserName = selectedUser.name;
+      $scope.inviteeUserID = selectedUser._id;
       $scope.searchUserResults = [];
     };
 

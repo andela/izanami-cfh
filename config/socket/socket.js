@@ -1,6 +1,8 @@
 const Game = require('./game');
+const Notification = require('../../app/controllers/notification');
 const Player = require('./player');
 require('console-stamp')(console, 'm/dd HH:MM:ss');
+
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
 
@@ -78,6 +80,39 @@ module.exports = function (io) {
       if (allGames[socket.gameID]) {
         allGames[socket.gameID].drawCard();
       }
+    });
+
+    socket.on('sendInvite', (params, cb) => {
+      Notification.saveNotification({
+        reciever: params.user,
+        sender: params.sender,
+        link: socket.gameID
+      }, (response) => {
+        if (response.status === 'success') {
+          cb(null, response);
+          socket.broadcast.emit('refreshNotification', { user: params.user });
+        } else {
+          cb('error', response);
+        }
+      });
+    });
+
+    socket.on('loadNotification', (params, cb) => {
+      Notification.getNotification(params.user.id, (response) => {
+        cb(null, response);
+      });
+    });
+
+    socket.on('makeBroadcast', (params) => {
+      socket.broadcast.emit(params.message, params.param);
+    });
+
+    socket.on('readUpdate', (params, callback) => {
+      Notification.updateRead(params.user, (response) => {
+        if (response) {
+          callback();
+        }
+      });
     });
   });
 

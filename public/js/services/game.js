@@ -216,11 +216,11 @@ angular.module('mean.system')
     game.drawCard = () => {
       socket.emit('drawCard');
     };
-    
+
     socket.on('tooLate', () => {
       angular.element('#gameStartedAlert').modal('show');
     });
-    
+
     decrementTime();
 
     return game;

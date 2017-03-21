@@ -1,7 +1,37 @@
 <script>
+  function openModal(id) {
+    $('.tooltip-box').css({ visibility: "hidden" });
+    $('#search-modal').modal('hide');
+    $(`#${id}`).modal('show');
+  }
+
   function openPlayModal() {
     $('#play-game-modal').modal('show');
   }
+
+  function toggleTooltip(box) {
+    const visibility = $(`#${box}-tooltip`).css("visibility");
+    $('.tooltip-box').css({ visibility: "hidden" });
+    if ($(window).width() >= 768) {
+      if (visibility === 'hidden') {
+        $(`#${ box }-tooltip`).css({
+          visibility: "visible",
+          opacity: "1",
+          "z-index": "999",
+          "margin-left": "-76px",
+          top: "30px",
+          left: "50%"
+        });
+      } else {
+        $(`#${ box }-tooltip`).css({
+          visibility: "hidden"
+        });
+      }
+    } else {
+      openModal(`${ box }-modal`);
+    }
+  }
+
 </script>
 <div class="modal fade" id="play-game-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
@@ -28,7 +58,7 @@
 </div>
 <div landing id="main-bod">
   <!-- Fixed Logo & Menu Bar Start -->
-  <div class="container-fluid">
+  <div ng-controller="IndexController" class="container-fluid">
     <header>
       <nav class="navbar navbar-default navbar-fixed-top" id="nav-id">
         <div class="container-fluid">
@@ -48,20 +78,221 @@
               <li><a href="#!/#charity">Charity</a></li>
               <li ng-show="showOptions"><a href="#!/signup">Sign Up</a></li>
               <li ng-show="showOptions"><a href="#!/signin">Sign In</a></li>
+              <li ng-hide="showOptions" class="notification-list">
+                <span class="fa fa-users" onclick="toggleTooltip('friends')"></span>
+                <div id="friends-tooltip" class="tooltip-box">
+                  <div class="notification-header">
+                    Friends ({{ friendsNum }})
+                  </div>
+                  <div class="col-lg-12 search-box">
+                    <div class="result-box" ng-show="friends">
+                      <div ng-repeat="friend in friends">
+                        <div  class="user-result-name" ng-show="friend" ng-click="selectUser(result)">
+                          <img class="friends-avatar" ng-src="{{ friend.avatar }}" />{{ friend.name }}
+                        </div>
+                      </div>
+                    </div>
+                    <div ng-hide="friends">
+                      <h4> You have no friends </h4>
+                    </div>
+                  </div>
+                  <div class="toolitp-footer">
+                    <span onclick="openModal('friends-modal')" class="notification-see-all notification-link">see all</span>
+                  </div>
+                </div>
+              </li>
+              <li ng-hide="showOptions" class="notification-list">
+                <span class="fa fa-search" onclick="toggleTooltip('search')"></span>
+                <div id="search-tooltip" class="tooltip-box">
+                  <div class="notification-header">
+                    Search users
+                  </div>
+                  <div class="col-lg-12 search-box">
+                    <div class="input-group">
+                      <input ng-keyup="playerSearch()" ng-model="inviteeUserName" type="text" class="form-control" placeholder="Search for...">
+                      <span class="input-group-btn">
+                        <button ng-disabled="!inviteeUserID" class="btn btn-primary" type="button" onclick="openModal('user-modal')" ng-click="reqStatus(inviteeUserID)">Go!</button>
+                      </span>
+                    </div>
+                    <div class="result-box" ng-show="searchUserResults">
+                      <div class="user-result-name" ng-repeat="result in searchUserResults" ng-click="selectUser(result)">
+                        {{result.name}}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li ng-hide="showOptions" class='notification-list'>
+                <span ng-show="notifications.unread" class="unread-notification">
+                  {{ notifications.unread }}
+                </span>
+                <span class="tooltips fa fa-globe" onclick="toggleTooltip('notification')">
+                </span>
+                <div id="notification-tooltip" class="tooltip-box">
+                  <div class="notification-header">
+                    Notifications
+                  </div>
+                  <div ng-show="notifications">
+                    <div ng-repeat="notification in notifications.details | limitTo: 5">
+                      <div ng-class="'notification notification-'+notification.read">
+                        <span>
+                          {{notification.message}}
+                        </span>
+                        <br/>
+                        <span ng-show="notification.type === 'invite'">
+                          <a class="notification-link" ng-click="updateRead(notification.id)" ng-href='{{notification.link}}'>
+                            Join
+                          </a>
+                        </span>
+                        <span ng-show="notification.type === 'friends'">
+                          <a class="notification-link" href="" ng-click="acceptReq(notification.sender)">
+                            Accept <i class="fa fa-check"></i>
+                          </a>
+                          <a class="notification-link" href="" ng-click="rejectReq(notification.link)">
+                            Reject <i class="fa fa-times"></i>
+                          </a>
+                        </span>
+                        <span class='notification-timeago'>
+                          4 hours ago
+                        </span>
+                      </div>
+                    </div>
+                    <div>
+                      <span onclick="openModal('notification-modal')" class="notification-see-all">see all</span>
+                    </div>
+                  </div>
+                  <div ng-hide="notifications">
+                    <h4> You have no notifications </h4>
+                  </div>
+                </div>
+              </li>
               <li ng-hide="showOptions" class='signout'><a href="/signout">Sign Out</a></li>
             </ul>
           </div>
         </div>
       </nav>
     </header>
-    
+    <div class="modal fade" id="notification-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header modal-header-notification">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h3 class="modal-title" id="myModalLabel">Notifications</h3>
+          </div>
+          <div class="modal-body modal-body-notification">
+            <div ng-repeat="notification in notifications.details">
+              <div ng-class="'modal-notification modal-notification-'+notification.read">
+                <span class="notification-timeago">
+                  4 hours ago
+                </span>
+                <br />
+                {{ notification.message }}
+                <br />
+                <span ng-show="notification.type === 'invite'">
+                  <a class="notification-link notification-link-btn" ng-click="updateRead(notification.id)" ng-href='{{notification.link}}'>
+                    Join
+                  </a>
+                </span>
+                <span ng-show="notification.type === 'friends'">
+                  <a class="notification-link notification-link-btn" ng-click="acceptReq(notification.sender)">
+                    Accept<span class="fa fa-check"></span>
+                  </a>
+                  <a class="notification-link notification-link-btn" ng-click="rejectReq(notification.link)">
+                    Reject<span class="fa fa-times"></span>
+                  </a>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer modal-footer-notification">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="search-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h3 class="modal-title" id="myModalLabel">Search for users</h3>
+          </div>
+          <div class="modal-body">
+            <div class="col-lg-12 search-box">
+              <div class="input-group">
+                <input ng-keyup="playerSearch()" ng-model="inviteeUserName" type="text" class="form-control" placeholder="Search for...">
+                <span class="input-group-btn">
+                  <button ng-disabled="!inviteeUserID" class="btn btn-primary" type="button" onclick="openModal('user-modal')" ng-click="reqStatus(inviteeUserID)">Go!</button>
+                </span>
+              </div>
+              <div class="result-box" ng-show="searchUserResults">
+                <div class="user-result-name user-result-name-modal" ng-repeat="result in searchUserResults" ng-click="selectUser(result)">
+                  {{result.name}}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="user-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h3 class="modal-title" id="myModalLabel">{{ allSearchResults[searchedUserName][0].name }}</h3>
+          </div>
+          <div class="modal-body modal-body-user row">
+            <div class="col-xs-4 col-md-2">
+              <img ng-src="{{ allSearchResults[searchedUserName][0].avatar }}" />
+            </div>
+            <div class="col-xs-8 col-md-6">
+              <button ng-disabled="friendshipStatus" type="button" class="btn btn-primary" ng-click="sendRequest(allSearchResults[searchedUserName][0]._id)">
+                <span>{{ friendshipStatusMessage }}</span>
+              </button>
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="friends-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content modal-content-friends col-md-10">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h3 class="modal-title" id="myModalLabel">Friends ({{ friendsNum }})</h3>
+          </div>
+          <div class="modal-body modal-body-notification">
+            <div ng-repeat="friend in friends">
+              <div ng-show="friend" ng-class="'row modal-notification modal-notification-'+notification.read">
+                <div class="col-md-2 col-xs-3">
+                  <img class="friends-modal-avatar" ng-src="{{ friend.avatar }}" />
+                </div>
+                <div class="col-md-5 col-xs-7">
+                  {{ friend.name }}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer modal-footer-notification">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
 </div>
 
 <!-- Fixed Logo & Menu Bar End -->
 
 <!-- Landing Start -->
   <section id="home">
-    <div ng-controller="IndexController"></div>
+    <div ng-controller="IndexController">
+    </div>
+
     <div class="image"></div>
     <h2 class="animated slideInUp" id="tagLine">
       A game for horrible people <span class="desperately">desperately</span> trying to do good.

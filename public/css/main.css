@@ -296,10 +296,14 @@ footer a:hover {
   .image {
       height: 350px;
   }
+  .user-modal-avatar {
+    width: 30%;
+    float: left;
+  }
 }
 
 /*sign in page*/
-    
+
 .brand-name {
   text-align: center;
 }
@@ -456,7 +460,7 @@ div.hr div:last-child {
   -webkit-appearance: none;
   border: none;
   font-size: 14px;
-  transition: 0.5s;      
+  transition: 0.5s;
 }
 #sign-up-btn-other:hover {
   background-color: #922323;
@@ -565,7 +569,6 @@ input:focus {
     background-size: 50%;
     padding-top: 20px;
   }
-  
 }
 
 
@@ -587,7 +590,7 @@ input:focus {
     height: 100%;
     background-size: 50%;
     padding-top: 20px;
-  } 
+  }
 }
 /* ----------- iPhone 6+ ----------- */
 
@@ -607,7 +610,7 @@ input:focus {
     height: 100%;
     background-size: 50%;
     padding-top: 20px;
-  } 
+  }
 }
 
 
@@ -630,7 +633,6 @@ input:focus {
     background-size: 50%;
     padding-top: 20px;
   }
-  
 }
 @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
   .avatars{
@@ -645,7 +647,7 @@ input:focus {
     height: 100%;
     background-size: 50%;
     padding-top: 20px;
-  }  
+  }
 }
 /* iPads (portrait and landscape) ----------- */
 @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
@@ -693,5 +695,9 @@ input:focus {
     height: 100%;
     background-size: 50%;
     padding-top: 20px;
+  }
+  .user-modal-avatar {
+    width: 30%;
+    float: left;
   }
 }

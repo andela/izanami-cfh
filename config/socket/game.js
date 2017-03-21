@@ -454,7 +454,6 @@ Game.prototype.drawCard = function () {
   this.stateChoosing(this);
 };
 
-
 Game.prototype.saveGame = (players) => {
   const rawGameData = players.slice(0);
   const gamePlayers = rawGameData.map((data) => {
@@ -488,12 +487,12 @@ Game.prototype.updateGame = (players) => {
     }
     return data;
   });
-  const gameId = players[0].socket.gameID;
+  let gameId = players[0].socket.gameID;
   GameModel.findOne({ game_id: gameId }, function (err, game){
     game.players = gamePlayers;
     game.winner = winner;
     game.save();
-});
-}
+  });
+};
 
 module.exports = Game;
