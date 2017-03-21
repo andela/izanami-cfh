@@ -9,4 +9,5 @@ public/lib
 c4h_keys.txt
 coverage
 lib
+debug.log
 npm-debug.log

@@ -61,7 +61,7 @@ function Game(gameID, io) {
 
 Game.prototype.payload = function () {
   const players = [];
-  this.players.forEach((player ,index) => {
+  this.players.forEach((player, index) => {
     players.push({
       hand: player.hand,
       points: player.points,
@@ -359,7 +359,7 @@ Game.prototype.pickCards = function (thisCardArray, thisPlayer) {
   }
 };
 
-Game.prototype.getPlayer = function(thisPlayer) {
+Game.prototype.getPlayer = function (thisPlayer) {
   const playerIndex = this._findPlayerIndexBySocket(thisPlayer);
   if (playerIndex > -1) {
     return this.players[playerIndex];

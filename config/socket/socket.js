@@ -175,6 +175,7 @@ module.exports = function (io) {
           gamesNeedingPlayers.shift();
           game.prepareGame();
         }
+        socket.emit('startTour');
       } else {
         // TODO: Send an error message back to this user saying the game has already started
         exitGame(socket);
@@ -188,13 +189,17 @@ module.exports = function (io) {
       } else {
         fireGame(player, socket);
       }
+      socket.emit('startTour');
     }
   };
 
   let fireGame = function (player, socket) {
     let game;
     if (gamesNeedingPlayers.length <= 0) {
-      gameID += 1;
+      const randNum = Math.floor(Math.random() * 10);
+      for (let len = 0; len < randNum; len += 1 ) {
+        gameID += chars[Math.floor(Math.random() * chars.length)];
+      }
       const gameIDStr = gameID.toString();
       game = new Game(gameIDStr, io);
       allPlayers[socket.id] = true;
