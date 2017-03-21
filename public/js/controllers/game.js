@@ -26,7 +26,7 @@ angular.module('mean.system')
        * @return{undefined}
        */
       const scrollChatThread = () => {
-        const chatResults = document.getElementById('results');
+        const chatResults = document.getElementById('chat-results');
         chatResults.scrollTop = chatResults.scrollHeight;
       };
 
@@ -49,8 +49,9 @@ angular.module('mean.system')
       $scope.keyPressed = ($event) => {
         const keyCode = $event.which || $event.keyCode;
         //  if enter clicked
-        if (keyCode === 13) {
+        if (keyCode === 13 && !$event.shiftKey) {
           $scope.sendMessage($scope.chatMessage);
+          $event.preventDefault();
         }
       };
 
