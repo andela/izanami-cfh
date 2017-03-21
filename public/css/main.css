@@ -775,3 +775,61 @@ html {
   background: #aaa;
   margin-top: 50px;
 }
+.abandon-game {
+    padding: 0 10px;
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.abandon-game .toolTipText {
+    visibility: hidden;
+    background-color: #F8F8F8;
+    color: #000;
+    text-align: center;
+    border-radius: 3px;
+    padding: 5px;
+    margin: 0;
+    border: 1px solid #ccc;
+
+    /* Position of the tooltip */
+    position: absolute;
+    display: inline-flex;
+    z-index: 5;
+    top: 18px;
+    width: 260%;
+    left: 38%; 
+    transform: translate(-50%, 70%);
+    font-family: 'Orbitron', sans-serif;
+}
+
+.abandon-game:hover .toolTipText {
+    visibility: visible;
+}
+#main-container #app-container #gameplay-container #cards-container #cards {
+  border-radius: 1px !important;
+  background: #2D2D2D;
+  padding-left: 25px;
+}
+.wait-for-czar {
+  border-radius: 1px;
+  background: #2D2D2D;
+  height: 10%;
+} 
+.wait-for-czar h4 {
+  padding-top: 10px;
+}
+.answers-donate {
+  top: 70%;
+}
+#cards .card {
+  background : #fff;
+}
+.draw-cards {
+  border-radius: 1px !important;
+  background: #2D2D2D;
+}
+#main-container #app-container #gameplay-container #cards-container  {
+  border-radius: 1px;
+  background: #2D2D2D;
+}
