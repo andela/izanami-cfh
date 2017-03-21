@@ -1,8 +1,8 @@
 angular.module('mean.system')
   .controller('GameController', ['$scope', 'game', '$timeout', '$location', 'MakeAWishFactsService',
-    '$dialog', 'playerSearch', 'invitePlayer',
-    ($scope, game, $timeout, $location, MakeAWishFactsService,
-      $dialog, playerSearch, invitePlayer) => {
+    '$dialog', 'playerSearch', 'invitePlayer', 'gameTour', '$window',
+    ($scope, game, $timeout, $location, MakeAWishFactsService, $dialog, playerSearch,
+     invitePlayer, gameTour) => {
       $scope.hasPickedCards = false;
       $scope.winningCardPicked = false;
       $scope.showTable = false;
@@ -158,9 +158,10 @@ angular.module('mean.system')
           $('#playerMinimumAlert').modal('show');
         }
       };
-
+      
       $scope.abandonGame = () => {
         game.leaveGame();
+        gameTour.cancelTour();
         $location.path('/');
       };
 
@@ -193,11 +194,11 @@ angular.module('mean.system')
           } else if ($scope.isCustomGame() && !$location.search().game) {
             // Once the game ID is set, update the URL if this is a game with friends,
             // where the link is meant to be shared.
-            $location.search({ game: game.gameID });
+            $location.search({game: game.gameID});
             if (!$scope.modalShown) {
               setTimeout(() => {
                 $('#searchContainer').show();
-              }, 70);
+              }, 10);
               $scope.modalShown = true;
             }
           }
@@ -276,4 +277,19 @@ angular.module('mean.system')
       } else {
         game.joinGame();
       }
+
+      $scope.startTour = () => {
+        angular.element(document.getElementsByClassName('tour-button')).hide();
+        gameTour.startTour();
+      };
     }]);
+
+$(document).ready(() => {
+  $(document).on('click', '.close-tour', () => {
+    $('.tour-button').show();
+  });
+  $(document).on('click', '.shepherd-cancel-link', () => {
+    $('.tour-button').show();
+  });
+});
+
