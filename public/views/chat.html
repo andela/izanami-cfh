@@ -1,0 +1,40 @@
+<div class="chatpanel">
+    <div class="panel-heading" style="background: black; color: white">
+        <span class="glyphicon glyphicon-{{chat.unreadMessageCount > 0 ?'envelope' : 'comment'}}"></span>
+        Chat
+        <div class="btn-group pull-right">
+            <span class="message_notification" ng-show="chat.unreadMessageCount > 0">{{chat.unreadMessageCount + ' new message'}} </span>
+            <a type="button" class="btn btn-default btn-xs chat-arrow pull-right chat-icon" ng-click="showChat()">
+                <span class="glyphicon glyphicon-chevron-{{chat.chatWindowVisible?'down': 'up'}}"></span>
+            </a>
+        </div>
+    </div>
+    <div ng-show="chat.chatWindowVisible">
+        <div id="chat-results" class="chatthread">
+            <ul class="media-list">
+                <li ng-repeat="message in chat.messageArray" class="message">
+                    <div class="chat-body clearfix">
+                        <div class="header">
+                            <strong class="senderName">{{message.senderName}} | </strong>
+                            <small class=" text-muted time-content">{{message.time}}</small>
+                        </div>
+                        <p class="message_content">{{message.textContent}}</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="chat-input-container">
+            <div class="chatinput row">
+                <div class="col-md-10 col-sm-11 col-xs-11" style="padding-right: 0px; padding-left: 0px;">
+                    <textarea id="msg_input" style="overflow-y: hidden;" ng-model="chatMessage" ng-keypress="keyPressed($event)"></textarea>
+                </div>
+                <div class="col-md-2 col-sm-1 col-xs-1" style="padding-right: 5px;padding-top: 5px;">
+                    <a class="send_icon" href="" ng-click="sendMessage(chatMessage)" style="margin-bottom: 5px"><i class="glyphicon glyphicon-send"></i></a>
+                    <br/><i class="fa fa-smile-o"></i>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -19,6 +19,34 @@ angular.module('mean.system')
       $scope.invitedPlayers = [];
       $scope.firstPlayer = false;
 
+      $scope.chat = game.gameChat;
+
+      /**
+       * Method to send messages
+       * @param{string} userMessage
+       * @return{undefined}
+       */
+      $scope.sendMessage = (userMessage) => {
+        $scope.chat.postGroupMessage(userMessage);
+        $scope.chatMessage = '';
+      };
+
+      $scope.keyPressed = ($event) => {
+        const keyCode = $event.which || $event.keyCode;
+        //  if enter clicked
+        if (keyCode === 13 && !$event.shiftKey) {
+          $scope.sendMessage($scope.chatMessage);
+          $event.preventDefault();
+        }
+      };
+
+      $scope.showChat = () => {
+        $scope.chat.chatWindowVisible = !$scope.chat.chatWindowVisible;
+        if ($scope.chat.chatWindowVisible) {
+          $scope.chat.unreadMessageCount = 0;
+        }
+      };
+
       $scope.pickCard = (card) => {
         if (!$scope.hasPickedCards) {
           if ($scope.pickedCards.indexOf(card.id) < 0) {
@@ -44,10 +72,12 @@ angular.module('mean.system')
         }
         return {};
       };
+
       $scope.sendPickedCards = () => {
         game.pickCards($scope.pickedCards);
         $scope.showTable = true;
       };
+
       $scope.cardIsFirstSelected = (card) => {
         if (game.curQuestion.numAnswers > 1) {
           return card === $scope.pickedCards[0];
@@ -60,12 +90,14 @@ angular.module('mean.system')
         }
         return false;
       };
+
       $scope.firstAnswer = ($index) => {
         if ($index % 2 === 0 && game.curQuestion.numAnswers > 1) {
           return true;
         }
         return false;
       };
+
       $scope.secondAnswer = ($index) => {
         if ($index % 2 === 1 && game.curQuestion.numAnswers > 1) {
           return true;
@@ -73,9 +105,11 @@ angular.module('mean.system')
         return false;
       };
 
-      $scope.showFirst = card => game.curQuestion.numAnswers > 1 && $scope.pickedCards[0] === card.id;
+      $scope.showFirst = card =>
+        game.curQuestion.numAnswers > 1 && $scope.pickedCards[0] === card.id;
 
-      $scope.showSecond = card => game.curQuestion.numAnswers > 1 && $scope.pickedCards[1] === card.id;
+      $scope.showSecond = card =>
+        game.curQuestion.numAnswers > 1 && $scope.pickedCards[1] === card.id;
 
       $scope.isCzar = () => game.czar === game.playerIndex;
 

@@ -56,11 +56,11 @@ angular.module('mean.system')
             },
             {
               text: 'Back',
-              action: this.tour.back,
+              action: this.tour.back
             },
             {
               text: 'Next',
-              action: this.tour.next,
+              action: this.tour.next
             }
           ]
         });
@@ -78,15 +78,36 @@ angular.module('mean.system')
             },
             {
               text: 'Back',
-              action: this.tour.back,
+              action: this.tour.back
             },
             {
               text: 'Next',
-              action: this.tour.next,
+              action: this.tour.next
             }
           ]
         });
         this.tour.addStep('Step 4', {
+          title: 'Game Chat',
+          text: 'While in a game, you can chat with other players.',
+          attachTo: '#chat-container top',
+          showCancelLink: true,
+          buttons: [
+            {
+              text: 'Skip',
+              action: this.tour.cancel,
+              classes: 'close-tour'
+            },
+            {
+              text: 'Back',
+              action: this.tour.back
+            },
+            {
+              text: 'Next',
+              action: this.tour.next
+            }
+          ]
+        });
+        this.tour.addStep('Step 5', {
           title: 'Abandon Game',
           text: 'Click this button to Leave the game.',
           attachTo: '#abandon-game-button bottom',
@@ -94,7 +115,7 @@ angular.module('mean.system')
           buttons: [
             {
               text: 'Back',
-              action: this.tour.back,
+              action: this.tour.back
             },
             {
               text: 'Done',
