@@ -702,10 +702,6 @@ body{
                             margin-left: 5px;
                         }
 
-                        @include mobile-only{
-                            display: none;
-                        }
-
                             img {
                                 width: 22px;
 
@@ -734,10 +730,6 @@ body{
                         color: #fff;
                         font-weight: bold;
                         font-size: 20px;
-
-                        @include mobile-only{
-                            display: none;
-                        }
                     }
                 }
             }

@@ -546,158 +546,6 @@ input:focus {
   padding: 10px;
 }
 
-/* ----------- iPhone 5 and 5S ----------- */
-
-
-/* Portrait and Landscape */
-
-@media only screen and (min-device-width: 320px) and (max-device-width: 568px) and (-webkit-min-device-pixel-ratio: 2) {
-  .avatars{
-    margin: 0;
-    position: relative;
-    float: left;
-    width: 33%;
-    display: inline-block;
-  }
-  #signin-main {
-    background-color: #fff;
-    height: 100%;
-    background-size: 50%;
-    padding-top: 20px;
-  }
-  #app-container {
-    padding: 0 5px;
-  }
-  
-}
-
-
-/* ----------- iPhone 6 ----------- */
-
-
-/* Portrait and Landscape */
-
-@media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) {
-  .avatars{
-    margin: 0;
-    position: relative;
-    float: left;
-    width: 33%;
-    display: inline-block;
-  }
-  #signin-main {
-    background-color: #fff;
-    height: 100%;
-    background-size: 50%;
-    padding-top: 20px;
-  } 
-}
-/* ----------- iPhone 6+ ----------- */
-
-
-/* Portrait and Landscape */
-
-@media only screen and (min-device-width: 414px) and (max-device-width: 736px) and (-webkit-min-device-pixel-ratio: 3) {
-  .avatars{
-    margin: 0;
-    position: relative;
-    float: left;
-    width: 33%;
-    display: inline-block;
-  }
-  #signin-main {
-    background-color: #fff;
-    height: 100%;
-    background-size: 50%;
-    padding-top: 20px;
-  } 
-}
-
-
-/* ----------- Galaxy S5 ----------- */
-
-
-/* Portrait and Landscape */
-
-@media screen and (device-width: 360px) and (device-height: 640px) and (-webkit-device-pixel-ratio: 3) {
-  .avatars{
-    margin: 0;
-    position: relative;
-    float: left;
-    width: 33%;
-    display: inline-block;
-  }
-  #signin-main {
-    background-color: #fff;
-    height: 100%;
-    background-size: 50%;
-    padding-top: 20px;
-  }
-  
-}
-@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
-  .avatars{
-    margin: 0;
-    position: relative;
-    float: left;
-    width: 33%;
-    display: inline-block;
-  }
-  #signin-main {
-    background-color: #fff;
-    height: 100%;
-    background-size: 50%;
-    padding-top: 20px;
-  }  
-}
-/* iPads (portrait and landscape) ----------- */
-@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
-  .avatars{
-    margin: 0;
-    position: relative;
-    float: left;
-    width: 33%;
-    display: inline-block;
-      }
-  #signin-main {
-    background-color: #fff;
-    height: 100%;
-    background-size: 50%;
-    padding-top: 20px;
-  }
-}
-/* iPhone 4 ----------- */
-@media only screen and (min-device-width : 320px) and (max-device-width : 480px) and (orientation : landscape) and (-webkit-min-device-pixel-ratio : 2) {
-  .avatars{
-    margin: 0;
-    position: relative;
-    float: left;
-    width: 33%;
-    display: inline-block;
-      }
-  #signin-main {
-    background-color: #fff;
-    height: 100%;
-    background-size: 50%;
-    padding-top: 20px;
-  }
-}
-/* Samsung Galaxy S3 ----------- */
-@media only screen and (min-device-width: 320px) and (max-device-height: 640px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 2){
-  .avatars{
-    margin: 0;
-    position: relative;
-    float: left;
-    width: 33%;
-    display: inline-block;
-  }
-  #signin-main {
-    background-color: #fff;
-    height: 100%;
-    background-size: 50%;
-    padding-top: 20px;
-  }
-}
 /*gaming screen*/
 
 #main-container #app-container #menu-container {
@@ -835,4 +683,202 @@ html {
 #main-container #app-container #gameplay-container #cards-container  {
   border-radius: 1px;
   background: #2D2D2D;
+}
+.search-div {
+  margin: 5% 25%;
+}
+/* ----------- iPhone 5 and 5S ----------- */
+
+
+/* Portrait and Landscape */
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 568px) and (-webkit-min-device-pixel-ratio: 2) {
+  .avatars{
+    margin: 0;
+    position: relative;
+    float: left;
+    width: 33%;
+    display: inline-block;
+  }
+  #signin-main {
+    background-color: #fff;
+    height: 100%;
+    background-size: 50%;
+    padding-top: 20px;
+  }
+  #main-container #app-container #gameplay-container {
+    margin: 5px;
+  }
+  #main-container #app-container #social-bar-container #player-container {
+    background: #F8F8F8 !important;
+    box-shadow: none;
+    margin-top: 5px;
+  }
+  #main-container #app-container #gameplay-container #cards-container #cards {
+    margin-top: 10px;
+  }
+  .search-div {
+    margin: 5%;
+  }
+  #main-container #app-container #menu-container #abandon-game-button {
+    margin-top: 10px;
+    margin-right: 5px;
+  }
+  #main-container #app-container #social-bar-container #player-container 
+  #above-czar-container #player-container-inner #player-star img {
+    width: 12px;
+    margin-left: 10px;
+  }
+  #main-container #app-container #social-bar-container #player-container #czar-container{
+    background: transparent;
+    width: 70%;
+    text-align: left;
+  }
+  #main-container #app-container #social-bar-container #player-container #czar-container #the-czar {
+    font-size: 10px;
+    color: #232323;
+  } 
+  #cards .card {
+    width: 27%;
+  }
+  #main-container #app-container #gameplay-container #cards-container #cards {
+    max-height: none;
+  }
+  #main-container #app-container #social-bar-container #player-container {
+    width: 20%;
+  }
+  .flip {
+    margin-left: 20%;
+  }
+  .card-mem {
+    height: 70%;
+  }
+}
+
+
+/* ----------- iPhone 6 ----------- */
+
+
+/* Portrait and Landscape */
+
+@media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) {
+  .avatars{
+    margin: 0;
+    position: relative;
+    float: left;
+    width: 33%;
+    display: inline-block;
+  }
+  #signin-main {
+    background-color: #fff;
+    height: 100%;
+    background-size: 50%;
+    padding-top: 20px;
+  } 
+}
+/* ----------- iPhone 6+ ----------- */
+
+
+/* Portrait and Landscape */
+
+@media only screen and (min-device-width: 414px) and (max-device-width: 736px) and (-webkit-min-device-pixel-ratio: 3) {
+  .avatars{
+    margin: 0;
+    position: relative;
+    float: left;
+    width: 33%;
+    display: inline-block;
+  }
+  #signin-main {
+    background-color: #fff;
+    height: 100%;
+    background-size: 50%;
+    padding-top: 20px;
+  } 
+}
+
+
+/* ----------- Galaxy S5 ----------- */
+
+
+/* Portrait and Landscape */
+
+@media screen and (device-width: 360px) and (device-height: 640px) and (-webkit-device-pixel-ratio: 3) {
+  .avatars{
+    margin: 0;
+    position: relative;
+    float: left;
+    width: 33%;
+    display: inline-block;
+  }
+  #signin-main {
+    background-color: #fff;
+    height: 100%;
+    background-size: 50%;
+    padding-top: 20px;
+  }
+  
+}
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+  .avatars{
+    margin: 0;
+    position: relative;
+    float: left;
+    width: 33%;
+    display: inline-block;
+  }
+  #signin-main {
+    background-color: #fff;
+    height: 100%;
+    background-size: 50%;
+    padding-top: 20px;
+  }  
+}
+/* iPads (portrait and landscape) ----------- */
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
+  .avatars{
+    margin: 0;
+    position: relative;
+    float: left;
+    width: 33%;
+    display: inline-block;
+      }
+  #signin-main {
+    background-color: #fff;
+    height: 100%;
+    background-size: 50%;
+    padding-top: 20px;
+  }
+}
+/* iPhone 4 ----------- */
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) and (orientation : landscape) and (-webkit-min-device-pixel-ratio : 2) {
+  .avatars{
+    margin: 0;
+    position: relative;
+    float: left;
+    width: 33%;
+    display: inline-block;
+      }
+  #signin-main {
+    background-color: #fff;
+    height: 100%;
+    background-size: 50%;
+    padding-top: 20px;
+  }
+}
+/* Samsung Galaxy S3 ----------- */
+@media only screen and (min-device-width: 320px) and (max-device-height: 640px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 2){
+  .avatars{
+    margin: 0;
+    position: relative;
+    float: left;
+    width: 33%;
+    display: inline-block;
+  }
+  #signin-main {
+    background-color: #fff;
+    height: 100%;
+    background-size: 50%;
+    padding-top: 20px;
+  }
 }
