@@ -687,6 +687,13 @@ html {
 .search-div {
   margin: 5% 25%;
 }
+.tour-button {
+  background: transparent;
+  border: 1px solid #ccc;
+  box-shadow: 0 0 70px 5px rgba(0, 0, 0, 0.15);
+  color: #232323;
+  border-radius: 0;
+}
 /* ----------- iPhone 5 and 5S ----------- */
 
 
