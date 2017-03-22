@@ -22,21 +22,6 @@ angular.module('mean.system')
       $scope.chat = game.gameChat;
 
       /**
-       * Method to scroll the chat thread to the bottom
-       * @return{undefined}
-       */
-      const scrollChatThread = () => {
-        const chatResults = document.getElementById('chat-results');
-        chatResults.scrollTop = chatResults.scrollHeight;
-      };
-
-      $scope.$watchCollection('chat.messageArray', () => {
-        $timeout(() => {
-          scrollChatThread();
-        }, 100);
-      });
-
-      /**
        * Method to send messages
        * @param{string} userMessage
        * @return{undefined}
