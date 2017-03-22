@@ -565,6 +565,9 @@ input:focus {
     background-size: 50%;
     padding-top: 20px;
   }
+  #app-container {
+    padding: 0 5px;
+  }
   
 }
 
