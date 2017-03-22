@@ -793,6 +793,7 @@ body {
   width: 100%;
   position: absolute;
   padding-right: 290px;
+  word-wrap: break-word;
 }
 
 #page-content-wrapper img {
@@ -832,11 +833,12 @@ body {
   font-size: 30px;
 }
 
-.sidebar-nav li p {
+.sidebar-nav li h2, .sidebar-nav li p {
   display: block;
   text-transform: capitalize;
   text-align: center;
   text-indent: 0;
+  font-size: 20px;
 }
 
 .sidebar-nav a {
@@ -873,21 +875,6 @@ body {
 #menu-toggle {
   display: none;
 }
-
-/*.sidebar-nav > .sidebar-brand {
-  height: 65px;
-  font-size: 18px;
-  line-height: 60px;
-}
-
-.sidebar-nav > .sidebar-brand a {
-  color: #fff;
-}
-
-.sidebar-nav > .sidebar-brand a:hover {
-  color: #fff;
-  background: none;
-}*/
 
 @media only screen and (max-width: 800px) {
   #wrapper {
