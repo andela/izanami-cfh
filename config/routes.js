@@ -9,7 +9,10 @@ module.exports = (app, passport) => {
   app.get('/signout', users.signout);
 
     // Setting up the users api
-  app.post('/users', users.create);
+  app.post('/users', users.create, passport.authenticate('local', {
+    failureRedirect: '/signin',
+    failureFlash: 'Invalid email or password.'
+  }), users.generateToken, users.returnToken);
   app.post('/users/avatars', users.avatars);
 
     // Donation Routes
@@ -39,29 +42,29 @@ module.exports = (app, passport) => {
   app.get('/auth/facebook', passport.authenticate('facebook', {
     scope: ['email'],
     failureRedirect: '/signin'
-  }), users.signin);
+  }), users.signin, users.generateToken, users.returnToken);
 
   app.get('/auth/facebook/callback', passport.authenticate('facebook', {
     failureRedirect: '/signin'
-  }), users.authCallback);
+  }), users.generateToken, users.returnToken);
 
     // Setting the github oauth routes
   app.get('/auth/github', passport.authenticate('github', {
     failureRedirect: '/signin'
-  }), users.signin);
+  }), users.signin, users.generateToken, users.returnToken);
 
   app.get('/auth/github/callback', passport.authenticate('github', {
     failureRedirect: '/signin'
-  }), users.authCallback);
+  }), users.generateToken, users.returnToken);
 
     // Setting the twitter oauth routes
   app.get('/auth/twitter', passport.authenticate('twitter', {
     failureRedirect: '/signin'
-  }), users.signin);
+  }), users.signin, users.generateToken, users.returnToken);
 
   app.get('/auth/twitter/callback', passport.authenticate('twitter', {
     failureRedirect: '/signin'
-  }), users.authCallback);
+  }), users.generateToken, users.returnToken);
 
     // Setting the google oauth routes
   app.get('/auth/google', passport.authenticate('google', {
@@ -70,11 +73,11 @@ module.exports = (app, passport) => {
       'https://www.googleapis.com/auth/userinfo.profile',
       'https://www.googleapis.com/auth/userinfo.email'
     ]
-  }), users.signin);
+  }), users.signin, users.generateToken, users.returnToken);
 
   app.get('/auth/google/callback', passport.authenticate('google', {
     failureRedirect: '/signin'
-  }), users.authCallback);
+  }), users.generateToken, users.returnToken);
 
     // Finish with setting up the userId param
   app.param('userId', users.user);
@@ -104,6 +107,8 @@ module.exports = (app, passport) => {
   const index = require('../app/controllers/index');
   app.get('/play', index.play);
 
+  app.get('/api/games/:id/start', index.play);
+
   // search user route
   const search = require('../app/controllers/search-users');
   app.get('/api/search/users/:inviteeUserName', search.users);
@@ -111,6 +116,12 @@ module.exports = (app, passport) => {
   // Mail Invite Route
   const mailer = require('../app/controllers/mailer');
   app.post('/api/invite/user', mailer.invite);
+
+  const tour = require('../app/controllers/tour');
+  // search tour taken
+  app.get('/api/tour/:userID', tour.searchTour);
+  // save tour taken
+  app.post('/api/tour', tour.saveTour);
 
   app.get('/', customAuth.hasAuth(), index.render);
 };

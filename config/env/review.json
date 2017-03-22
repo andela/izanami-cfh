@@ -1,25 +1,25 @@
 {
     "app": {
-        "name": "Cards for Humanity"
+        "name": "Cards for Humanity - Development"
     },
     "facebook": {
         "clientID": "APP_ID",
         "clientSecret": "APP_SECRET",
-        "callbackURL": "http://izanami-cfh.herokuapp.com/auth/facebook/callback"
+        "callbackURL": "https://izanami-cfh-staging-pr-12.herokuapp.com/auth/facebook"
     },
     "twitter": {
         "clientID": "CONSUMER_KEY",
         "clientSecret": "CONSUMER_SECRET",
-        "callbackURL": "http://izanami-cfh.herokuapp.com/auth/twitter/callback"
+        "callbackURL": "https://izanami-cfh-staging-pr-12.herokuapp.com/auth/twitter"
     },
     "github": {
         "clientID": "APP_ID",
         "clientSecret": "APP_SECRET",
-        "callbackURL": "http://izanami-cfh.herokuapp.com/auth/github/callback"
+        "callbackURL": "https://izanami-cfh-staging-pr-12.herokuapp.com/auth/github"
     },
     "google": {
         "clientID": "APP_ID",
         "clientSecret": "APP_SECRET",
-        "callbackURL": "http://izanami-cfh.herokuapp.com/auth/google/callback"
+        "callbackURL": "https://izanami-cfh-staging-pr-12.herokuapp.com/auth/google"
     }
 }

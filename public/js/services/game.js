@@ -1,5 +1,5 @@
 angular.module('mean.system')
-  .factory('game', ['socket', '$timeout', function (socket, $timeout) {
+  .factory('game', ['socket', '$timeout', 'gameTour', 'gameTourService', (socket, $timeout, gameTour, gameTourService) => {
     const game = {
       id: null, // This player's socket ID, so we know who this player is
       gameID: null,
@@ -19,13 +19,21 @@ angular.module('mean.system')
       curQuestion: null,
       notification: null,
       timeLimits: {},
-      joinOverride: false
+      joinOverride: false,
+      tour: gameTour
     };
 
     const notificationQueue = [];
     let timeout = false;
     const self = this;
     let joinOverrideTimeout = 0;
+
+    const tour = new Shepherd.Tour({
+      defaults: {
+        classes: 'shepherd-theme-default',
+        scrollTo: true
+      }
+    });
 
     const addToNotificationQueue = function (msg) {
       notificationQueue.push(msg);
@@ -191,7 +199,7 @@ angular.module('mean.system')
       mode = mode || 'joinGame';
       room = room || '';
       createPrivate = createPrivate || false;
-      const userID = window.user ? user._id : 'unauthenticated';
+      const userID = window.user ? user.id : 'unauthenticated';
       socket.emit(mode, { userID, room, createPrivate });
     };
 
@@ -202,6 +210,7 @@ angular.module('mean.system')
     game.leaveGame = function () {
       game.players = [];
       game.time = 0;
+      game.tour.cancelTour();
       socket.emit('leaveGame');
     };
 
@@ -216,11 +225,30 @@ angular.module('mean.system')
     game.drawCard = () => {
       socket.emit('drawCard');
     };
-    
+
     socket.on('tooLate', () => {
       angular.element('#gameStartedAlert').modal('show');
     });
-    
+
+    const takeTour = () => {
+      angular.element(document.getElementsByClassName('tour-button')).hide();
+      game.tour.startTour();
+    };
+
+    socket.on('startTour', () => {
+      const userID = window.user ? user.id : 'unauthenticated';
+      if (userID === 'unauthenticated') {
+        takeTour();
+      } else {
+        gameTourService.checkTourTaken(userID).then((data) => {
+          if (data.message === 0) {
+            takeTour();
+            gameTourService.saveTourTaken(userID);
+          }
+        });
+      }
+    });
+
     decrementTime();
 
     return game;

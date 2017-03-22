@@ -1,4 +1,31 @@
-<script></script>
+<script>
+  function openPlayModal() {
+    $('#play-game-modal').modal('show');
+  }
+</script>
+<div class="modal fade" id="play-game-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <a type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </a>
+        <br /><br />
+        <a href="/api/games/{{id}}/start">
+          <button type="button" class="btn btn-info btn-lg play-with-friends">
+            Play Game with Strangers
+          </button>
+        </a>
+        <br />
+        <a href="/api/games/{{id}}/start?custom">
+          <button type="button" class="btn btn-info btn-lg play-with-friends">
+            Play Game with Friends
+          </button>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
 <div landing id="main-bod">
   <!-- Fixed Logo & Menu Bar Start -->
   <div class="container-fluid">
@@ -68,16 +95,9 @@
         </span>
       </span>
       <span ng-hide="showOptions">
-        <a href="/play">
-          <button type="button" class="btn btn-info btn-lg play-with-friends">
-            Play Game with Strangers
-          </button>
-        </a>
-        <a href="/play?custom">
-          <button type="button" class="btn btn-info btn-lg play-with-friends">
-            Play Game with Friends
-          </button>
-        </a>
+        <button type="button" class="btn btn-info btn-lg play-with-friends" data-toggle="modal" data-target="#play-game-modal" onclick="openPlayModal()">
+          Play Game
+        </button>
         <span id='twitter-facebook'>
           <span id="tweet-container-index">
             <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://cfh.io" data-text="Cards for Humanity: A Game for Horrible People Desperately Trying to do Good" data-related="CFH_App">Tweet</a>
@@ -195,7 +215,7 @@
 <!-- Charity Info End -->
 
 <!-- Footer Start -->
-<footer>
+<footer class="footer">
     <a href="#!/#home"> Back to Top <i class="fa fa-arrow-up" aria-hidden="true"></i></a>
     <img src="../images/cards.png" alt="cards for humanity">
 </footer>
