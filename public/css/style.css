@@ -1466,6 +1466,7 @@ div.chatthread {
   padding-bottom:40px;
   background: #F8F8F8;
   z-index: 1001;
+  border: 1px solid #2D2D2D;
 }
 
 div.chat_body {
@@ -1502,7 +1503,10 @@ small.time-content {
 div.chatinput {
   width: 100%;
   margin-right: 0px;
-  padding: 5px;
+  padding-left: 5px;
+  padding-right: 0px;
+  padding-top: 5px;
+  padding-bottom: 5px;
   background: #fff;
   height: 60px;
   bottom: 0;

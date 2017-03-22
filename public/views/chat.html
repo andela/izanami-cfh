@@ -25,12 +25,12 @@
         </div>
         <div class="chat-input-container">
             <div class="chatinput row">
-                <div class="col-md-10" style="padding-right: 0px; padding-left: 0px;">
+                <div class="col-md-10 col-sm-11 col-xs-11" style="padding-right: 0px; padding-left: 0px;">
                     <textarea id="msg_input" style="overflow-y: hidden;" ng-model="chatMessage" ng-keypress="keyPressed($event)"></textarea>
                 </div>
-                <div class="col-md-2">
-                    <a class="send_icon" href="" ng-click="sendMessage(chatMessage)"><i class="glyphicon glyphicon-send"></i></a>
-                    <i class="fa fa-smile-o"></i>
+                <div class="col-md-2 col-sm-1 col-xs-1" style="padding-right: 5px;padding-top: 5px;">
+                    <a class="send_icon" href="" ng-click="sendMessage(chatMessage)" style="margin-bottom: 5px"><i class="glyphicon glyphicon-send"></i></a>
+                    <br/><i class="fa fa-smile-o"></i>
                 </div>
 
             </div>
