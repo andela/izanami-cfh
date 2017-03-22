@@ -7,7 +7,9 @@
     "angular-ui-utils": "0.0.4",
     "jquery": "~1.9.1",
     "underscore": "~1.5.2",
-    "angular-socket-io": "^0.7.0"
+    "angular-socket-io": "^0.7.0",
+    "tether-shepherd": "^1.8.1",
+    "emoji-picker": "gh-pages"
   },
   "exportsOverride": {
     "bootstrap": {

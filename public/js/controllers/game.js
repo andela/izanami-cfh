@@ -1,8 +1,8 @@
 angular.module('mean.system')
   .controller('GameController', ['$scope', 'game', '$timeout', '$location', 'MakeAWishFactsService',
-    '$dialog', 'playerSearch', 'invitePlayer',
-    ($scope, game, $timeout, $location, MakeAWishFactsService,
-      $dialog, playerSearch, invitePlayer) => {
+    '$dialog', 'playerSearch', 'invitePlayer', 'gameTour', '$window',
+    ($scope, game, $timeout, $location, MakeAWishFactsService, $dialog, playerSearch,
+     invitePlayer, gameTour) => {
       $scope.hasPickedCards = false;
       $scope.winningCardPicked = false;
       $scope.showTable = false;
@@ -22,27 +22,6 @@ angular.module('mean.system')
       $scope.chat = game.gameChat;
 
       /**
-       * Method to scroll the chat thread to the bottom
-       * @return{undefined}
-       */
-      const scrollChatThread = () => {
-        const chatResults = document.getElementById('results');
-        chatResults.scrollTop = chatResults.scrollHeight;
-        // const isScrolledToBottom = chatResults.scrollHeight - chatResults.clientHeight
-        //   <= chatResults.scrollTop + 1;
-        // if (isScrolledToBottom) {
-        //   chatResults.scrollTop = chatResults.scrollHeight - chatResults.clientHeight;
-        // }
-        // $("#results").scrollTop : $('#results')[0].scrollHeight - $('#results')[0].clientHeight;
-      };
-
-      $scope.$watchCollection('chat.messageArray', (newValue, oldValue) => {
-        $timeout(() => {
-          scrollChatThread();
-        }, 100);
-      });
-
-      /**
        * Method to send messages
        * @param{string} userMessage
        * @return{undefined}
@@ -55,8 +34,9 @@ angular.module('mean.system')
       $scope.keyPressed = ($event) => {
         const keyCode = $event.which || $event.keyCode;
         //  if enter clicked
-        if (keyCode === 13) {
+        if (keyCode === 13 && !$event.shiftKey) {
           $scope.sendMessage($scope.chatMessage);
+          $event.preventDefault();
         }
       };
 
@@ -125,9 +105,11 @@ angular.module('mean.system')
         return false;
       };
 
-      $scope.showFirst = card => game.curQuestion.numAnswers > 1 && $scope.pickedCards[0] === card.id;
+      $scope.showFirst = card =>
+        game.curQuestion.numAnswers > 1 && $scope.pickedCards[0] === card.id;
 
-      $scope.showSecond = card => game.curQuestion.numAnswers > 1 && $scope.pickedCards[1] === card.id;
+      $scope.showSecond = card =>
+        game.curQuestion.numAnswers > 1 && $scope.pickedCards[1] === card.id;
 
       $scope.isCzar = () => game.czar === game.playerIndex;
 
@@ -165,6 +147,7 @@ angular.module('mean.system')
 
       $scope.abandonGame = () => {
         game.leaveGame();
+        gameTour.cancelTour();
         $location.path('/');
       };
 
@@ -201,7 +184,7 @@ angular.module('mean.system')
             if (!$scope.modalShown) {
               setTimeout(() => {
                 $('#searchContainer').show();
-              }, 70);
+              }, 10);
               $scope.modalShown = true;
             }
           }
@@ -280,4 +263,19 @@ angular.module('mean.system')
       } else {
         game.joinGame();
       }
+
+      $scope.startTour = () => {
+        angular.element(document.getElementsByClassName('tour-button')).hide();
+        gameTour.startTour();
+      };
     }]);
+
+$(document).ready(() => {
+  $(document).on('click', '.close-tour', () => {
+    $('.tour-button').show();
+  });
+  $(document).on('click', '.shepherd-cancel-link', () => {
+    $('.tour-button').show();
+  });
+});
+

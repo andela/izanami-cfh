@@ -220,19 +220,19 @@ h2 {
   color: #F9AA57 !important;
 }
 
-footer {
+.footer {
   height: 150px;
   background-color: #ddd;
 }
 
-footer a {
+.footer a {
   float: left;
   display: block;
   position: relative;
 }
 
 
-footer img {
+.footer img {
   float: right;
   height: 80%;
   width: 20%;
@@ -241,12 +241,12 @@ footer img {
   transform: translate(0%, 5%);
 }
 
-footer a {
+.footer a {
   color: #000;
   padding: 20px;
 }
 
-footer a:hover {
+.footer a:hover {
   color: #F9AA57;
 }
 
