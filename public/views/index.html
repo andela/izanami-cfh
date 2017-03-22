@@ -127,10 +127,12 @@
                 </div>
               </li>
               <li ng-hide="showOptions" class='notification-list'>
-                <span ng-show="notifications.unread" class="unread-notification">
-                  {{ notifications.unread }}
-                </span>
-                <span class="tooltips fa fa-globe" onclick="toggleTooltip('notification')">
+                <span onclick="toggleTooltip('notification')">
+                  <span ng-show="notifications.unread" class="unread-notification">
+                    {{ notifications.unread }}
+                  </span>
+                  <span class="tooltips fa fa-globe">
+                  </span>
                 </span>
                 <div id="notification-tooltip" class="tooltip-box">
                   <div class="notification-header">
