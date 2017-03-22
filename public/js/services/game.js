@@ -91,11 +91,13 @@ angular.module('mean.system')
         const newState = (data.state !== game.state);
 
         //  update our chat service properties
-        if (data.players[game.playerIndex].username !== undefined) {
-          game.gameChat.setChatUsername(data.players[game.playerIndex].username);
-          game.gameChat.setChatGroup(data.gameID);
-          game.gameChat.listenForMessages();
-          game.gameChat.clearMessageHistory();
+        if (data.players[game.playerIndex] !== undefined) {
+          if (data.players[game.playerIndex].username !== undefined) {
+            game.gameChat.setChatUsername(data.players[game.playerIndex].username);
+            game.gameChat.setChatGroup(data.gameID);
+            game.gameChat.listenForMessages();
+            game.gameChat.clearMessageHistory();
+          }
         }
 
       // Handle updating game.time
