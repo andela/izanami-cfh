@@ -1515,8 +1515,24 @@ span.tooltips {
   color: #69bbef;
 }
 
-.notification-link-btn {
+.notification-header .read-all  u {
+  font-size: 12px;
+  text-align: right;
+  cursor: pointer;
+  color: #0C7ABF;
+}
 
+.notification-header .read-all  u:hover {
+  opacity: 0.6;
+}
+
+.notification .delete-note {
+  display: none;
+}
+
+.notification .delete-note:hover {
+  opacity: 0.9;
+  cursor: pointer;
 }
 
 .notification-false {
@@ -1528,10 +1544,18 @@ span.tooltips {
   background-color: #EFEFEF;
 }
 
+
 .notification-true {
   color: #777777;
   font-weight: normal;
   background-color: #FFFFFF;
+}
+
+.notification-true .delete-note {
+  display: inline-flex;
+  color: red;
+  opacity: 0.6;
+  flex-direction: right;
 }
 
 .notification-timeago {
@@ -1548,6 +1572,16 @@ span.tooltips {
 
 .modal-header-notification {
   background-color: #EFEFEF;
+}
+.modal-header-notification .read-all  u {
+  font-size: 12px;
+  text-align: right;
+  cursor: pointer;
+  color: #0C7ABF;
+}
+
+.modal-header-notification .read-all  u:hover {
+  opacity: 0.6;
 }
 
 .modal-body-notification {
@@ -1566,14 +1600,34 @@ span.tooltips {
   border-bottom:solid 1px #E6E6E6;
 }
 
+.modal-notification .delete-note {
+  display: none;
+}
+
+.modal-notification .delete-note:hover {
+  opacity: 0.9;
+  cursor: pointer;
+}
+
 .modal-notification-true {
   color: #777777;
   background-color: #FFFFFF;
 }
 
+.modal-notification-true .delete-note {
+  display: inline-flex;
+  color: red;
+  opacity: 0.6;
+  flex-direction: right;
+}
+
 .modal-notification-false {
   font-weight: bold;
   color: #777777;
+}
+
+.modal-notification-false .delete-note {
+  display: none;
 }
 
 .search-box {

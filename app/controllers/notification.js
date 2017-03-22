@@ -30,7 +30,7 @@ exports.saveNotification = (notificationData, callback) => {
 exports.getNotification = (req, res) => {
   let notifications = null;
   if (req.params) {
-    NotificationModel.find({ user: req.params.id }, (err, notification) => {
+    NotificationModel.find({ user: req.params.id }, null, { sort: '-created_on' }, (err, notification) => {
       if (notification) {
         notifications = notification;
         res.json(notifications);
@@ -46,6 +46,7 @@ exports.getNotification = (req, res) => {
 };
 
 /**
+* Read a notification
 * @param {String} user - id of user to update read column for
 * @return {void}
 */
@@ -63,4 +64,22 @@ exports.updateRead = (user) => {
     });
   }
   return error;
+};
+
+/**
+* Read all notifications for user
+* @param {String} user - id of user to update read column for
+* @param {Function} callback - function to call when fields are updated
+* @return {void}
+*/
+exports.readAll = (user, callback) => {
+  if (user) {
+    NotificationModel.find({ user, type: 'invite' }, (err, notifications) => {
+      notifications.forEach((notification) => {
+        notification.read = true;
+        notification.save();
+      });
+      callback();
+    });
+  }
 };

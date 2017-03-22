@@ -26,12 +26,20 @@ angular.module('mean.system')
               read: res.read,
               message: res.message,
               link: res.link,
-              type: res.type };
+              type: res.type,
+              created_on: moment(res.created_on).startOf('minute').fromNow() };
           });
         } else {
           $scope.notifications = null;
         }
       });
+  };
+
+  $scope.readAll = () => {
+    socket.emit('updateAll', { user: window.user.id }, () => {
+      $scope.getNotifications();
+      // This happens when there is an error updating read field
+    });
   };
 
   $scope.getFriends = () => {

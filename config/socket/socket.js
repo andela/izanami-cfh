@@ -118,10 +118,15 @@ module.exports = function (io) {
 
     // update the read column of a motification in the database
     socket.on('readUpdate', (params, callback) => {
-      Notification.updateRead(params.user, (response) => {
-        if (response) {
-          callback();
-        }
+      Notification.updateRead(params.user, () => {
+        callback();
+      });
+    });
+
+    // Read all notifications for user
+    socket.on('updateAll', (params, callback) => {
+      Notification.readAll(params.user, () => {
+        callback();
       });
     });
   });
