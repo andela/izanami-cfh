@@ -49,7 +49,6 @@
         <span id='selection-number' ng-show="showFirst(card)"> 1 </span>
         <span id='selection-number' ng-show="showSecond(card)"> 2 </span>
     </div>
-
    <span ng-repeat="answer in game.table">
         <div class="card smallest" ng-style="pointerCursorStyle()" id='table' ng-click="pickWinning(answer)" ng-show="showTable || isCzar()"
         ng-repeat="card in answer.card" ng-animate="{enter:'animated bounceInLeft'}" style="background-color:{{winningColor($parent.$index)}}">
