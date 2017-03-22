@@ -1,3 +1,7 @@
+html {
+  background-image: linear-gradient(to bottom right, #fff 0%, #fff 100%)
+}
+
 body {
   background-size: cover;
   margin: 0px;
@@ -693,5 +697,226 @@ input:focus {
     height: 100%;
     background-size: 50%;
     padding-top: 20px;
+  }
+}
+
+/*!
+ * Start Bootstrap - Simple Sidebar (http://startbootstrap.com/)
+ * Copyright 2013-2016 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
+ */
+
+body {
+  overflow-x: hidden;
+}
+
+#profile{
+  display: flex;
+  padding-top: 10%;
+  align-items: center;
+  justify-content: center;
+  margin: 25px 0;
+}
+
+.img-circle {
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  position: relative;
+  border: 2px solid #fff; 
+  background-image: url("http://media.gettyimages.com/photos/singer-justin-bieber-performs-onstage-during-the-2015-american-music-picture-id498383802?s=594x594");
+  width: 150px;
+  height: 150px;
+  background-size: cover;
+  display: block;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, .8);
+	-webkit-box-shadow: 2px 2px 8px rgba(0, 0, 0, .8);
+	-moz-box-shadow: 2px 2px 8px rgba(0, 0, 0, .8);
+}
+
+.position {
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  position: absolute;
+  border: 2px solid #fff;
+  background-color: #C9131B;
+  width: 50px;
+  height: 50px;
+  top: 105%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 0;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, .8);
+	-webkit-box-shadow: 0 2px 2px rgba(0, 0, 0, .8);
+	-moz-box-shadow: 0 2px 2px rgba(0, 0, 0, .8); 
+}
+
+.position p {
+  margin-top: 8%;
+}
+
+/* Toggle Styles */
+
+#wrapper {
+  padding-left: 300px;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+#wrapper.toggled {
+  padding-left: 0;
+}
+
+#sidebar-wrapper {
+  z-index: 1000;
+  position: fixed;
+  left: 300px;
+  width: 300px;
+  height: 100%;
+  margin-left: -300px;
+  overflow-y: auto;
+  background: #C9131B;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+  width: 0;
+}
+
+#page-content-wrapper {
+  width: 100%;
+  position: absolute;
+  padding-right: 290px;
+}
+
+#page-content-wrapper img {
+  width: 100px;
+  float: right;
+}
+
+#wrapper.toggled #page-content-wrapper {
+  position: absolute;
+  margin-right: -290px;
+  padding-right: 0px;
+}
+
+/* Sidebar Styles */
+
+.sidebar-nav {
+  position: absolute;
+  top: 0;
+  width: 300px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  color: #fff;
+}
+
+.sidebar-nav li {
+  text-indent: 20px;
+  line-height: 40px;
+  padding: 20px 20px 20px 0;
+}
+
+.sidebar-nav li i {
+  padding-right: 10px;
+}
+
+.sidebar-nav li span {
+  font-size: 30px;
+}
+
+.sidebar-nav li p {
+  display: block;
+  text-transform: capitalize;
+  text-align: center;
+  text-indent: 0;
+}
+
+.sidebar-nav a {
+  display: block;
+  text-decoration: none;
+  color: #fff;
+  font-size: 20px;
+}
+
+.sidebar-nav a:hover {
+  text-decoration: none;
+  color: #f5f5f5;
+  background: rgba(211,211,211,0.2);
+  border-left: 9px solid #000;
+}
+
+.sidebar-nav a:active,
+.sidebar-nav a:focus  {
+  text-decoration: none;
+  color: #f5f5f5;
+  background: rgba(211,211,211,0.2);
+  border-left: 9px solid #000;
+}
+
+.option {
+  border: 0 solid #fff;
+  border-width: 1px 0 0 0;
+}
+
+.option:last-child {
+  border-width: 1px 0;
+}
+
+#menu-toggle {
+  display: none;
+}
+
+/*.sidebar-nav > .sidebar-brand {
+  height: 65px;
+  font-size: 18px;
+  line-height: 60px;
+}
+
+.sidebar-nav > .sidebar-brand a {
+  color: #fff;
+}
+
+.sidebar-nav > .sidebar-brand a:hover {
+  color: #fff;
+  background: none;
+}*/
+
+@media only screen and (max-width: 800px) {
+  #wrapper {
+    padding-left: 0;
+  }
+
+  #wrapper.toggled {
+    padding-left: 300px;
+  }
+
+  #sidebar-wrapper {
+    width: 0;
+  }
+
+  #wrapper.toggled #sidebar-wrapper {
+    width: 300px;
+  }
+
+  #menu-toggle {
+    display: block;
+  }
+
+  #page-content-wrapper {
+    padding: 20px;
+    position: relative;
+  }
+
+  #wrapper.toggled #page-content-wrapper {
+    position: relative;
+    margin-right: 0;
   }
 }
