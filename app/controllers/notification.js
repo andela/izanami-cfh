@@ -2,11 +2,19 @@ const mongoose = require('mongoose');
 
 const NotificationModel = mongoose.model('Notification');
 
+/**
+* @param {Object} notificationData - contains data about sender and
+* reciever of notification
+* @param {Function} callback - function to call when notification
+* has been saved
+* @return {void} call the callback function instead
+*
+*/
 exports.saveNotification = (notificationData, callback) => {
   const newNotification = new NotificationModel({
     user: notificationData.reciever,
     type: 'invite',
-    link: `http://localhost:3000/#!/app?game=${notificationData.link}`,
+    link: notificationData.link,
     message: `${notificationData.sender} wants you to join a game`
   });
 
@@ -37,6 +45,10 @@ exports.getNotification = (req, res) => {
   }
 };
 
+/**
+* @param {String} user - id of user to update read column for
+* @return {void}
+*/
 exports.updateRead = (user) => {
   let error = null;
   if (user) {

@@ -89,21 +89,21 @@ exports.acceptReq = (req, res) => {
         });
       });
     } else {
-        const sender = req.body.sender._id;
-        let friendsData = { _id: req.body.user };
-        friendsData[sender] = req.body.sender;
-        const friends = new FriendsModel(friendsData);
-        friends.save();
-        deleteNotification(req.body.user, req.body.sender._id, (status) => {
-          if (status) {
-            res.json(status);
-          } else if (status === 404) {
-            res.status(200);
-          } else {
-            res.status(500);
-          }
-        });
-      }
+      const sender = req.body.sender._id;
+      const friendsData = { _id: req.body.user };
+      friendsData[sender] = req.body.sender;
+      const friends = new FriendsModel(friendsData);
+      friends.save();
+      deleteNotification(req.body.user, req.body.sender._id, (status) => {
+        if (status) {
+          res.json(status);
+        } else if (status === 404) {
+          res.status(200);
+        } else {
+          res.status(500);
+        }
+      });
+    }
   });
 };
 

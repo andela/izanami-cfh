@@ -82,11 +82,12 @@ module.exports = function (io) {
       }
     });
 
+    // When an invite is sent, update the notifications
     socket.on('sendInvite', (params, cb) => {
       Notification.saveNotification({
         reciever: params.user,
         sender: params.sender,
-        link: socket.gameID
+        link: params.link
       }, (response) => {
         if (response.status === 'success') {
           cb(null, response);
@@ -97,16 +98,25 @@ module.exports = function (io) {
       });
     });
 
+    // Fetch notifications from databse
     socket.on('loadNotification', (params, cb) => {
       Notification.getNotification(params.user.id, (response) => {
         cb(null, response);
       });
     });
 
+    // Make a global broadcast to all connected sockets
     socket.on('makeBroadcast', (params) => {
-      socket.broadcast.emit(params.message, params.param);
+      const param = {};
+      Object.keys(params).forEach((p) => {
+        if (p !== 'message') {
+          param[p] = params[p];
+        }
+      });
+      socket.broadcast.emit(params.message, param);
     });
 
+    // update the read column of a motification in the database
     socket.on('readUpdate', (params, callback) => {
       Notification.updateRead(params.user, (response) => {
         if (response) {

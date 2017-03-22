@@ -1,7 +1,7 @@
 angular.module('mean.system')
-  .controller('GameController', ['$scope', 'game', '$timeout', '$location', 'MakeAWishFactsService',
+  .controller('GameController', ['socket', '$scope', 'game', '$timeout', '$location', 'MakeAWishFactsService',
     '$dialog', 'playerSearch', 'invitePlayer', 'gameTour', '$window',
-    ($scope, game, $timeout, $location, MakeAWishFactsService, $dialog, playerSearch,
+    (socket, $scope, game, $timeout, $location, MakeAWishFactsService, $dialog, playerSearch,
      invitePlayer, gameTour) => {
       $scope.hasPickedCards = false;
       $scope.winningCardPicked = false;
@@ -164,8 +164,9 @@ angular.module('mean.system')
         }
         socket.emit('sendInvite', {
           user: $scope.inviteeUserID,
-          sender: window.user.name
-        }, function() {
+          sender: window.user.name,
+          link: document.URL
+        }, () => {
           invitePlayer.sendMail($scope.inviteeUserEmail, document.URL).then((data) => {
             if (data === 'Accepted') {
               $scope.invitedPlayers.push($scope.inviteeUserEmail);
@@ -179,18 +180,17 @@ angular.module('mean.system')
         });
       } else {
         $('#playerAlreadyInvited').modal('show');
-          $scope.searchResults = [];
-          $scope.inviteeUserEmail = '';
-          $scope.inviteeUserName = '';
-        }
-      };
+        $scope.searchResults = [];
+        $scope.inviteeUserEmail = '';
+        $scope.inviteeUserName = '';
+      }
+    };
 
     $scope.playerSearch = () => {
       if ($scope.inviteeUserName !== '') {
         playerSearch.getPlayers($scope.inviteeUserName).then((data) => {
           $scope.searchUserResults = data.filter((user) => {
-            console.log(window.user);
-            if (user._id !== window.user.id ) {
+            if (user._id !== window.user.id) {
               return user;
             }
           });
@@ -233,7 +233,6 @@ angular.module('mean.system')
       };
 
       if ($location.search().game && !(/^\d+$/).test($location.search().game)) {
-        console.log('joining custom game');
         game.joinGame('joinGame', $location.search().game);
       } else if ($location.search().custom) {
         game.joinGame('joinGame', null, true);
