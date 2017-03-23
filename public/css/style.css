@@ -1325,7 +1325,7 @@ li {
   bottom: 0;
   display: block;
   width: 100%;
-  height: 100%;
+  height: 80%;
   border-radius: 3px;
   border: 1px solid #333;
 }
@@ -1639,6 +1639,7 @@ div.chatpanel {
   bottom: 0px;
   width: 21%;
   right: 0;
+  background: #f6f6f6;
   box-shadow: 3px 0px 3px 0px rgba(50, 50, 50, 0.5);
   z-index: 1001;
 }
@@ -1695,7 +1696,7 @@ div.chatthread {
   height: 300px;
   width: 100%;
   padding-bottom:40px;
-  background: #F8F8F8;
+  background: #fff;
   z-index: 1001;
   border: 1px solid #2D2D2D;
 }
@@ -1703,7 +1704,6 @@ div.chatthread {
 div.chat_body {
   margin-top: -15px;
 }
-
 input.chat_message {
   outline: none;
   width: calc(100% - 10px);
@@ -1730,7 +1730,6 @@ strong.senderName {
 small.time-content {
   font-family: "Courier New", Courier, monospace;
 }
-
 div.chatinput {
   width: 100%;
   margin-right: 0px;
