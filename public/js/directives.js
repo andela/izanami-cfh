@@ -84,9 +84,13 @@ angular.module('mean.directives', [])
               scope.token = cookie.split('=')[1];
               scope.user_details = JSON.parse(atob(scope.token.split('.')[1]));
               scope.id = scope.user_details.id;
-              scope.user_details._id = scope.id;
-              window.user = scope.user_details;
             }
+          });
+          scope.$$childHead.ajax.get(`/api/search/getuser/${scope.id}`, (response) => {
+            window.user = response;
+            window.user.id = scope.id;
+            scope.$$childHead.getNotifications();
+            scope.$$childHead.getFriends();
           });
         }
       }

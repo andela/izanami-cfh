@@ -1,7 +1,8 @@
 angular.module('mean.system')
-  .controller('GameController', ['$scope', 'game', '$timeout', '$location', 'MakeAWishFactsService',
+  .controller('GameController', ['$rootScope', 'socket', '$scope', 'game', '$timeout', '$location', 'MakeAWishFactsService',
     '$dialog', 'playerSearch', 'invitePlayer', 'gameTour', '$window',
-    ($scope, game, $timeout, $location, MakeAWishFactsService, $dialog, playerSearch,
+    ($rootScope, socket, $scope, game, $timeout, $location,
+      MakeAWishFactsService, $dialog, playerSearch,
      invitePlayer, gameTour) => {
       $scope.hasPickedCards = false;
       $scope.winningCardPicked = false;
@@ -180,7 +181,7 @@ angular.module('mean.system')
           } else if ($scope.isCustomGame() && !$location.search().game) {
             // Once the game ID is set, update the URL if this is a game with friends,
             // where the link is meant to be shared.
-            $location.search({game: game.gameID});
+            $location.search({ game: game.gameID });
             if (!$scope.modalShown) {
               setTimeout(() => {
                 $('#searchContainer').show();
@@ -191,23 +192,29 @@ angular.module('mean.system')
         }
       });
 
-      $scope.sendInvite = () => {
+      $rootScope.sendInvite = () => {
         if (!$scope.invitedPlayers.includes($scope.inviteeUserEmail)) {
           if ($scope.invitedPlayers.length > game.playerMaxLimit - 1) {
             $('#playerMaximumAlert').modal('show');
           }
-          invitePlayer.sendMail($scope.inviteeUserEmail, document.URL).then((data) => {
-            if (data === 'Accepted') {
-              $scope.invitedPlayers.push($scope.inviteeUserEmail);
-              $scope.invitedPlayerName = $scope.inviteeUserName;
-              $scope.searchResults = [];
-              $scope.inviteeUserEmail = '';
-              $scope.inviteeUserName = '';
-            }
+          socket.emit('sendInvite', {
+            user: $scope.inviteeUserID,
+            sender: window.user.name,
+            link: document.URL
+          }, () => {
+            invitePlayer.sendMail($scope.inviteeUserEmail, document.URL).then((data) => {
+              if (data === 'Accepted') {
+                $scope.invitedPlayers.push($scope.inviteeUserID);
+                $scope.invitedPlayerName = $scope.inviteeUserName;
+                $scope.searchResults = [];
+                $scope.inviteeUserEmail = '';
+                $scope.inviteeUserName = '';
+                $scope.notifications = {};
+              }
+            });
           });
         } else {
           $('#playerAlreadyInvited').modal('show');
-
           $scope.searchResults = [];
           $scope.inviteeUserEmail = '';
           $scope.inviteeUserName = '';
@@ -217,7 +224,11 @@ angular.module('mean.system')
       $scope.playerSearch = () => {
         if ($scope.inviteeUserName !== '') {
           playerSearch.getPlayers($scope.inviteeUserName).then((data) => {
-            $scope.searchUserResults = data;
+            $scope.searchUserResults = data.filter((user) => {
+              if (user._id !== window.user.id) {
+                return user;
+              }
+            });
           });
         } else {
           $scope.searchUserResults = [];
@@ -227,13 +238,14 @@ angular.module('mean.system')
       $scope.selectUser = (selectedUser) => {
         $scope.inviteeUserEmail = selectedUser.email;
         $scope.inviteeUserName = selectedUser.name;
+        $scope.inviteeUserID = selectedUser._id;
         $scope.searchUserResults = [];
       };
 
-      $scope.isInvited = selectedUserEmail => $scope.invitedPlayers.includes(selectedUserEmail);
+      $scope.isInvited = selectedUserID => $scope.invitedPlayers.includes(selectedUserID);
 
-      $scope.clickInvitee = (selectedUserEmail) => {
-        if ($scope.invitedPlayers.includes(selectedUserEmail)) {
+      $scope.clickInvitee = (selectedUserID) => {
+        if ($scope.invitedPlayers.includes(selectedUserID)) {
           return {
             'search-result': true,
             'invitee-invited': true
@@ -256,7 +268,6 @@ angular.module('mean.system')
       };
 
       if ($location.search().game && !(/^\d+$/).test($location.search().game)) {
-        console.log('joining custom game');
         game.joinGame('joinGame', $location.search().game);
       } else if ($location.search().custom) {
         game.joinGame('joinGame', null, true);
@@ -278,4 +289,3 @@ $(document).ready(() => {
     $('.tour-button').show();
   });
 });
-
