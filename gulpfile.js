@@ -14,7 +14,7 @@ gulp.task('nodemon', () => {
 gulp.task('server', ['nodemon'], () => {
     browserSync.init({
         proxy: "http://localhost:3000",
-        port: 7000,
+        port: 7001,
         files: ["public/**/*.*"],
         reloadOnRestart: true
     });

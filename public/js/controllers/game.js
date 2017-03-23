@@ -180,7 +180,7 @@ angular.module('mean.system')
           } else if ($scope.isCustomGame() && !$location.search().game) {
             // Once the game ID is set, update the URL if this is a game with friends,
             // where the link is meant to be shared.
-            $location.search({game: game.gameID});
+            $location.search({ game: game.gameID });
             if (!$scope.modalShown) {
               setTimeout(() => {
                 $('#searchContainer').show();
@@ -268,6 +268,7 @@ angular.module('mean.system')
         angular.element(document.getElementsByClassName('tour-button')).hide();
         gameTour.startTour();
       };
+      $scope.display = quotes[Math.floor((Math.random() * quotes.length) + 1)];
     }]);
 
 $(document).ready(() => {
