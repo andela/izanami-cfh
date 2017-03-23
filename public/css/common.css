@@ -309,9 +309,6 @@ body {
                 #main-container #app-container #social-bar-container #player-container #above-czar-container #player-container-inner #player-star {
                   margin-top: 1px;
                   margin-left: 5px; } }
-              @media (max-width: 520px) {
-                #main-container #app-container #social-bar-container #player-container #above-czar-container #player-container-inner #player-star {
-                  display: none; } }
               #main-container #app-container #social-bar-container #player-container #above-czar-container #player-container-inner #player-star img {
                 width: 22px; }
                 @media only screen and (min-width: 521px) and (max-width: 768px) {
@@ -337,9 +334,6 @@ body {
             color: #fff;
             font-weight: bold;
             font-size: 20px; }
-            @media (max-width: 520px) {
-              #main-container #app-container #social-bar-container #player-container #czar-container #the-czar {
-                display: none; } }
     #main-container #app-container #gameplay-container {
       height: 100%;
       width: 80%; }
