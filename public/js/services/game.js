@@ -255,6 +255,10 @@ angular.module('mean.system')
         }
       });
 
+      socket.on('endTour', () => {
+        game.tour.cancelTour();
+      });
+
       decrementTime();
 
       return game;
