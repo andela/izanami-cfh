@@ -18,7 +18,7 @@
                             <strong class="senderName">{{message.senderName}} | </strong>
                             <small class=" text-muted time-content">{{message.time}}</small>
                         </div>
-                        <p class="message_content">{{message.textContent}}</p>
+                        <p class="message_content" ng-bind-html-unsafe="message.textContent"></p>
                     </div>
                 </li>
             </ul>
