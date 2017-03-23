@@ -181,7 +181,7 @@ angular.module('mean.system')
           } else if ($scope.isCustomGame() && !$location.search().game) {
             // Once the game ID is set, update the URL if this is a game with friends,
             // where the link is meant to be shared.
-            $location.search({game: game.gameID});
+            $location.search({ game: game.gameID });
             if (!$scope.modalShown) {
               setTimeout(() => {
                 $('#searchContainer').show();
@@ -221,26 +221,26 @@ angular.module('mean.system')
         }
       };
 
-    $scope.playerSearch = () => {
-      if ($scope.inviteeUserName !== '') {
-        playerSearch.getPlayers($scope.inviteeUserName).then((data) => {
-          $scope.searchUserResults = data.filter((user) => {
-            if (user._id !== window.user.id) {
-              return user;
-            }
+      $scope.playerSearch = () => {
+        if ($scope.inviteeUserName !== '') {
+          playerSearch.getPlayers($scope.inviteeUserName).then((data) => {
+            $scope.searchUserResults = data.filter((user) => {
+              if (user._id !== window.user.id) {
+                return user;
+              }
+            });
           });
-        });
-      } else {
-        $scope.searchUserResults = [];
-      }
-    };
+        } else {
+          $scope.searchUserResults = [];
+        }
+      };
 
-    $scope.selectUser = (selectedUser) => {
-      $scope.inviteeUserEmail = selectedUser.email;
-      $scope.inviteeUserName = selectedUser.name;
-      $scope.inviteeUserID = selectedUser._id;
-      $scope.searchUserResults = [];
-    };
+      $scope.selectUser = (selectedUser) => {
+        $scope.inviteeUserEmail = selectedUser.email;
+        $scope.inviteeUserName = selectedUser.name;
+        $scope.inviteeUserID = selectedUser._id;
+        $scope.searchUserResults = [];
+      };
 
       $scope.isInvited = selectedUserID => $scope.invitedPlayers.includes(selectedUserID);
 

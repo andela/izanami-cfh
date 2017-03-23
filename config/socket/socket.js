@@ -168,7 +168,6 @@ module.exports = function (io) {
           player.premium = user.premium || 0;
           player.avatar = user.avatar || avatars[Math.floor(Math.random() * 4) + 12];
         }
-        console.log('[GAME ROOM IS]', data.room);
         getGame(player, socket, data.room, data.createPrivate);
       });
     } else {
@@ -207,7 +206,6 @@ module.exports = function (io) {
           gamesNeedingPlayers.shift();
           game.prepareGame();
         }
-        // socket.emit('sendCustomInvite', { gameID: game.gameID });
         socket.emit('startTour');
       } else {
         // TODO: Send an error message back to this user saying the game has already started
