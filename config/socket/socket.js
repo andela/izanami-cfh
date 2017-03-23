@@ -1,6 +1,8 @@
 const Game = require('./game');
+const Notification = require('../../app/controllers/notification');
 const Player = require('./player');
 require('console-stamp')(console, 'm/dd HH:MM:ss');
+
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
 
@@ -14,6 +16,7 @@ module.exports = function (io) {
   const allPlayers = {};
   const gamesNeedingPlayers = [];
   let gameID = 0;
+  let invitedFriends = [];
 
   io.sockets.on('connection', (socket) => {
     console.log(`${socket.id} Connected`);
@@ -77,6 +80,69 @@ module.exports = function (io) {
     socket.on('drawCard', () => {
       if (allGames[socket.gameID]) {
         allGames[socket.gameID].drawCard();
+      }
+    });
+
+    // When an invite is sent, update the notifications
+    socket.on('sendInvite', (params, cb) => {
+      Notification.saveNotification({
+        reciever: params.user,
+        sender: params.sender,
+        link: params.link
+      }, (response) => {
+        if (response.status === 'success') {
+          cb(null, response);
+          socket.broadcast.emit('refreshNotification', { user: params.user });
+        } else {
+          cb('error', response);
+        }
+      });
+    });
+
+    // Fetch notifications from databse
+    socket.on('loadNotification', (params, cb) => {
+      Notification.getNotification(params.user.id, (response) => {
+        cb(null, response);
+      });
+    });
+
+    // Make a global broadcast to all connected sockets
+    socket.on('makeBroadcast', (params) => {
+      const param = {};
+      Object.keys(params).forEach((p) => {
+        if (p !== 'message') {
+          param[p] = params[p];
+        }
+      });
+      socket.broadcast.emit(params.message, param);
+    });
+
+    // update the read column of a motification in the database
+    socket.on('readUpdate', (params, callback) => {
+      Notification.updateRead(params.user, () => {
+        callback();
+      });
+    });
+
+    // Read all notifications for user
+    socket.on('updateAll', (params, callback) => {
+      Notification.readAll(params.user, () => {
+        callback();
+      });
+    });
+
+    socket.on('addFriend', (param) => {
+      invitedFriends.push({ id: param.id, email: param.email });
+    });
+
+    socket.on('removeFriend', (param) => {
+      const index = invitedFriends.find((friend, friendIndex) => {
+        if (friend.id === param.id) {
+          return friendIndex;
+        }
+      });
+      if (index !== -1) {
+        invitedFriends.splice(index, 1);
       }
     });
   });
@@ -154,7 +220,9 @@ module.exports = function (io) {
       } else {
         fireGame(player, socket);
       }
+      socket.emit('sendCustomInvite', { invitedFriends });
       socket.emit('startTour');
+      invitedFriends = [];
     }
   };
 

@@ -10,14 +10,13 @@ angular.module('mean.system')
         });
       });
     },
-    emit: function(eventName, data, callback){
-      socket.emit(eventName, data, function(){
-        var args = arguments;
-      });
-      $rootScope.safeApply(function(){
-        if(callback){
-          callback.apply(socket, args);
-        }
+    emit: (eventName, data, callback) => {
+      socket.emit(eventName, data, (error, response) => {
+        $rootScope.safeApply(() => {
+          if (callback) {
+            callback(response);
+          }
+        });
       });
     },
     removeAllListeners: function(eventName, callback){
