@@ -10,7 +10,7 @@ const quotes = [
   },
 
   {
-    quotes: "That's what I consider true generosity: You give your all, and yet you always feel as if it costs you nothing.",
+    quote: "That's what I consider true generosity: You give your all, and yet you always feel as if it costs you nothing.",
     author: 'Simone de Beauvoir'
   },
 

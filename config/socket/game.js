@@ -43,7 +43,7 @@ function Game(gameID, io) {
     stateJudging: 16,
 // czar draw cards
     stateDrawCards: 11,
-    stateResults: 3
+    stateResults: 2
   };
   // setTimeout ID that triggers the czar judging state
   // Used to automatically run czar judging if players don't pick before time limit

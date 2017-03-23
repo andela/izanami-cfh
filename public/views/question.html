@@ -36,27 +36,27 @@
       <div id="people-left-game-top" ng-show="game.state ==='game dissolved' && game.gameWinner === -1">
         <div class="game-end-headline">What the!? The game ended because too many people left! </div>
         ABANDON SHIP!!!!!
-        <p>
-          <h3 style="color: white">{{display.quote}}</h3>
-          <h2 style="color: white">- {{display.author}}</h2>
-        </p>
+       <div class="quotes">
+          <p>"{{display.quote}}"</p>
+          <h2>- {{display.author}}</h2>
+        </div>
       </div>
       <div ng-show="game.state === 'game ended' && game.gameWinner === game.playerIndex">
         <div class="game-end-headline">Congrats! You won the game, {{game.players[game.playerIndex].username | upperFirstLetter}}!</div>We hope you feel special. Click the bird to tell the world.
         <a class="twitter-share" target="_blank" ng-href="https://twitter.com/intent/tweet?text={{game.players[game.playerIndex].username | upperFirstLetter}}, that's me, is officially the worst human being in the world! According to: izanami-cfh-staging.herokuapp.com"><i class="fa fa-twitter fa-2x">
         </i></a>
-        <p>
-          <h3 style="color: white">{{display.quote}}</h3>
-          <h2 style="color: white">- {{display.author}}</h2>
-        </p>
+        <div class="quotes">
+          <p>"{{display.quote}}"</p>
+          <h2>- {{display.author}}</h2>
+        </div>
       </div>
       <div ng-show="game.state === 'game ended' && game.gameWinner !== game.playerIndex">
         <div class="game-end-headline">So........{{game.players[game.gameWinner].username | upperFirstLetter }} won the game!</div>
         Wow! Were you even trying?
-        <p>
-          <h3 style="color: white">{{display.quote}}</h3>
-          <h2 style="color: white">- {{display.author}}</h2>
-        </p>
+        <div class="quotes">
+          <p>"{{display.quote}}"</p>
+          <h2>- {{display.author}}</h2>
+        </div>
       </div>
     </div>
   </div>

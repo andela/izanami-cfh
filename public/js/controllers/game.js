@@ -279,7 +279,7 @@ angular.module('mean.system')
         angular.element(document.getElementsByClassName('tour-button')).hide();
         gameTour.startTour();
       };
-      $scope.display = quotes[Math.floor((Math.random() * quotes.length) + 1)];
+      $scope.display = quotes[Math.floor(Math.random() * quotes.length)];
     }]);
 
 $(document).ready(() => {
