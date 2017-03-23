@@ -701,9 +701,7 @@ input:focus {
 }
 
 /*!
- * Start Bootstrap - Simple Sidebar (http://startbootstrap.com/)
- * Copyright 2013-2016 Start Bootstrap
- * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
+ Dashboard
  */
 
 body {
@@ -740,7 +738,7 @@ body {
   -moz-border-radius: 50%;
   position: absolute;
   border: 2px solid #fff;
-  background-color: #C9131B;
+  background-color: #dddddd;
   width: 50px;
   height: 50px;
   top: 105%;
@@ -778,7 +776,7 @@ body {
   height: 100%;
   margin-left: -300px;
   overflow-y: auto;
-  background: #C9131B;
+  background: #dddddd;
   -webkit-transition: all 0.5s ease;
   -moz-transition: all 0.5s ease;
   -o-transition: all 0.5s ease;
@@ -816,7 +814,7 @@ body {
   margin: 0;
   padding: 0;
   list-style: none;
-  color: #fff;
+  color: #333333;
 }
 
 .sidebar-nav li {
@@ -844,7 +842,7 @@ body {
 .sidebar-nav a {
   display: block;
   text-decoration: none;
-  color: #fff;
+  color: #333333;
   font-size: 20px;
 }
 

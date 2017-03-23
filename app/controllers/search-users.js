@@ -19,3 +19,15 @@ exports.users = (req, res) => {
       res.json(result);
     });
 };
+exports.getUser = (req, res) => {
+  User.findOne({ _id: req.params.id }, (err, user) => {
+    if (user) {
+      user.hashed_password = null;
+      user.email = null;
+      user.id = user._id;
+      res.json(user);
+    } else {
+      res.status(404);
+    }
+  });
+};

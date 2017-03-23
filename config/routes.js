@@ -112,6 +112,7 @@ module.exports = (app, passport) => {
   // search user route
   const search = require('../app/controllers/search-users');
   app.get('/api/search/users/:inviteeUserName', search.users);
+  app.get('/api/search/getuser/:id', search.getUser);
 
   // Mail Invite Route
   const mailer = require('../app/controllers/mailer');
@@ -124,4 +125,8 @@ module.exports = (app, passport) => {
   app.post('/api/tour', tour.saveTour);
 
   app.get('/', customAuth.hasAuth(), index.render);
+
+  // Game Log Routes
+  const games = require('../app/controllers/game-history');
+  app.post('/api/games/history', games.getUserHistory);
 };

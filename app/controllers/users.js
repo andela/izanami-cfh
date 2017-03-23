@@ -131,20 +131,20 @@ exports.addDonation = (req, res) => {
       User.findOne({
         _id: req.user._id
       })
-                .exec((err, user) => {
-                    // Confirm that this object hasn't already been entered
-                  let duplicate = false;
-                  for (let i = 0; i < user.donations.length; i++) {
-                    if (user.donations[i].crowdrise_donation_id === req.body.crowdrise_donation_id) {
-                      duplicate = true;
-                    }
-                  }
-                  if (!duplicate) {
-                    user.donations.push(req.body);
-                    user.premium = 1;
-                    user.save();
-                  }
-                });
+        .exec((err, user) => {
+            // Confirm that this object hasn't already been entered
+          let duplicate = false;
+          for (let i = 0; i < user.donations.length; i++) {
+            if (user.donations[i].crowdrise_donation_id === req.body.crowdrise_donation_id) {
+              duplicate = true;
+            }
+          }
+          if (!duplicate) {
+            user.donations.push(req.body);
+            user.premium = 1;
+            user.save();
+          }
+        });
     }
   }
   res.send();
