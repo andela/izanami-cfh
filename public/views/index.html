@@ -13,19 +13,26 @@
     $('.tooltip-box').css({ visibility: 'hidden' });
   });
 
+  function openTooltip(box) {
+    $(`#${ box }-tooltip`).css({
+      visibility: 'visible',
+      opacity: '1',
+      'z-index': '999',
+      'margin-left': '-76px',
+      top: '30px',
+      left: '50%'
+    });
+  }
+
   function toggleTooltip(box) {
     const visibility = $(`#${box}-tooltip`).css('visibility');
     $('.tooltip-box').css({ visibility: 'hidden' });
     if ($(window).width() >= 768) {
       if (visibility === 'hidden') {
-        $(`#${ box }-tooltip`).css({
-          visibility: 'visible',
-          opacity: '1',
-          'z-index': '999',
-          'margin-left': '-76px',
-          top: '30px',
-          left: '50%'
-        });
+        openTooltip(box);
+        if (box === 'friends') {
+          openTooltip('invite');
+        }
       } else {
         $(`#${ box }-tooltip`).css({
           visibility: "hidden"
@@ -84,29 +91,55 @@
               <li ng-show="showOptions"><a href="#!/signin">Sign In</a></li>
               <li ng-hide="showOptions" class="notification-list">
                 <span class="fa fa-users" onclick="toggleTooltip('friends')"></span>
-                <div id="friends-tooltip" class="tooltip-box">
-                  <div class="notification-header">
-                    Friends ({{ friendsNum }})
+                <div class="row tooltip-row">
+                  <div id="invite-tooltip" class="tooltip-box tooltip-box-left">
+                    something
                   </div>
-                  <div class="col-lg-12 search-box">
-                    <div class="result-box" ng-show="friends">
-                      <div ng-repeat="friend in friends">
-                        <div  class="user-result-name" ng-show="friend" ng-click="selectUser(result)">
-                          <img class="friends-avatar" ng-src="{{ friend.avatar }}" />{{ friend.name }}
+                  <div id="friends-tooltip" class="tooltip-box">
+                    <div class="notification-header">
+                      Friends ({{ friendsNum }})
+                      <a ng-show="customGame" href="/api/games/{{id}}/start?custom">
+                        <button class="pull-right btn btn-ptimary">
+                          Continue to game({{ sentInvite.length }})
+                        </button>
+                      </a>
+                    </div>
+                    <div class="col-lg-12 search-box">
+                      <div class="result-box" ng-show="friends">
+                        <div ng-repeat="friend in friends">
+                          <div  class="user-result-name" ng-show="friend">
+                            <img class="friends-avatar" ng-src="{{ friend.avatar }}" />
+                            {{ friend.name }}
+                            <span class="pull-right">
+                              <span ng-hide="inviteSent(friend.id)">
+                                <button class="btn btn-primary" ng-click="addToList(friend.id, friend.email)">
+                                  Invite to play game
+                                </button>
+                              </span>
+                              <span ng-show="inviteSent(friend.id)">
+                                <button disabled class="btn btn-primary">
+                                  sent invite
+                                </button>
+                                <button class="btn btn-danger" ng-click="removeFromList(friend.id, friend.email)">
+                                  cancel
+                                </button>
+                              </span>
+                            </span>
+                          </div>
                         </div>
                       </div>
+                      <div ng-hide="friends">
+                        <h4> You have no friends </h4>
+                      </div>
                     </div>
-                    <div ng-hide="friends">
-                      <h4> You have no friends </h4>
+                    <div class="toolitp-footer">
+                      <span onclick="openModal('friends-modal')" class="notification-see-all notification-link">see all</span>
                     </div>
-                  </div>
-                  <div class="toolitp-footer">
-                    <span onclick="openModal('friends-modal')" class="notification-see-all notification-link">see all</span>
                   </div>
                 </div>
               </li>
               <li ng-hide="showOptions" class="notification-list">
-                <span class="fa fa-search" onclick="toggleTooltip('search')"></span>
+                <span class="fa fa-search" onclick="toggleTooltip('search')" ng-click="emptySearchResult()"></span>
                 <div id="search-tooltip" class="tooltip-box">
                   <div class="notification-header">
                     Search users
@@ -260,18 +293,24 @@
         <div class="modal-content">
           <div class="modal-header modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h3 class="modal-title" id="myModalLabel">{{ allSearchResults[inviteeUserName][0].name }}</h3>
+            <h3 class="modal-title" id="myModalLabel">{{ allSearchResults[searchUsername][0].name }}</h3>
           </div>
           <div class="modal-body modal-body-user row">
             <div class="col-xs-4 col-md-2">
-              <img ng-src="{{ allSearchResults[inviteeUserName][0].avatar }}" />
+              <img ng-src="{{ allSearchResults[searchUsername][0].avatar }}" />
             </div>
-            <div class="col-xs-8 col-md-6">
-              <button ng-disabled="friendshipStatus" type="button" class="btn btn-primary" ng-click="sendRequest(allSearchResults[inviteeUserName][0]._id)">
+            <div class="col-xs-8 col-md-offset-1 col-md-8">
+              <button ng-disabled="friendshipStatus" type="button" class="btn btn-primary" ng-click="sendRequest(allSearchResults[searchUsername][0]._id)">
                 <span>{{ friendshipStatusMessage }}</span>
               </button>
-              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+              <button ng-show="cancelReq" ng-click="cancelFriendReq(allSearchResults[searchUsername][0]._id)" class="btn btn-danger">
+                <span class="fa fa-times-circle-o"></span>
+                 Cancel request
+              </button>
             </div>
+          </div>
+          <div class="modal-footer modal-footer-notification">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
           </div>
         </div>
       </div>
@@ -282,15 +321,37 @@
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             <h3 class="modal-title" id="myModalLabel">Friends ({{ friendsNum }})</h3>
+            <br />
+            <a ng-show="customGame" href="/api/games/{{id}}/start?custom">
+              <button class="btn btn-ptimary">
+                Continue to game({{ sentInvite.length }})
+              </button>
+            </a>
           </div>
           <div class="modal-body modal-body-notification">
             <div ng-repeat="friend in friends">
               <div ng-show="friend" ng-class="'row modal-notification modal-notification-'+notification.read">
-                <div class="col-md-2 col-xs-3">
+                <div class="col-md-2 col-sm-3 col-xs-3">
                   <img class="friends-modal-avatar" ng-src="{{ friend.avatar }}" />
                 </div>
-                <div class="col-md-5 col-xs-7">
+                <div class="col-md-7 col-sm-7 col-xs-7">
                   {{ friend.name }}
+                  <br /> <br />
+                  <span class="pull-right">
+                    <span ng-hide="inviteSent(friend.id)">
+                      <button class="btn btn-primary" ng-click="addToList(friend.id, friend.email)">
+                        Invite to play game
+                      </button>
+                    </span>
+                    <span ng-show="inviteSent(friend.id)">
+                      <button disabled class="btn btn-primary">
+                        sent invite
+                      </button>
+                      <button class="btn btn-danger" ng-click="removeFromList(friend.id, friend.email)">
+                        cancel
+                      </button>
+                    </span>
+                  </span>
                 </div>
               </div>
             </div>

@@ -36,10 +36,10 @@
   <div id="social-bar-container">
     <player></player>
   </div>
-  
-  
+
+
 <!--  add in the user draw card functionality-->
-  
+
  <div id="cards" class='hand' ng-hide="game.state === 'waiting for czar to draw cards'">
     <span ng-show="winnerPicked()"></span>
 
@@ -77,7 +77,7 @@
       </div>
   </div>
 </div>
- 
+
 <!-- user draw card ends-->
 
 <div id="info-container" ng-show="game.state === 'awaiting players'">
@@ -97,9 +97,9 @@
 
         <!-- user search results-->
         <div ng-if="searchUserResults.length !== 0" class="search-result-container">
-          <div ng-class="clickInvitee(result.email)" ng-repeat="result in searchUserResults" ng-click="selectUser(result)">
+          <div ng-class="clickInvitee(result._id)" ng-repeat="result in searchUserResults" ng-click="selectUser(result)">
             {{result.name}}
-            <span ng-if="isInvited(result.email)" class="pull-right">Invited</span>
+            <span ng-if="isInvited(result._id)" class="pull-right">Invited</span>
           </div>
         </div>
 

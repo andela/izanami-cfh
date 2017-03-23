@@ -1403,10 +1403,6 @@ li {
 }
 
 /* Notifications styling */
-span.tooltips {
-  position: relative;
-  display: inline;
-}
 .tooltip-box {
   margin-top: 30px;
   position: absolute;
@@ -1628,6 +1624,12 @@ span.tooltips {
 }
 .friends-modal-avatar {
   width: 100%;
+}
+
+@media screen and (min-width:1080px){
+  .friends-modal-avatar {
+    width: 200%;
+  }
 }
 /* End notification styling */
 

@@ -1,7 +1,8 @@
 angular.module('mean.system')
-  .controller('GameController', ['socket', '$scope', 'game', '$timeout', '$location', 'MakeAWishFactsService',
+  .controller('GameController', ['$rootScope', 'socket', '$scope', 'game', '$timeout', '$location', 'MakeAWishFactsService',
     '$dialog', 'playerSearch', 'invitePlayer', 'gameTour', '$window',
-    (socket, $scope, game, $timeout, $location, MakeAWishFactsService, $dialog, playerSearch,
+    ($rootScope, socket, $scope, game, $timeout, $location,
+      MakeAWishFactsService, $dialog, playerSearch,
      invitePlayer, gameTour) => {
       $scope.hasPickedCards = false;
       $scope.winningCardPicked = false;
@@ -191,34 +192,34 @@ angular.module('mean.system')
         }
       });
 
-    $scope.sendInvite = () => {
-      if (!$scope.invitedPlayers.includes($scope.inviteeUserEmail)) {
-        if ($scope.invitedPlayers.length > game.playerMaxLimit - 1) {
-          $('#playerMaximumAlert').modal('show');
-        }
-        socket.emit('sendInvite', {
-          user: $scope.inviteeUserID,
-          sender: window.user.name,
-          link: document.URL
-        }, () => {
-          invitePlayer.sendMail($scope.inviteeUserEmail, document.URL).then((data) => {
-            if (data === 'Accepted') {
-              $scope.invitedPlayers.push($scope.inviteeUserEmail);
-              $scope.invitedPlayerName = $scope.inviteeUserName;
-              $scope.searchResults = [];
-              $scope.inviteeUserEmail = '';
-              $scope.inviteeUserName = '';
-              $scope.notifications = {};
-            }
+      $rootScope.sendInvite = () => {
+        if (!$scope.invitedPlayers.includes($scope.inviteeUserEmail)) {
+          if ($scope.invitedPlayers.length > game.playerMaxLimit - 1) {
+            $('#playerMaximumAlert').modal('show');
+          }
+          socket.emit('sendInvite', {
+            user: $scope.inviteeUserID,
+            sender: window.user.name,
+            link: document.URL
+          }, () => {
+            invitePlayer.sendMail($scope.inviteeUserEmail, document.URL).then((data) => {
+              if (data === 'Accepted') {
+                $scope.invitedPlayers.push($scope.inviteeUserID);
+                $scope.invitedPlayerName = $scope.inviteeUserName;
+                $scope.searchResults = [];
+                $scope.inviteeUserEmail = '';
+                $scope.inviteeUserName = '';
+                $scope.notifications = {};
+              }
+            });
           });
-        });
-      } else {
-        $('#playerAlreadyInvited').modal('show');
-        $scope.searchResults = [];
-        $scope.inviteeUserEmail = '';
-        $scope.inviteeUserName = '';
-      }
-    };
+        } else {
+          $('#playerAlreadyInvited').modal('show');
+          $scope.searchResults = [];
+          $scope.inviteeUserEmail = '';
+          $scope.inviteeUserName = '';
+        }
+      };
 
     $scope.playerSearch = () => {
       if ($scope.inviteeUserName !== '') {
@@ -241,10 +242,10 @@ angular.module('mean.system')
       $scope.searchUserResults = [];
     };
 
-      $scope.isInvited = selectedUserEmail => $scope.invitedPlayers.includes(selectedUserEmail);
+      $scope.isInvited = selectedUserID => $scope.invitedPlayers.includes(selectedUserID);
 
-      $scope.clickInvitee = (selectedUserEmail) => {
-        if ($scope.invitedPlayers.includes(selectedUserEmail)) {
+      $scope.clickInvitee = (selectedUserID) => {
+        if ($scope.invitedPlayers.includes(selectedUserID)) {
           return {
             'search-result': true,
             'invitee-invited': true

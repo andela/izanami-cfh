@@ -16,6 +16,7 @@ module.exports = function (io) {
   const allPlayers = {};
   const gamesNeedingPlayers = [];
   let gameID = 0;
+  let invitedFriends = [];
 
   io.sockets.on('connection', (socket) => {
     console.log(`${socket.id} Connected`);
@@ -129,6 +130,21 @@ module.exports = function (io) {
         callback();
       });
     });
+
+    socket.on('addFriend', (param) => {
+      invitedFriends.push({ id: param.id, email: param.email });
+    });
+
+    socket.on('removeFriend', (param) => {
+      const index = invitedFriends.find((friend, friendIndex) => {
+        if (friend.id === param.id) {
+          return friendIndex;
+        }
+      });
+      if (index !== -1) {
+        invitedFriends.splice(index, 1);
+      }
+    });
   });
 
   let joinGame = function (socket, data) {
@@ -152,6 +168,7 @@ module.exports = function (io) {
           player.premium = user.premium || 0;
           player.avatar = user.avatar || avatars[Math.floor(Math.random() * 4) + 12];
         }
+        console.log('[GAME ROOM IS]', data.room);
         getGame(player, socket, data.room, data.createPrivate);
       });
     } else {
@@ -190,6 +207,7 @@ module.exports = function (io) {
           gamesNeedingPlayers.shift();
           game.prepareGame();
         }
+        // socket.emit('sendCustomInvite', { gameID: game.gameID });
         socket.emit('startTour');
       } else {
         // TODO: Send an error message back to this user saying the game has already started
@@ -204,7 +222,9 @@ module.exports = function (io) {
       } else {
         fireGame(player, socket);
       }
+      socket.emit('sendCustomInvite', { invitedFriends });
       socket.emit('startTour');
+      invitedFriends = [];
     }
   };
 
