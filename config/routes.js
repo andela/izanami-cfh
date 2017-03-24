@@ -136,6 +136,10 @@ module.exports = (app, passport) => {
   // save tour taken
   app.post('/api/tour', tour.saveTour);
 
+  // get rankings
+  const gamesRanking = require('../app/controllers/game.js');
+  app.get('/api/ranking', gamesRanking.calculateRanking);
+
   app.get('/', customAuth.hasAuth(), index.render);
 
   // Game Log Routes
