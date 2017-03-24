@@ -5,11 +5,14 @@ angular.module('mean.system')
     $scope.user = (window.user) ? window.user : 'undauthorized';
     if (window.user) {
       $scope.user = window.user;
-      $scope.userID = window.user._id;
+      $scope.userID = window.user.id;
     } else {
       $scope.user = 'undauthorized';
       $scope.userID = null;
     }
+    $scope.showGames = false;
+    $scope.showFriends = false;
+
     console.log(window.user);
 
     if (!$scope.user.avatar) {
@@ -19,32 +22,26 @@ angular.module('mean.system')
     * @return{undefined}
     */
     $scope.allGameRecords = () => {
+      $scope.showGames = true;
+      $scope.showFriends = false;
       if ($scope.userID !== null) {
-        gameLogs.getGames($scope.userID).then((games) => {
-          $scope.allGameData = games;
-          $scope.gamesInfo = [];
-          $scope.allGameData.forEach((game) => {
-            if (!game.hasOwnProperty('winner')) {
-              game.winner = null;
-              game.playersInfo = [];
-              game.players.forEach((player) => {
-                gameLogs.getPlayersInGames(player).then((response) => {
-                  game.playersInfo.push(response.data);
-                  $scope.gamesInfo.push(game);
-                });
-              });
-            }
+        gameLogs.getGames($scope.userID)
+        .then((games) => {
+          const allGamesData = games;
+          return allGamesData;
+        })
+        .then((allGamesData) => {
+          allGamesData.forEach((game) => {
+            let sum = 0;
+            game.players.forEach((player) => {
+              sum += player.points;
+            });
+            game.rounds = sum;
+            game.created_on = moment(game.created_on).format('LLLL');
           });
-          // $scope.$apply( () => {
-          //   $scope.allGameData = games;
-          // });
-          // $scope.allGameData = games;
-          // console.log($scope.allGameData);
-          console.log($scope.gamesInfo);
+          $scope.allGameData = allGamesData;
+          console.log($scope.allGameData);
         });
-        // const donations = JSON.parse(atob(window.localStorage.getItem('token').split('.')[1])).existingUser.donations;
-        // console.log();
-        // $scope.donations = donations;
       }
     };
 
@@ -57,21 +54,11 @@ angular.module('mean.system')
 
     $scope.leaderBoard = () => {
 
-    }
+    };
 
-    $scope.games = () => {
+    $scope.getFriends = () => {
 
-    }
-    
-    $scope.friends = () => {
-
-    }
-
-    $scope.donations = () => {
-
-    }
-
-
+    };
   }]);
 
 

@@ -140,17 +140,6 @@ angular.module('mean.system')
             deferred.reject(err);
           });
         return deferred.promise;
-      },
-
-      getPlayersInGames: (playerID) => {
-        const deferred = $q.defer();
-        $http.get(`/api/search/getUser/${playerID}`)
-          .success((data, status, headers, config) => {
-            deferred.resolve(data, status, headers, config);
-          }).error((err) => {
-            deferred.reject(err);
-          });
-        return deferred.promise;
       }
     };
   }]);
