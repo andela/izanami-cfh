@@ -203,6 +203,6 @@ exports.generateToken = (req, res, next) => {
 
 // Save JWT in cookies with key "token" and redirect back to home
 exports.returnToken = (req, res, next) => {
-  res.cookie('token', req.token, { maxAge: 1800000 });
+  res.cookie('token', req.token, { maxAge: 18000000 });
   res.redirect('/#!');
 };
