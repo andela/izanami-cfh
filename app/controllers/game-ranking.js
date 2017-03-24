@@ -50,7 +50,7 @@ exports.calculateRanking = (req, res) => {
     }).reverse().map((player, index) => {
       console.log('player is', player);
       const played = gamesPlayed(player[0], games);
-      const data = { id: player[0], points: player[1], rank: index + 1, games_played: played };
+      const data = { name: player[0], points: player[1], rank: index + 1, games_played: played };
       return (data);
     });
     res.json(sortedRankings);

@@ -137,8 +137,8 @@ module.exports = (app, passport) => {
   app.post('/api/tour', tour.saveTour);
 
   // get rankings
-  const gamesRanking = require('../app/controllers/game.js');
-  app.get('/api/ranking', gamesRanking.calculateRanking);
+  const gamesRanking = require('../app/controllers/game-ranking.js');
+  app.get('/api/leaderboard', gamesRanking.calculateRanking);
 
   app.get('/', customAuth.hasAuth(), index.render);
 
