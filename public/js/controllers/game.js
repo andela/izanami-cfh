@@ -29,6 +29,7 @@ angular.module('mean.system')
       $scope.sendMessage = (userMessage) => {
         $scope.chat.postGroupMessage(userMessage);
         document.getElementsByClassName('emoji-wysiwyg-editor')[0].innerHTML = '';
+        document.getElementById('msg_input').value = '';
       };
 
       $(document).on('keydown', '.emoji-wysiwyg-editor', (e) => {
@@ -141,6 +142,7 @@ angular.module('mean.system')
         } else {
           $('#playerMinimumAlert').modal('show');
         }
+        gameTour.cancelTour();
       };
 
       $scope.abandonGame = () => {

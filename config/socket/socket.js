@@ -62,7 +62,6 @@ module.exports = function (io) {
           thisGame.prepareGame();
           thisGame.sendNotification('The game has begun!');
         }
-        socket.emit('endTour');
         socket.broadcast.emit('endTour');
       }
     });

@@ -701,6 +701,7 @@ html {
   width: 22px;
   float: right;
 }
+
 /* ----------- iPhone 5 and 5S ----------- */
 
 
@@ -767,6 +768,10 @@ html {
   .card-mem {
     height: 70%;
   }
+  .emoji-menu {
+    width: 200px;
+    transform: translateX(10px) translateY(541px) translateZ(0px) !important;
+  }
 }
 
 
@@ -788,7 +793,11 @@ html {
     height: 100%;
     background-size: 50%;
     padding-top: 20px;
-  } 
+  }
+  .emoji-menu {
+    width: 210px;
+    transform: translateX(10px) translateY(541px) translateZ(0px) !important;
+  }
 }
 /* ----------- iPhone 6+ ----------- */
 
@@ -808,7 +817,11 @@ html {
     height: 100%;
     background-size: 50%;
     padding-top: 20px;
-  } 
+  }
+  .emoji-menu {
+    width: 225px;
+    transform: translateX(200px) translateY(531px) translateZ(0px) !important;
+  }
 }
 
 
@@ -831,6 +844,10 @@ html {
     background-size: 50%;
     padding-top: 20px;
   }
+  .emoji-menu {
+    width: 210px;
+    transform: translateX(10px) translateY(541px) translateZ(0px) !important;
+  }
   
 }
 @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
@@ -846,7 +863,11 @@ html {
     height: 100%;
     background-size: 50%;
     padding-top: 20px;
-  }  
+  }
+  .emoji-menu {
+    width: 210px;
+    transform: translateX(10px) translateY(541px) translateZ(0px) !important;
+  }
 }
 /* iPads (portrait and landscape) ----------- */
 @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
@@ -862,6 +883,10 @@ html {
     height: 100%;
     background-size: 50%;
     padding-top: 20px;
+  }
+  .emoji-menu {
+    width: 225px;
+    transform: translateX(418px) translateY(791px) translateZ(0px) !important;
   }
 }
 /* iPhone 4 ----------- */
@@ -879,6 +904,10 @@ html {
     background-size: 50%;
     padding-top: 20px;
   }
+  .emoji-menu {
+    width: 200px;
+    transform: translateX(10px) translateY(541px) translateZ(0px) !important;
+  }
 }
 /* Samsung Galaxy S3 ----------- */
 @media only screen and (min-device-width: 320px) and (max-device-height: 640px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 2){
@@ -894,5 +923,9 @@ html {
     height: 100%;
     background-size: 50%;
     padding-top: 20px;
+  }
+  .emoji-menu {
+    width: 200px;
+    transform: translateX(50px) translateY(541px) translateZ(0px) !important;
   }
 }

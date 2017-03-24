@@ -1534,7 +1534,7 @@ div.chatinput {
 
 /*Start of Emoji Css*/
 .emoji-menu {
-  z-index: 999;
+  z-index: 1002;
   width: 225px;
   overflow: hidden;
   border: 1px #dfdfdf solid;
@@ -1553,7 +1553,7 @@ div.chatinput {
   position: absolute !important;
   bottom: 0 !important;
   right: 0 !important;
-  transform: translateX(618px) translateY(611px) translateZ(0px) !important;
+  transform: translateX(618px) translateY(541px) translateZ(0px) !important;
 }
 .emoji-picker-icon {
   position: absolute;
