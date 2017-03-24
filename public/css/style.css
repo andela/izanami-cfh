@@ -433,8 +433,7 @@ p a:hover {
 
 /**** About Us ****/
 #main-bod {
-  max-width: 1400px;
-  margin: 0px auto;
+  margin: 0px;
 }
 
 .wpb-about-us {
@@ -466,7 +465,6 @@ p a:hover {
 }
 
 #how-to {
-  max-width: 1400px;
   margin-top: -15px;
 }
 
@@ -1777,7 +1775,7 @@ div.chatinput {
 
 .search-result {
   color: black;
-  padding: 2px 10px;
+  padding: 5px 10px;
   cursor: pointer;
 }
 .invitee-invited {
@@ -1785,12 +1783,14 @@ div.chatinput {
 }
 .search-result-container{
   position: absolute;
-  width:93%;
-  height: 135px;
-  background-color: lightgray;
+  width:78.5%;
+  height: 80px;
+  background-color: #f8f8f8;
   text-align: left;
   overflow: scroll;
-  border-radius: 2px 2px 4px 4px
+  border-radius: 2px 2px 4px 4px;
+  border: 1px solid #ccc;
+  z-index: 1;
 }
 .search-container {
   margin: 5% 25%;
