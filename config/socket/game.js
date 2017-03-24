@@ -2,6 +2,10 @@ const async = require('async');
 const _ = require('underscore');
 const questions = require(`${__dirname}/../../app/controllers/questions.js`);
 const answers = require(`${__dirname}/../../app/controllers/answers.js`);
+
+const mongoose = require('mongoose');
+const GameModel = mongoose.model('Game');
+
 const guestNames = [
   'Disco Potato',
   'Silver Blister',
@@ -57,7 +61,7 @@ function Game(gameID, io) {
 
 Game.prototype.payload = function () {
   const players = [];
-  this.players.forEach((player ,index) => {
+  this.players.forEach((player, index) => {
     players.push({
       hand: player.hand,
       points: player.points,
@@ -111,7 +115,6 @@ Game.prototype.assignGuestNames = function () {
 
 Game.prototype.prepareGame = function () {
   this.state = 'game in progress';
-
   this.io.sockets.in(this.gameID).emit('prepareGame',
     {
       playerMinLimit: this.playerMinLimit,
@@ -224,12 +227,14 @@ Game.prototype.stateResults = function (self) {
   console.log(self.state);
   // TODO: do stuff
   let winner = -1;
+  this.updateGame(self.players);
   for (let i = 0; i < self.players.length; i++) {
     if (self.players[i].points >= self.pointLimit) {
       winner = i;
     }
   }
-  self.sendUpdate();
+
+  // self.sendUpdate(self.players);
   self.resultsTimeout = setTimeout(() => {
     if (winner !== -1) {
       self.stateEndGame(winner);
@@ -354,7 +359,7 @@ Game.prototype.pickCards = function (thisCardArray, thisPlayer) {
   }
 };
 
-Game.prototype.getPlayer = function(thisPlayer) {
+Game.prototype.getPlayer = function (thisPlayer) {
   const playerIndex = this._findPlayerIndexBySocket(thisPlayer);
   if (playerIndex > -1) {
     return this.players[playerIndex];
@@ -447,6 +452,47 @@ Game.prototype.killGame = function () {
 Game.prototype.drawCard = function () {
   clearTimeout(this.drawCardsTimeout);
   this.stateChoosing(this);
+};
+
+Game.prototype.saveGame = (players) => {
+  const rawGameData = players.slice(0);
+  const gamePlayers = rawGameData.map((data) => {
+    return data.userID;
+  });
+  const newGame = new GameModel({
+    created_by: gamePlayers[0],
+    number_of_players: gamePlayers.length.toString(),
+    game_id: players[0].socket.gameID,
+    players: gamePlayers
+  });
+
+  newGame.save(( err ) => {
+    if (!err) {
+      // This happens when game has been saved
+    } else {
+      // This happens when there is an error saving game
+    }
+  });
+};
+
+Game.prototype.updateGame = (players) => {
+  let winner = '';
+  const gamePlayers = players.map((player) => {
+    let data = {};
+    const uid = player.userID;
+    const points = player.points;
+    data[uid] = points;
+    if (points >= 5) {
+      winner = uid;
+    }
+    return data;
+  });
+  let gameId = players[0].socket.gameID;
+  GameModel.findOne({ game_id: gameId }, function (err, game){
+    game.players = gamePlayers;
+    game.winner = winner;
+    game.save();
+  });
 };
 
 module.exports = Game;

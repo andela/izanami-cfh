@@ -223,19 +223,19 @@ h2 {
   color: #F9AA57 !important;
 }
 
-footer {
+.footer {
   height: 150px;
   background-color: #ddd;
 }
 
-footer a {
+.footer a {
   float: left;
   display: block;
   position: relative;
 }
 
 
-footer img {
+.footer img {
   float: right;
   height: 80%;
   width: 20%;
@@ -244,12 +244,12 @@ footer img {
   transform: translate(0%, 5%);
 }
 
-footer a {
+.footer a {
   color: #000;
   padding: 20px;
 }
 
-footer a:hover {
+.footer a:hover {
   color: #F9AA57;
 }
 
@@ -299,10 +299,14 @@ footer a:hover {
   .image {
       height: 350px;
   }
+  .user-modal-avatar {
+    width: 30%;
+    float: left;
+  }
 }
 
 /*sign in page*/
-    
+
 .brand-name {
   text-align: center;
 }
@@ -459,7 +463,7 @@ div.hr div:last-child {
   -webkit-appearance: none;
   border: none;
   font-size: 14px;
-  transition: 0.5s;      
+  transition: 0.5s;
 }
 #sign-up-btn-other:hover {
   background-color: #922323;
@@ -549,6 +553,161 @@ input:focus {
   padding: 10px;
 }
 
+/*gaming screen*/
+
+#main-container #app-container #menu-container {
+  background: #F8F8F8;
+  border-radius: 0;
+  border: 0;
+}
+
+#menu-container {
+  width: 100%;
+}
+
+html {
+  background: #F8F8F8;
+}
+#app-container {
+  background: #F8F8F8;
+}
+#main-container {
+   background: #F8F8F8;
+}
+#main-container #app-container #menu-container #tweet {
+  float: right;
+  padding-top: 10px;
+}
+#tweet .twitter {
+  color: #00aced;
+  margin-right: 10px;
+  margin-top: 0px;
+}
+#main-container #app-container #menu-container #abandon-game-button {
+  background: transparent;
+  width: 0;
+  margin-bottom:0;
+  margin-right: 0;
+  color: #B33A3A;
+}
+#main-container #app-container #menu-container #abandon-game-button:hover {
+  background: transparent;
+}
+#main-container #app-container #gameplay-container #upper-gameplay-container #menu-timeremaining-container #timer-container #inner-timer-container {
+  box-shadow: 0 0 70px 5px rgba(0, 0, 0, 0.15);
+  border: 1px solid #ccc;
+  border-radius: 1px;
+}
+.card.longBlack {
+  background: #2D2D2D;
+}
+.card {
+  border-radius: 1px;
+  background:#2D2D2D;
+  box-shadow: 0 0 70px 5px rgba(0, 0, 0, 0.15);
+}
+#main-container #app-container #social-bar-container #player-container {
+  border-radius: 1px;
+  background: transparent !important;
+  border: 1px solid #ccc;
+  box-shadow: 3px 3px 7px 5px #ccc;
+}
+#main-container #app-container #gameplay-container #info-container {
+  background: #F8F8F8;
+  color: #000;
+  margin-top: 20px;
+  border-radius: 1px;
+  border: 1px solid #ccc;
+  box-shadow: 0 0 70px 5px rgba(0, 0, 0, 0.15);
+}
+#main-container #app-container #gameplay-container #upper-gameplay-container
+#question-container-outer #question-container-inner .card #startGame #start-game-container #start-game-button {
+  border-radius: 1px;
+}
+#main-container #app-container #gameplay-container #upper-gameplay-container #question-container-outer #question-container-inner .card #startGame #start-game-container #start-game-button{
+  background: #eee;
+  color: #000;
+}
+#main-container #app-container #social-bar-container #player-container #czar-container{
+  border-radius: 1px;
+  background: #aaa;
+  margin-top: 50px;
+}
+.abandon-game {
+    padding: 0 10px;
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.abandon-game .toolTipText {
+    visibility: hidden;
+    background-color: #F8F8F8;
+    color: #000;
+    text-align: center;
+    border-radius: 3px;
+    padding: 5px;
+    margin: 0;
+    border: 1px solid #ccc;
+
+    /* Position of the tooltip */
+    position: absolute;
+    display: inline-flex;
+    z-index: 5;
+    top: 18px;
+    width: 260%;
+    left: 38%;
+    transform: translate(-50%, 70%);
+    font-family: 'Orbitron', sans-serif;
+}
+
+.abandon-game:hover .toolTipText {
+    visibility: visible;
+}
+#main-container #app-container #gameplay-container #cards-container #cards {
+  border-radius: 1px !important;
+  background: #2D2D2D;
+  padding-left: 25px;
+}
+.wait-for-czar {
+  border-radius: 1px;
+  background: #2D2D2D;
+  height: 10%;
+}
+.wait-for-czar h4 {
+  padding-top: 10px;
+}
+.answers-donate {
+  top: 70%;
+}
+#cards .card {
+  background : #fff;
+}
+.draw-cards {
+  border-radius: 1px !important;
+  background: #2D2D2D;
+}
+#main-container #app-container #gameplay-container #cards-container  {
+  border-radius: 1px;
+  background: #2D2D2D;
+}
+.search-div {
+  margin: 5% 25%;
+}
+.tour-button {
+  background: transparent;
+  border: 1px solid #ccc;
+  box-shadow: 0 0 70px 5px rgba(0, 0, 0, 0.15);
+  color: #232323;
+  border-radius: 0;
+}
+#player-score h2 {
+  font-family: sans-serif!important;
+}
+#player-star .user {
+  width: 22px;
+  float: right;
+}
 /* ----------- iPhone 5 and 5S ----------- */
 
 
@@ -568,7 +727,54 @@ input:focus {
     background-size: 50%;
     padding-top: 20px;
   }
-  
+
+  #main-container #app-container #gameplay-container {
+    margin: 5px;
+  }
+  #main-container #app-container #social-bar-container #player-container {
+    background: #F8F8F8 !important;
+    box-shadow: none;
+    margin-top: 5px;
+  }
+  #main-container #app-container #gameplay-container #cards-container #cards {
+    margin-top: 10px;
+  }
+  .search-div {
+    margin: 5%;
+  }
+  #main-container #app-container #menu-container #abandon-game-button {
+    margin-top: 10px;
+    margin-right: 5px;
+  }
+  #main-container #app-container #social-bar-container #player-container
+  #above-czar-container #player-container-inner #player-star {
+    margin-top: -7px;
+    margin-left: 32px;
+  }
+  #main-container #app-container #social-bar-container #player-container #czar-container{
+    background: transparent;
+    width: 70%;
+    text-align: left;
+  }
+  #main-container #app-container #social-bar-container #player-container #czar-container #the-czar {
+    font-size: 10px;
+    color: #232323;
+  }
+  #cards .card {
+    width: 27%;
+  }
+  #main-container #app-container #gameplay-container #cards-container #cards {
+    max-height: none;
+  }
+  #main-container #app-container #social-bar-container #player-container {
+    width: 20%;
+  }
+  .flip {
+    margin-left: 20%;
+  }
+  .card-mem {
+    height: 70%;
+  }
 }
 
 
@@ -590,7 +796,7 @@ input:focus {
     height: 100%;
     background-size: 50%;
     padding-top: 20px;
-  } 
+  }
 }
 /* ----------- iPhone 6+ ----------- */
 
@@ -610,7 +816,7 @@ input:focus {
     height: 100%;
     background-size: 50%;
     padding-top: 20px;
-  } 
+  }
 }
 
 
@@ -633,7 +839,6 @@ input:focus {
     background-size: 50%;
     padding-top: 20px;
   }
-  
 }
 @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
   .avatars{
@@ -648,7 +853,7 @@ input:focus {
     height: 100%;
     background-size: 50%;
     padding-top: 20px;
-  }  
+  }
 }
 /* iPads (portrait and landscape) ----------- */
 @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {

@@ -36,10 +36,10 @@
   <div id="social-bar-container">
     <player></player>
   </div>
-  
-  
+
+
 <!--  add in the user draw card functionality-->
-  
+
  <div id="cards" class='hand' ng-hide="game.state === 'waiting for czar to draw cards'">
     <span ng-show="winnerPicked()"></span>
 
@@ -49,7 +49,6 @@
         <span id='selection-number' ng-show="showFirst(card)"> 1 </span>
         <span id='selection-number' ng-show="showSecond(card)"> 2 </span>
     </div>
-
    <span ng-repeat="answer in game.table">
         <div class="card smallest" ng-style="pointerCursorStyle()" id='table' ng-click="pickWinning(answer)" ng-show="showTable || isCzar()"
         ng-repeat="card in answer.card" ng-animate="{enter:'animated bounceInLeft'}" style="background-color:{{winningColor($parent.$index)}}">
@@ -60,24 +59,27 @@
     </span>
 </div>
 <div ng-show="game.state === 'waiting for czar to draw cards'">
-  <div ng-show="!isCzar()">
+  <div class="wait-for-czar" ng-show="!isCzar()">
     <h4 class='text-center'>Wait for czar to draw next set of cards</h4>
   </div>
-      <div ng-show="isCzar()">
-        <h4 class='text-center'> Click to draw next set of cards </h4>
-        <div class="text-center flip">
-          <div class="cards-group" ng-click="drawCard()">
-              <div class="card-mem right" id="flip-card"></div>
-              <div class="card-mem left"></div>
-              <div class="card-mem right"></div>
-              <div class="card-mem left"></div>
-              <div class="card-mem right"></div>
-              <div class="card-mem left"></div>
-          </div>
+  <!--<div class="answers-donate" ng-show="!isCzar()">
+    <h4> Donate to charity</h4>
+  </div>-->
+  <div class = "draw-cards" ng-show="isCzar()">
+    <h4 class='text-center'> Click to draw next set of cards </h4>
+    <div class="text-center flip">
+      <div class="cards-group" ng-click="drawCard()">
+          <div class="card-mem right" id="flip-card"></div>
+          <div class="card-mem left"></div>
+          <div class="card-mem right"></div>
+          <div class="card-mem left"></div>
+          <div class="card-mem right"></div>
+          <div class="card-mem left"></div>
       </div>
+    </div>
   </div>
 </div>
- 
+
 <!-- user draw card ends-->
 
 <div id="info-container" ng-show="game.state === 'awaiting players'">
@@ -85,9 +87,9 @@
 
     <!-- Invite search friends-->
     <div id="searchContainer" style="display: none">
-      <div class="col-lg-6" style="margin: 5% 25%">
+      <div class="col-lg-6 search-div">
         <div class="input-group">
-          <input type="text" class="form-control" ng-keyup="playerSearch()" ng-model="inviteeUserName" placeholder="Search for friends to invite">
+          <input type="text" class="form-control search-input" ng-keyup="playerSearch()" ng-model="inviteeUserName" placeholder="Search for friends to invite">
           <span class="input-group-btn">
             <button class="btn btn-default" type="button" ng-click="sendInvite()">Invite</button>
           </span>
@@ -97,9 +99,9 @@
 
         <!-- user search results-->
         <div ng-if="searchUserResults.length !== 0" class="search-result-container">
-          <div ng-class="clickInvitee(result.email)" ng-repeat="result in searchUserResults" ng-click="selectUser(result)">
+          <div ng-class="clickInvitee(result._id)" ng-repeat="result in searchUserResults" ng-click="selectUser(result)">
             {{result.name}}
-            <span ng-if="isInvited(result.email)" class="pull-right">Invited</span>
+            <span ng-if="isInvited(result._id)" class="pull-right">Invited</span>
           </div>
         </div>
 
@@ -114,6 +116,7 @@
       <li>The Card Czar then picks a favorite answer, and whoever played that answer wins the round.</li>
       <li>*Want to adorn your avatar with a glorious crown? Donate to charity after the game!</li>
     </ol>
+    <button class="tour-button" ng-click="startTour()">Screen Tour</button>
   </div>
 </div>
 <div id="game-end-container" ng-show="game.state === 'game ended' || game.state ==='game dissolved'">

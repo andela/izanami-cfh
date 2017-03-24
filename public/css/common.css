@@ -66,17 +66,11 @@ html, body, .main-container, .cont, #first-section, #inner-container {
 
 html {
   /* IE10 Consumer Preview */
-  background-image: -ms-linear-gradient(top left, #0B394E 0%, #ABCE8D 100%);
   /* Mozilla Firefox */
-  background-image: -moz-linear-gradient(top left, #0B394E 0%, #ABCE8D 100%);
   /* Opera */
-  background-image: -o-linear-gradient(top left, #0B394E 0%, #ABCE8D 100%);
   /* Webkit (Safari/Chrome 10) */
-  background-image: -webkit-gradient(linear, left top, right bottom, color-stop(0, #0B394E), color-stop(1, #ABCE8D));
   /* Webkit (Chrome 11+) */
-  background-image: -webkit-linear-gradient(top left, #0B394E 0%, #ABCE8D 100%);
   /* W3C Markup, IE10 Release Preview */
-  background-image: linear-gradient(to bottom right, #0B394E 0%, #ABCE8D 100%);
   background-attachment: fixed;
   background-repeat: no-repeat;
   position: relative; }
@@ -315,9 +309,6 @@ body {
                 #main-container #app-container #social-bar-container #player-container #above-czar-container #player-container-inner #player-star {
                   margin-top: 1px;
                   margin-left: 5px; } }
-              @media (max-width: 520px) {
-                #main-container #app-container #social-bar-container #player-container #above-czar-container #player-container-inner #player-star {
-                  display: none; } }
               #main-container #app-container #social-bar-container #player-container #above-czar-container #player-container-inner #player-star img {
                 width: 22px; }
                 @media only screen and (min-width: 521px) and (max-width: 768px) {
@@ -343,9 +334,6 @@ body {
             color: #fff;
             font-weight: bold;
             font-size: 20px; }
-            @media (max-width: 520px) {
-              #main-container #app-container #social-bar-container #player-container #czar-container #the-czar {
-                display: none; } }
     #main-container #app-container #gameplay-container {
       height: 100%;
       width: 80%; }
@@ -559,7 +547,7 @@ body {
         border-radius: 8px;
         text-align: center;
         padding: 15px;
-        height: 50%;
+        height: auto;
         margin-top: 10px; }
         @media only screen and (min-width: 521px) and (max-width: 768px) {
           #main-container #app-container #gameplay-container #info-container {

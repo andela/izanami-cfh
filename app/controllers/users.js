@@ -15,11 +15,11 @@ exports.authCallback = (req, res, next) => {
 /*
  * Show login form
  */
-exports.signin = (req, res) => {
+exports.signin = (req, res, next) => {
   if (!req.user) {
     res.redirect('/#!/signin?error=invalid');
   } else {
-    res.redirect('/#!/app');
+    next();
   }
 };
 
@@ -60,15 +60,15 @@ exports.checkAvatar = (req, res) => {
     User.findOne({
       _id: req.user._id
     })
-    .exec((err, user) => {
-      if (user.avatar !== undefined) {
-        res.redirect('/#!/');
-      } else {
-        res.redirect('/#!/choose-avatar');
-      }
-    });
+            .exec((err, user) => {
+              if (user.avatar !== undefined) {
+                res.redirect('/#!/');
+              } else {
+                res.redirect('/#!/choose-avatar');
+              }
+            });
   } else {
-    // If user doesn't even exist, redirect to /
+        // If user doesn't even exist, redirect to /
     res.redirect('/');
   }
 };
@@ -76,6 +76,7 @@ exports.checkAvatar = (req, res) => {
 /*
  * Create user
  */
+
 exports.create = (req, res, next) => {
   if (req.body.name && req.body.password && req.body.email) {
     User.findOne({
@@ -83,7 +84,7 @@ exports.create = (req, res, next) => {
     }).exec((err, existingUser) => {
       if (!existingUser) {
         const user = new User(req.body);
-        // Switch the user's avatar index to an actual avatar url
+                // Switch the user's avatar index to an actual avatar url
         user.avatar = avatars[user.avatar];
         user.provider = 'local';
         user.save((err) => {
@@ -93,10 +94,8 @@ exports.create = (req, res, next) => {
               user
             });
           }
-          req.logIn(user, (err) => {
-            if (err) return next(err);
-            return res.redirect('/#!/');
-          });
+          req.body = user;
+          next();
         });
       } else {
         return res.redirect('/#!/signup?error=existinguser');
@@ -111,41 +110,41 @@ exports.create = (req, res, next) => {
  * Assign avatar to user
  */
 exports.avatars = (req, res) => {
-  // Update the current user's profile to include the avatar choice they've made
+    // Update the current user's profile to include the avatar choice they've made
   if (req.user && req.user._id && req.body.avatar !== undefined &&
-    /\d/.test(req.body.avatar) && avatars[req.body.avatar]) {
+        /\d/.test(req.body.avatar) && avatars[req.body.avatar]) {
     User.findOne({
       _id: req.user._id
     })
-    .exec((err, user) => {
-      user.avatar = avatars[req.body.avatar];
-      user.save();
-    });
+            .exec((err, user) => {
+              user.avatar = avatars[req.body.avatar];
+              user.save();
+            });
   }
   return res.redirect('/#!/app');
 };
 
 exports.addDonation = (req, res) => {
   if (req.body && req.user && req.user._id) {
-    // Verify that the object contains crowdrise data
+        // Verify that the object contains crowdrise data
     if (req.body.amount && req.body.crowdrise_donation_id && req.body.donor_name) {
       User.findOne({
         _id: req.user._id
       })
-      .exec((err, user) => {
-        // Confirm that this object hasn't already been entered
-        let duplicate = false;
-        for (let i = 0; i < user.donations.length; i++) {
-          if (user.donations[i].crowdrise_donation_id === req.body.crowdrise_donation_id) {
-            duplicate = true;
-          }
-        }
-        if (!duplicate) {
-          user.donations.push(req.body);
-          user.premium = 1;
-          user.save();
-        }
-      });
+                .exec((err, user) => {
+                    // Confirm that this object hasn't already been entered
+                  let duplicate = false;
+                  for (let i = 0; i < user.donations.length; i++) {
+                    if (user.donations[i].crowdrise_donation_id === req.body.crowdrise_donation_id) {
+                      duplicate = true;
+                    }
+                  }
+                  if (!duplicate) {
+                    user.donations.push(req.body);
+                    user.premium = 1;
+                    user.save();
+                  }
+                });
     }
   }
   res.send();
@@ -175,15 +174,15 @@ exports.me = (req, res) => {
  */
 exports.user = (req, res, next, id) => {
   User
-    .findOne({
-      _id: id
-    })
-    .exec((err, user) => {
-      if (err) return next(err);
-      if (!user) return next(new Error(`Failed to load User ${id}`));
-      req.profile = user;
-      next();
-    });
+        .findOne({
+          _id: id
+        })
+        .exec((err, user) => {
+          if (err) return next(err);
+          if (!user) return next(new Error(`Failed to load User ${id}`));
+          req.profile = user;
+          next();
+        });
 };
 
 
@@ -205,5 +204,5 @@ exports.generateToken = (req, res, next) => {
 // Save JWT in cookies with key "token" and redirect back to home
 exports.returnToken = (req, res, next) => {
   res.cookie('token', req.token, { maxAge: 1800000 });
-  res.redirect('/');
+  res.redirect('/#!');
 };
