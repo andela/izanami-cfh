@@ -140,5 +140,6 @@ module.exports = (app, passport) => {
 
   // Game Log Routes
   const games = require('../app/controllers/game-history');
-  app.post('/api/games/history', games.getUserHistory);
+  app.get('/api/games/history', games.getUserHistory);
+  app.get('/api/games/history/:userID', games.getUserGameHistory);
 };
