@@ -296,10 +296,14 @@ h2 {
   .image {
       height: 350px;
   }
+  .user-modal-avatar {
+    width: 30%;
+    float: left;
+  }
 }
 
 /*sign in page*/
-    
+
 .brand-name {
   text-align: center;
 }
@@ -456,7 +460,7 @@ div.hr div:last-child {
   -webkit-appearance: none;
   border: none;
   font-size: 14px;
-  transition: 0.5s;      
+  transition: 0.5s;
 }
 #sign-up-btn-other:hover {
   background-color: #922323;
@@ -613,7 +617,7 @@ html {
   border: 1px solid #ccc;
   box-shadow: 0 0 70px 5px rgba(0, 0, 0, 0.15);
 }
-#main-container #app-container #gameplay-container #upper-gameplay-container 
+#main-container #app-container #gameplay-container #upper-gameplay-container
 #question-container-outer #question-container-inner .card #startGame #start-game-container #start-game-button {
   border-radius: 1px;
 }
@@ -649,7 +653,7 @@ html {
     z-index: 5;
     top: 18px;
     width: 260%;
-    left: 38%; 
+    left: 38%;
     transform: translate(-50%, 70%);
     font-family: 'Orbitron', sans-serif;
 }
@@ -666,7 +670,7 @@ html {
   border-radius: 1px;
   background: #2D2D2D;
   height: 10%;
-} 
+}
 .wait-for-czar h4 {
   padding-top: 10px;
 }
@@ -701,7 +705,6 @@ html {
   width: 22px;
   float: right;
 }
-
 /* ----------- iPhone 5 and 5S ----------- */
 
 
@@ -739,7 +742,7 @@ html {
     margin-top: 10px;
     margin-right: 5px;
   }
-  #main-container #app-container #social-bar-container #player-container 
+  #main-container #app-container #social-bar-container #player-container
   #above-czar-container #player-container-inner #player-star {
     margin-top: -7px;
     margin-left: 32px;
@@ -752,7 +755,7 @@ html {
   #main-container #app-container #social-bar-container #player-container #czar-container #the-czar {
     font-size: 10px;
     color: #232323;
-  } 
+  }
   #cards .card {
     width: 27%;
   }
@@ -848,7 +851,7 @@ html {
     width: 210px;
     transform: translateX(10px) translateY(541px) translateZ(0px) !important;
   }
-  
+
 }
 @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
   .avatars{

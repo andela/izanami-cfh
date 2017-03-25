@@ -1,6 +1,6 @@
 angular.module('mean.system')
-  .factory('game', ['socket', '$timeout', 'chat', 'gameTour', 'gameTourService',
-    (socket, $timeout, chat, gameTour, gameTourService) => {
+  .factory('game', ['$rootScope', 'socket', '$timeout', 'chat', 'gameTour', 'gameTourService', 'invitePlayer',
+    ($rootScope, socket, $timeout, chat, gameTour, gameTourService, invitePlayer) => {
       const game = {
         id: null, // This player's socket ID, so we know who this player is
         gameID: null,
@@ -29,6 +29,7 @@ angular.module('mean.system')
       let timeout = false;
       const self = this;
       let joinOverrideTimeout = 0;
+      const invitedPlayers = [];
 
       const addToNotificationQueue = function (msg) {
         notificationQueue.push(msg);
@@ -257,6 +258,23 @@ angular.module('mean.system')
 
       socket.on('endTour', () => {
         game.tour.cancelTour();
+      });
+
+      socket.on('sendCustomInvite', (params) => {
+        params.invitedFriends.forEach((friend) => {
+          socket.emit('sendInvite', {
+            user: friend.id,
+            sender: window.user.name,
+            link: document.URL
+          }, () => {
+            invitePlayer.sendMail(friend.email, document.URL).then((data) => {
+              if (data === 'Accepted') {
+                $rootScope.$$childHead.$$childHead.invitedPlayers
+                .push(friend.id);
+              }
+            });
+          });
+        });
       });
 
       decrementTime();
