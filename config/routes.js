@@ -105,7 +105,7 @@ module.exports = (app, passport) => {
 
     // Home route
   const index = require('../app/controllers/index');
-  app.get('/play', customAuth.hasAuth(), index.play);
+  app.get('/play', index.play);
 
   app.get('/api/games/:id/start', customAuth.hasAuth(), index.play);
 
@@ -132,9 +132,9 @@ module.exports = (app, passport) => {
 
   const tour = require('../app/controllers/tour');
   // search tour taken
-  app.get('/api/tour/:userID', customAuth.hasAuth(), tour.searchTour);
+  app.get('/api/tour/:userID', tour.searchTour);
   // save tour taken
-  app.post('/api/tour', customAuth.hasAuth(), tour.saveTour);
+  app.post('/api/tour', tour.saveTour);
 
   app.get('/', customAuth.hasAuth(), index.render);
 };
