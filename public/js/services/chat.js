@@ -100,6 +100,8 @@ angular.module('mean.system')
       updateUnreadMessageCount() {
         if (!this.chatWindowVisible) {
           this.unreadMessageCount += 1;
+          const notification = new Audio('../../audio/coins.mp3');
+          notification.play();
         }
       }
 

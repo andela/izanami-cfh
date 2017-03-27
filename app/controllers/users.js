@@ -5,6 +5,7 @@ const mongoose = require('mongoose'),
   User = mongoose.model('User');
 const avatars = require('./avatars').all();
 
+const authenticate = require('../../config/middlewares/authorization');
 /*
  * Auth callback
  */
@@ -16,6 +17,8 @@ exports.authCallback = (req, res, next) => {
  * Show login form
  */
 exports.signin = (req, res, next) => {
+  res.clearCookie('token');
+  req.logout();
   if (!req.user) {
     res.redirect('/#!/signin?error=invalid');
   } else {
@@ -203,6 +206,6 @@ exports.generateToken = (req, res, next) => {
 
 // Save JWT in cookies with key "token" and redirect back to home
 exports.returnToken = (req, res, next) => {
-  res.cookie('token', req.token, { maxAge: 1800000 });
+  res.cookie('token', req.token, { maxAge: 18000000 });
   res.redirect('/#!');
 };

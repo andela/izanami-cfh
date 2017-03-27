@@ -43,7 +43,7 @@ function Game(gameID, io) {
     stateJudging: 16,
 // czar draw cards
     stateDrawCards: 11,
-    stateResults: 3
+    stateResults: 2
   };
   // setTimeout ID that triggers the czar judging state
   // Used to automatically run czar judging if players don't pick before time limit
@@ -471,7 +471,6 @@ Game.prototype.saveGame = (players) => {
     if (!err) {
       // This happens when game has been saved
     } else {
-      console.log(err);
       // This happens when there is an error saving game
     }
   });
@@ -479,7 +478,6 @@ Game.prototype.saveGame = (players) => {
 
 Game.prototype.updateGame = (players) => {
   let winner = '';
-  console.log(players);
   const gamePlayers = players.map((player) => {
     const uid = player.userID;
     const points = player.points;

@@ -36,6 +36,8 @@ const authenticate = expressJwt({ secret: process.env.SECRET_KEY,
 
 const compose = require('composable-middleware');
 
+exports.authenticate = authenticate;
+
 // Custom middleware to check if user has authorization and decode token.
 exports.hasAuth = () => compose()
   .use((req, res, next) => {
@@ -46,7 +48,7 @@ exports.hasAuth = () => compose()
       if (req.route.path === '/') {
         next();
       } else {
-        res.redirect('/#!/signin?error=invalid');
+        res.redirect('/');
       }
     }
   });

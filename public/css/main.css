@@ -21,11 +21,15 @@ h6 {
 h2 {
   font-family: 'Courgette', 'Cursive' !important;
 }
+#main-bod {
+  padding-top: 50px;
+}
 
 #home {
   background-color: #fff;
   padding: 0;
-  padding-bottom: 80px;
+  width: 100vw;
+  padding: 30px 0 90px;
 }
 
 .signout a {
@@ -44,7 +48,7 @@ h2 {
   background-image: url('../images/cards.png');
   background-repeat: no-repeat;
   background-position: center;
-  background-size: 80%;
+  background-size: contain;
   height: 480px;
 }
 
@@ -100,7 +104,9 @@ h2 {
 
 #how-to {
   background-color: #EAEDED;
+  padding: 0;
   padding-bottom: 40px;
+  width: 100vw;
 }
 
 #how-to h2 {
@@ -122,6 +128,7 @@ h2 {
   font-size: 50px;
   text-align: center;
   padding-top: 15px;
+  margin-bottom: 30px;
 }
 
 .cards {
@@ -146,10 +153,13 @@ h2 {
 
 .cards:hover {
   -ms-transform: scale(1, 1.1);
+  -ms-transition: transform 1s ;
   /* IE 9 */
   -webkit-transform: scale(1, 1.1);
+  -webkit-transition: transform 1s;
   /* Safari */
   transform: scale(1, 1.1);
+  transition: transform 1s;
 }
 
 .how-to-card {
@@ -177,7 +187,7 @@ h2 {
 .charity h1 {
   text-align: center;
   margin-top: 0px !important;
-  padding: 20px;
+  padding: 50px;
   font-size: 50px;
 }
 
@@ -189,6 +199,7 @@ h2 {
 .charity h4 {
   text-align: center;
   padding: 10px;
+  margin-top: -60px;
 }
 
 .charity p {
@@ -205,6 +216,9 @@ h2 {
 
 .charity-text {
   padding: 30px;
+}
+.mkw {
+  padding-top: 30px;
 }
 
 .the-team h1 {
@@ -709,6 +723,23 @@ html {
   width: 22px;
   float: right;
 }
+/*Charity quotes*/
+#main-container #app-container #gameplay-container #upper-gameplay-container 
+#question-container-outer #question-container-inner .card #game-end-info .quotes {
+  margin-top: 10%;
+}
+
+.quotes p{
+  color: #9EB9D4;
+  font-size: 14px;
+}
+#main-container #app-container #gameplay-container #upper-gameplay-container 
+#question-container-outer #question-container-inner .card #game-end-info .quotes h2 {
+  font-size: 18px;
+  font-weight: bold;
+  color: #9EB9D4;
+}
+.quotes
 /* ----------- iPhone 5 and 5S ----------- */
 
 
@@ -728,7 +759,6 @@ html {
     background-size: 50%;
     padding-top: 20px;
   }
-
   #main-container #app-container #gameplay-container {
     margin: 5px;
   }
@@ -776,6 +806,10 @@ html {
   .card-mem {
     height: 70%;
   }
+  .emoji-menu {
+    width: 200px;
+    transform: translateX(10px) translateY(541px) translateZ(0px) !important;
+  }
 }
 
 
@@ -798,6 +832,10 @@ html {
     background-size: 50%;
     padding-top: 20px;
   }
+  .emoji-menu {
+    width: 210px;
+    transform: translateX(10px) translateY(541px) translateZ(0px) !important;
+  }
 }
 /* ----------- iPhone 6+ ----------- */
 
@@ -817,6 +855,10 @@ html {
     height: 100%;
     background-size: 50%;
     padding-top: 20px;
+  }
+  .emoji-menu {
+    width: 225px;
+    transform: translateX(200px) translateY(531px) translateZ(0px) !important;
   }
 }
 
@@ -840,6 +882,11 @@ html {
     background-size: 50%;
     padding-top: 20px;
   }
+  .emoji-menu {
+    width: 210px;
+    transform: translateX(10px) translateY(541px) translateZ(0px) !important;
+  }
+
 }
 @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
   .avatars{
@@ -854,6 +901,10 @@ html {
     height: 100%;
     background-size: 50%;
     padding-top: 20px;
+  }
+  .emoji-menu {
+    width: 210px;
+    transform: translateX(10px) translateY(541px) translateZ(0px) !important;
   }
 }
 /* iPads (portrait and landscape) ----------- */
@@ -871,6 +922,10 @@ html {
     background-size: 50%;
     padding-top: 20px;
   }
+  .emoji-menu {
+    width: 225px;
+    transform: translateX(418px) translateY(791px) translateZ(0px) !important;
+  }
 }
 /* iPhone 4 ----------- */
 @media only screen and (min-device-width : 320px) and (max-device-width : 480px) and (orientation : landscape) and (-webkit-min-device-pixel-ratio : 2) {
@@ -887,6 +942,10 @@ html {
     background-size: 50%;
     padding-top: 20px;
   }
+  .emoji-menu {
+    width: 200px;
+    transform: translateX(10px) translateY(541px) translateZ(0px) !important;
+  }
 }
 /* Samsung Galaxy S3 ----------- */
 @media only screen and (min-device-width: 320px) and (max-device-height: 640px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 2){
@@ -902,6 +961,10 @@ html {
     height: 100%;
     background-size: 50%;
     padding-top: 20px;
+  }
+  .emoji-menu {
+    width: 200px;
+    transform: translateX(50px) translateY(541px) translateZ(0px) !important;
   }
 }
 

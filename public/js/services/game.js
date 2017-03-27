@@ -256,6 +256,10 @@ angular.module('mean.system')
         }
       });
 
+      socket.on('endTour', () => {
+        game.tour.cancelTour();
+      });
+
       socket.on('sendCustomInvite', (params) => {
         params.invitedFriends.forEach((friend) => {
           socket.emit('sendInvite', {

@@ -85,16 +85,16 @@ module.exports = (app, passport) => {
     // Answer Routes
   const answers = require('../app/controllers/answers');
 
-  app.get('/answers', answers.all);
-  app.get('/answers/:answerId', answers.show);
+  app.get('/answers', customAuth.hasAuth(), answers.all);
+  app.get('/answers/:answerId', customAuth.hasAuth(), answers.show);
     // Finish with setting up the answerId param
   app.param('answerId', answers.answer);
 
     // Question Routes
   const questions = require('../app/controllers/questions');
 
-  app.get('/questions', questions.all);
-  app.get('/questions/:questionId', questions.show);
+  app.get('/questions', customAuth.hasAuth(), questions.all);
+  app.get('/questions/:questionId', customAuth.hasAuth(), questions.show);
     // Finish with setting up the questionId param
   app.param('questionId', questions.question);
 
@@ -105,36 +105,36 @@ module.exports = (app, passport) => {
 
     // Home route
   const index = require('../app/controllers/index');
-  app.get('/play', index.play);
+  app.get('/play', customAuth.hasAuth(), index.play);
 
-  app.get('/api/games/:id/start', index.play);
+  app.get('/api/games/:id/start', customAuth.hasAuth(), index.play);
 
   // search user route
   const search = require('../app/controllers/search-users');
-  app.get('/api/search/users/:inviteeUserName', search.users);
-  app.get('/api/search/getuser/:id', search.getUser);
+  app.get('/api/search/users/:inviteeUserName', customAuth.hasAuth(), search.users);
+  app.get('/api/search/getuser/:id', customAuth.hasAuth(), search.getUser);
 
   // Mail Invite Route
   const mailer = require('../app/controllers/mailer');
-  app.post('/api/invite/user', mailer.invite);
+  app.post('/api/invite/user', customAuth.hasAuth(), mailer.invite);
 
   // Notifications route
   const notification = require('../app/controllers/notification');
-  app.get('/api/notification/:id', notification.getNotification);
+  app.get('/api/notification/:id', customAuth.hasAuth(), notification.getNotification);
 
   // Friends Route
   const friends = require('../app/controllers/friends.js');
-  app.get('/api/friends/:id', friends.getAll);
-  app.get('/api/friends/status/:user/:sender', friends.reqStatus);
-  app.post('/api/friends/request', friends.sendReq);
-  app.post('/api/friends/request/accept', friends.acceptReq);
-  app.post('/api/friends/request/reject', friends.rejectReq);
+  app.get('/api/friends/:id', customAuth.hasAuth(), friends.getAll);
+  app.get('/api/friends/status/:user/:sender', customAuth.hasAuth(), friends.reqStatus);
+  app.post('/api/friends/request', customAuth.hasAuth(), friends.sendReq);
+  app.post('/api/friends/request/accept', customAuth.hasAuth(), friends.acceptReq);
+  app.post('/api/friends/request/reject', customAuth.hasAuth(), friends.rejectReq);
 
   const tour = require('../app/controllers/tour');
   // search tour taken
-  app.get('/api/tour/:userID', tour.searchTour);
+  app.get('/api/tour/:userID', customAuth.hasAuth(), tour.searchTour);
   // save tour taken
-  app.post('/api/tour', tour.saveTour);
+  app.post('/api/tour', customAuth.hasAuth(), tour.saveTour);
 
   // get rankings
   const gamesRanking = require('../app/controllers/game-ranking.js');
