@@ -17,8 +17,6 @@ exports.authCallback = (req, res, next) => {
  * Show login form
  */
 exports.signin = (req, res, next) => {
-  res.clearCookie('token');
-  req.logout();
   if (!req.user) {
     res.redirect('/#!/signin?error=invalid');
   } else {
