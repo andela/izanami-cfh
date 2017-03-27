@@ -138,12 +138,12 @@ module.exports = (app, passport) => {
 
   // get rankings
   const gamesRanking = require('../app/controllers/game-ranking.js');
-  app.get('/api/leaderboard', gamesRanking.calculateRanking);
+  app.get('/api/leaderboard', customAuth.hasAuth(), gamesRanking.calculateRanking);
 
   app.get('/', customAuth.hasAuth(), index.render);
 
   // Game Log Routes
   const games = require('../app/controllers/game-history');
-  app.get('/api/games/history', games.getUserHistory);
-  app.get('/api/games/history/:userID', games.getUserGameHistory);
+  app.get('/api/games/history', customAuth.hasAuth(), games.getUserHistory);
+  app.get('/api/games/history/:userID', customAuth.hasAuth(), games.getUserGameHistory);
 };
