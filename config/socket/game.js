@@ -43,7 +43,7 @@ function Game(gameID, io) {
     stateJudging: 16,
 // czar draw cards
     stateDrawCards: 11,
-    stateResults: 3
+    stateResults: 2
   };
   // setTimeout ID that triggers the czar judging state
   // Used to automatically run czar judging if players don't pick before time limit
@@ -456,9 +456,7 @@ Game.prototype.drawCard = function () {
 
 Game.prototype.saveGame = (players) => {
   const rawGameData = players.slice(0);
-  const gamePlayers = rawGameData.map((data) => {
-    return data.userID;
-  });
+  const gamePlayers = rawGameData.map((data) => data.userID);
   const newGame = new GameModel({
     created_by: gamePlayers[0],
     number_of_players: gamePlayers.length.toString(),
@@ -466,7 +464,7 @@ Game.prototype.saveGame = (players) => {
     players: gamePlayers
   });
 
-  newGame.save(( err ) => {
+  newGame.save((err) => {
     if (!err) {
       // This happens when game has been saved
     } else {
@@ -478,7 +476,7 @@ Game.prototype.saveGame = (players) => {
 Game.prototype.updateGame = (players) => {
   let winner = '';
   const gamePlayers = players.map((player) => {
-    let data = {};
+    const data = {};
     const uid = player.userID;
     const points = player.points;
     data[uid] = points;
@@ -487,6 +485,7 @@ Game.prototype.updateGame = (players) => {
     }
     return data;
   });
+
   let gameId = players[0].socket.gameID;
   GameModel.findOne({ game_id: gameId }, function (err, game){
     game.players = gamePlayers;
