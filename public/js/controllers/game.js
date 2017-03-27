@@ -29,17 +29,16 @@ angular.module('mean.system')
        */
       $scope.sendMessage = (userMessage) => {
         $scope.chat.postGroupMessage(userMessage);
-        $scope.chatMessage = '';
+        document.getElementsByClassName('emoji-wysiwyg-editor')[0].innerHTML = '';
+        document.getElementById('msg_input').value = '';
       };
 
-      $scope.keyPressed = ($event) => {
-        const keyCode = $event.which || $event.keyCode;
-        //  if enter clicked
-        if (keyCode === 13 && !$event.shiftKey) {
-          $scope.sendMessage($scope.chatMessage);
-          $event.preventDefault();
+      $(document).on('keydown', '.emoji-wysiwyg-editor', (e) => {
+        if (e.which === 13 && e.shiftKey === false) {
+          $scope.sendMessage(document.getElementsByClassName('emoji-wysiwyg-editor')[0].innerHTML);
+          e.preventDefault();
         }
-      };
+      });
 
       $scope.showChat = () => {
         $scope.chat.chatWindowVisible = !$scope.chat.chatWindowVisible;
@@ -144,6 +143,7 @@ angular.module('mean.system')
         } else {
           $('#playerMinimumAlert').modal('show');
         }
+        gameTour.cancelTour();
       };
 
       $scope.abandonGame = () => {
