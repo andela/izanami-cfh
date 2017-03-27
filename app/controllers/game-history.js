@@ -21,7 +21,7 @@ exports.getUserGameHistory = (req, res) => {
   const query = req.params.userID || '';
   Game.find({}, (err, games) => {
     if (!err) {
-      let participated = games.filter((game) => {
+      const participated = games.filter((game) => {
         let isAmong = null;
         game.players.forEach((player) => {
           if (player.id === query) {

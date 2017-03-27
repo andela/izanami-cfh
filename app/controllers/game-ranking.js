@@ -32,7 +32,6 @@ exports.calculateRanking = (req, res) => {
             if (rankings[player.name]) {
               rankings[player.name] = player.points + rankings[player.name];
             } else {
-              console.log(player);
               rankings[player.name] = player.points;
             }
           }
@@ -48,7 +47,6 @@ exports.calculateRanking = (req, res) => {
     const sortedRankings = sortObject.sort((a, b) => {
       return a[1] - b[1];
     }).reverse().map((player, index) => {
-      console.log('player is', player);
       const played = gamesPlayed(player[0], games);
       const data = { name: player[0], points: player[1], rank: index + 1, games_played: played };
       return (data);
