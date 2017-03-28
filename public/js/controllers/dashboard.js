@@ -26,7 +26,6 @@ angular.module('mean.system')
           gameLogs.getRanking()
             .then((gameRanking) => {
               $scope.gameRanking = gameRanking;
-              console.log($scope.gameRanking);
             });
         }
       });
