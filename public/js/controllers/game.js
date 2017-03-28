@@ -192,6 +192,15 @@ angular.module('mean.system')
         }
       });
 
+      socket.on('announceNewMember', (param) => {
+        if (!$scope.spoken) {
+          responsiveVoice.speak(param.message, 'UK English Female');
+          $scope.spoken = true;
+        } else {
+          $scope.spoken = false;
+        }
+      });
+
       $rootScope.sendInvite = () => {
         if (!$scope.invitedPlayers.includes($scope.inviteeUserEmail)) {
           if ($scope.invitedPlayers.length > game.playerMaxLimit - 1) {
