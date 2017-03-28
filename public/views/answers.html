@@ -39,38 +39,6 @@
 
 
 <!--  add in the user draw card functionality-->
-<div ng-show="game.state === 'game ended'">
-  <section id="charity">
-  <div class="charity">
-    <h1>Charity</h1>
-    <h4> "If you don't give back, no one will like you&#8482"-
-      <a href="http://www.crowdrise.com/cfhio/fundraiser/cards4humanity" class="crowdrise">crowdrise.com</a>
-    </h4>
-  </div>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-9 charity-text">
-        <div id="info-box">
-          <div id="landing-image">
-            <div id="landing-charity">
-              <a href="http://www.crowdrise.com/cfhio/fundraiser/cards4humanity" id="crowdriseStaticLink-fundraiser-121142" title="Fundraising Websites on Crowdrise">Fundraising Websites - Crowdrise</a>
-              <script type="text/javascript" src="https://www.crowdrise.com/widgets/donate/fundraiser/121142/?callback=userDonationCb"></script>
-            </div>
-          </div>
-        </div>
-        <div class="make-a-wish">
-          <a href="http://www.wish.org"><img src="images/make-a-wish-logo-white-large.png" class="image-responsive mkw" alt="make-a-wish"></a>
-        </div>    
-      </div>
-      <div class="col-md-3">
-        
-      </div>
-    </div>
-  </div>
-</section>
-
-
-</div>
 
  <div id="cards" class='hand' ng-hide="game.state === 'waiting for czar to draw cards'">
     <span ng-show="winnerPicked()"></span>

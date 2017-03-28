@@ -149,7 +149,7 @@ angular.module('mean.system')
       $scope.abandonGame = () => {
         game.leaveGame();
         gameTour.cancelTour();
-        window.location.href = '../';
+        $location.path('/');
       };
 
       // Catches changes to round to update when no players pick card
@@ -189,15 +189,6 @@ angular.module('mean.system')
               $scope.modalShown = true;
             }
           }
-        }
-      });
-
-      socket.on('announceNewMember', (param) => {
-        if (!$scope.spoken) {
-          responsiveVoice.speak(param.message, 'UK English Female');
-          $scope.spoken = true;
-        } else {
-          $scope.spoken = false;
         }
       });
 
