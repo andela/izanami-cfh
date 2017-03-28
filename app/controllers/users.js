@@ -79,7 +79,7 @@ exports.checkAvatar = (req, res) => {
  */
 
 exports.create = (req, res, next) => {
-  if (req.body.name && req.body.password && req.body.email) {
+  if (req.body.name && req.body.password && req.body.email && req.body.avatar) {
     User.findOne({
       email: req.body.email
     }).exec((err, existingUser) => {
