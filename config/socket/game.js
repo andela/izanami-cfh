@@ -456,12 +456,15 @@ Game.prototype.drawCard = function () {
 
 Game.prototype.saveGame = (players) => {
   const rawGameData = players.slice(0);
-  const gamePlayers = rawGameData.map((data) => data.userID);
+  const gamePlayers = rawGameData.map((data) => {
+    return { id: data.userID, name: data.username, points: 0 };
+  });
   const newGame = new GameModel({
-    created_by: gamePlayers[0],
+    created_by: gamePlayers[0].id,
     number_of_players: gamePlayers.length.toString(),
     game_id: players[0].socket.gameID,
-    players: gamePlayers
+    players: gamePlayers,
+    winner: ''
   });
 
   newGame.save((err) => {
@@ -476,18 +479,17 @@ Game.prototype.saveGame = (players) => {
 Game.prototype.updateGame = (players) => {
   let winner = '';
   const gamePlayers = players.map((player) => {
-    const data = {};
     const uid = player.userID;
     const points = player.points;
-    data[uid] = points;
+    const name = player.username;
+    const data = { id: uid, name, points };
     if (points >= 5) {
-      winner = uid;
+      winner = name;
     }
     return data;
   });
-
-  let gameId = players[0].socket.gameID;
-  GameModel.findOne({ game_id: gameId }, function (err, game){
+  const gameId = players[0].socket.gameID;
+  GameModel.findOne({ game_id: gameId }, (err, game) => {
     game.players = gamePlayers;
     game.winner = winner;
     game.save();

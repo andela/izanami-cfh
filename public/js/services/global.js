@@ -128,4 +128,38 @@ angular.module('mean.system')
         return deferred.promise;
       }
     };
+  }])
+  .factory('gameLogs', ['$http', '$q', ($http, $q) => {
+    return {
+      getGames: (userID) => {
+        const deferred = $q.defer();
+        $http.get(`/api/games/history/${userID}`)
+          .success((data, status, headers, config) => {
+            deferred.resolve(data, status, headers, config);
+          }).error((err) => {
+            deferred.reject(err);
+          });
+        return deferred.promise;
+      },
+      getFriends: (userID) => {
+        const deferred = $q.defer();
+        $http.get(`/api/friends/${userID}`)
+          .success((data, status, headers, config) => {
+            deferred.resolve(data, status, headers, config);
+          }).error((err) => {
+            deferred.reject(err);
+          });
+        return deferred.promise;
+      },
+      getRanking: () => {
+        const deferred = $q.defer();
+        $http.get('/api/leaderboard')
+          .success((data, status, headers, config) => {
+            deferred.resolve(data, status, headers, config);
+          }).error((err) => {
+            deferred.reject(err);
+          });
+        return deferred.promise;
+      }
+    };
   }]);
