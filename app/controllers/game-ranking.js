@@ -11,9 +11,7 @@ const GameModel = mongoose.model('Game');
 function gamesPlayed(player, games) {
   let played = 0;
   games.forEach((game) => {
-    // console.log(game.players);
     game.players.forEach((p) => {
-      // console.log(player, p.id)
       if (p.name === player) {
         played += 1;
       }
@@ -38,7 +36,6 @@ exports.calculateRanking = (req, res) => {
         }
       });
     });
-    console.log(rankings);
     const sortObject = [];
     Object.keys(rankings).forEach((rank) => {
       sortObject.push([rank, rankings[rank]]);
