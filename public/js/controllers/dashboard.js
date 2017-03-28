@@ -57,6 +57,7 @@ angular.module('mean.system')
               game.created_on = moment(game.created_on).format('LLLL');
             });
             $scope.allGameData = allGamesData;
+            $scope.gameCount = Object.keys($scope.allGameData).length;
           });
         }
       };
@@ -84,7 +85,11 @@ angular.module('mean.system')
                 delete friend._id;
               });
               $scope.allFriends = friends[0];
-              $scope.friendsCount = Object.keys($scope.allFriends).length;
+              if ($scope.allFriends !== undefined) {
+                $scope.friendsCount = Object.keys($scope.allFriends).length;
+              } else {
+                $scope.friendsCount = 0;
+              }
             });
         }
       };

@@ -645,9 +645,16 @@ html {
 }
 #main-container #app-container #social-bar-container #player-container #czar-container{
   border-radius: 1px;
-  background: #aaa;
   margin-top: 50px;
+  background: transparent;
+  width: 70%;
+  text-align: right;
+  margin-left: 50px;
 }
+#main-container #app-container #social-bar-container #player-container #czar-container #the-czar {
+    font-size: 16px;
+    color: #00008B;
+  }
 .abandon-game {
     padding: 0 10px;
     position: relative;
@@ -739,7 +746,6 @@ html {
   font-weight: bold;
   color: #9EB9D4;
 }
-.quotes
 /* ----------- iPhone 5 and 5S ----------- */
 
 
@@ -979,7 +985,7 @@ body {
 #profile{
   display: flex;
   padding-top: 10%;
-  align-items: center;
+  text-align: center;
   justify-content: center;
   margin: 25px 0;
 }
@@ -1140,6 +1146,7 @@ body {
 
 #menu-toggle {
   display: none;
+  margin-left: -30px;
 }
 
 @media only screen and (max-width: 800px) {
@@ -1173,4 +1180,17 @@ body {
     margin-right: 0;
   }
 }
+/*Dashboard friends*/
+i.fa.fa-heart {
+  margin-left: -20px;
+}
 
+td:first-child, th:first-child{
+  border-right: 2px solid #ddd;
+  padding-right: -8px;
+  width: 5%;
+}
+
+.navbar-collapse {
+ overflow: scroll;
+}

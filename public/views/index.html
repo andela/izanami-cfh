@@ -87,13 +87,13 @@
               <li><a href="#!/#home">Home </a></li>
               <li><a href="#!/#how-to">How to Play</a></li>
               <li><a href="#!/#charity">Charity</a></li>
+              <li ng-hide="showOptions"><a href="#!/dashboard">Dashboard</a></li>
               <li ng-show="showOptions"><a href="#!/signup">Sign Up</a></li>
               <li ng-show="showOptions"><a href="#!/signin">Sign In</a></li>
               <li ng-hide="showOptions" class="notification-list">
                 <span class="fa fa-users" onclick="toggleTooltip('friends')"></span>
                 <div class="row tooltip-row">
                   <div id="invite-tooltip" class="tooltip-box tooltip-box-left">
-                    something
                   </div>
                   <div id="friends-tooltip" class="tooltip-box">
                     <div class="notification-header">
@@ -211,7 +211,6 @@
                 </div>
               </li>
               <li ng-hide="showOptions" class='signout'><a href="/signout">Sign Out</a></li>
-              <li ng-hide="showOptions"><a href="#!/dashboard">Dashboard</a></li>
             </ul>
           </div>
         </div>

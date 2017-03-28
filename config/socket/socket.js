@@ -208,6 +208,9 @@ module.exports = function (io) {
           game.prepareGame();
         }
         socket.emit('startTour');
+        socket.to(requestedGameId).emit('announceNewMember', {
+          message: `${player.username} has joined the game`
+        });
       } else {
         // TODO: Send an error message back to this user saying the game has already started
         exitGame(socket);

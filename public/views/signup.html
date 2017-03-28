@@ -19,7 +19,7 @@
               <div id="contain-avatars">
                 <ul class="avatar-list">
                   <li ng-repeat="avatar in avatars" class="avatars ng-scope">
-                    <input name="avatar" type='radio' value="{{$index}}">
+                    <input name="avatar" type='radio' value="{{$index}}" required>
                       <img ng-src="{{avatar}}">
                     </input>
                   </li>
