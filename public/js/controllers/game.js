@@ -149,7 +149,7 @@ angular.module('mean.system')
       $scope.abandonGame = () => {
         game.leaveGame();
         gameTour.cancelTour();
-        $location.path('/');
+        window.location.href = '../';
       };
 
       // Catches changes to round to update when no players pick card
