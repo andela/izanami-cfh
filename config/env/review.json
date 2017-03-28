@@ -5,21 +5,21 @@
     "facebook": {
         "clientID": "APP_ID",
         "clientSecret": "APP_SECRET",
-        "callbackURL": "https://izanami-cfh-staging-pr-12.herokuapp.com/auth/facebook"
+        "callbackURL": "https://izanami-cfh-staging-pr-36.herokuapp.com/auth/facebook"
     },
     "twitter": {
         "clientID": "CONSUMER_KEY",
         "clientSecret": "CONSUMER_SECRET",
-        "callbackURL": "https://izanami-cfh-staging-pr-12.herokuapp.com/auth/twitter"
+        "callbackURL": "https://izanami-cfh-staging-pr-36.herokuapp.com/auth/twitter"
     },
     "github": {
         "clientID": "APP_ID",
         "clientSecret": "APP_SECRET",
-        "callbackURL": "https://izanami-cfh-staging-pr-12.herokuapp.com/auth/github"
+        "callbackURL": "https://izanami-cfh-staging-pr-36.herokuapp.com/auth/github"
     },
     "google": {
         "clientID": "APP_ID",
         "clientSecret": "APP_SECRET",
-        "callbackURL": "https://izanami-cfh-staging-pr-12.herokuapp.com/auth/google"
+        "callbackURL": "https://izanami-cfh-staging-pr-36.herokuapp.com/auth/google"
     }
 }
