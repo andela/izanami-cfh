@@ -43,16 +43,16 @@
                             </div>
                             <table class="table" ng-if="gameRanking.length > 0">
                                 <tr>
+                                    <th>Rank</th>
                                     <th>Name</th>
                                     <th>Game Played</th>
                                     <th>Points</th>
-                                    <th>Rank</th>
                                 </tr>
                                 <tr ng-repeat="user in gameRanking">
+                                    <td><strong>{{user.rank}}</strong></td>
                                     <td>{{user.name}}</td>
                                     <td>{{user.games_played}}</td>
                                     <td>{{user.points}}</td>
-                                    <td><strong>{{user.rank}}</strong></td>
                                 </tr>
                             </table>
                             <table class="table" ng-if="gameRanking.length === 0">
@@ -70,37 +70,44 @@
                             <button type="button" class="btn btn-danger" ng-click="leaderBoard()">Leaderboard</button>
                             <a href="#!/"><img src="../images/cards.png" alt="cards for humanity"></a>
                         </div>
-                        <div ng-repeat="game in allGameData" class="row" style="border: 1px solid #000;">
-                            <div class="col-md-12 game-one"><strong>GAME {{$index+1}} </strong></div>
-                            <div class="col-md-4">
-                                <strong>Players</strong><br/>
-                                <span ng-repeat="player in game.players">
-                                    {{(player.id !== 'unauthenticated') ? player.name : "Guest User"}}<br/>
-                                </span>
-                            </div>
-                            <div class="col-md-4">
+                        <div ng-if="gameCount > 0">
+                            <div ng-repeat="game in allGameData" class="row" style="border: 1px solid #000;">
+                                <div class="col-md-12 game-one"><strong>GAME {{$index+1}} </strong></div>
+                                <div class="col-md-4">
+                                    <strong>Players</strong><br/>
+                                    <span ng-repeat="player in game.players">
+                                        {{(player.id !== 'unauthenticated') ? player.name : "Guest User"}}<br/>
+                                    </span>
+                                </div>
+                                <div class="col-md-4">
 
-                                <div class="col-md-12">
-                                    <strong>Created by </strong> <br/>
-                                    {{ game.players[0].name}}
+                                    <div class="col-md-12">
+                                        <strong>Created by </strong> <br/>
+                                        {{ game.players[0].name}}
+                                    </div>
+                                    <div class="col-md-12">
+                                        <strong>Winner </strong> <br/>
+                                        {{ (game.winner !== '') ? game.winner : 'Uncompleted game'}}
+                                    </div>
                                 </div>
-                                <div class="col-md-12">
-                                    <strong>Winner </strong> <br/>
-                                    {{ (game.winner !== '') ? game.winner : 'Uncompleted game'}}
+                                <div class="col-md-4">
+                                    <div class="col-md-12">
+                                        <strong>Date Created </strong> <br/>
+                                        {{ game.created_on }}
+                                    </div>
+                                    <div class="col-md-12">
+                                        <strong>Rounds</strong> <br/>
+                                        {{game.rounds}}
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="col-md-12">
-                                    <strong>Date Created </strong> <br/>
-                                    {{ game.created_on }}
-                                </div>
-                                <div class="col-md-12">
-                                    <strong>Rounds</strong> <br/>
-                                    {{game.rounds}}
-                                </div>
-                            </div>
 
+                            </div>
                         </div>
+                         <table class="table" ng-if="gameCount === 0">
+                            <tr>
+                                <td colspan="4"> YOU HAVE PLAYED NO GAME</td>
+                            </tr>
+                        </table>
                     </div>
                     <!---->
                     <!--friends-->

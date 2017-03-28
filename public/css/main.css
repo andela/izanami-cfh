@@ -985,7 +985,7 @@ body {
 #profile{
   display: flex;
   padding-top: 10%;
-  align-items: center;
+  text-align: center;
   justify-content: center;
   margin: 25px 0;
 }
@@ -1146,6 +1146,7 @@ body {
 
 #menu-toggle {
   display: none;
+  margin-left: -30px;
 }
 
 @media only screen and (max-width: 800px) {
@@ -1184,3 +1185,12 @@ i.fa.fa-heart {
   margin-left: -20px;
 }
 
+td:first-child, th:first-child{
+  border-right: 2px solid #ddd;
+  padding-right: -8px;
+  width: 5%;
+}
+
+.navbar-collapse {
+ overflow: scroll;
+}
