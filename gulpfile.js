@@ -16,9 +16,11 @@ gulp.task('server', ['nodemon'], () => {
         proxy: "http://localhost:3000",
         port: 7000,
         files: ["public/**/*.*"],
-        reloadOnRestart: true
+        reloadOnRestart: true,
+        notify: false
     });
 });
+
 gulp.task('sass', () => {
     return gulp.src('public/css/common.scss')
         .pipe(sass())
@@ -42,4 +44,4 @@ gulp.task('watch', () => {
     livereload.listen();
 });
 
-gulp.task('default', ['nodemon','sass','server', 'watch', 'bower']);
+gulp.task('default', ['sass','server', 'watch']);
