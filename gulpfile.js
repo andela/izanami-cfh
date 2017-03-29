@@ -1,5 +1,5 @@
 const gulp = require('gulp');
-const browserSync = require('browser-sync').create();
+// const browserSync = require('browser-sync').create();
 const nodemon = require('gulp-nodemon');
 const sass = require('gulp-sass');
 const bower = require('gulp-bower');
