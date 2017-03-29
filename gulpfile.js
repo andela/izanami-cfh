@@ -1,5 +1,7 @@
+'use strict';
+
 const gulp = require('gulp');
-// const browserSync = require('browser-sync').create();
+const browserSync = require('browser-sync');
 const nodemon = require('gulp-nodemon');
 const sass = require('gulp-sass');
 const bower = require('gulp-bower');
@@ -11,8 +13,8 @@ gulp.task('nodemon', () => {
     nodemon({ script: 'server.js' });
 });
 
-gulp.task('serve', ['nodemon'], () => {
-    browserSync.init({
+gulp.task('server', ['nodemon'], () => {
+    browserSync.create({
         proxy: "http://localhost:3000",
         port: 7000,
         files: ["public/**/*.*"],
@@ -37,10 +39,10 @@ gulp.task('test', () => {
 gulp.task('watch', () => {
     gulp.watch('public/css/common.scss', ['sass']);
     gulp.watch('public/css/*.css');
-    gulp.watch('public/css/**', browserSync.reload);
-    gulp.watch('app/views/**', browserSync.reload);
-    gulp.watch('public/views/**', browserSync.reload);
-    gulp.watch(['public/js/**', 'app/**/*.js'], browserSync.reload)
+    gulp.watch('public/css/**', browserSync.create().reload);
+    gulp.watch('app/views/**', browserSync.create().reload);
+    gulp.watch('public/views/**', browserSync.create().reload);
+    gulp.watch(['public/js/**', 'app/**/*.js'], browserSync.create().reload);
     livereload.listen();
 });
 
